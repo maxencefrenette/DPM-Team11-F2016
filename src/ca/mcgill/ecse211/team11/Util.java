@@ -11,7 +11,7 @@ public class Util {
    * 
    * @param time The amount of time (in milliseconds) to pause for
    */
-  public static void sleep(int time) {
+  public static void sleep(long time) {
     try {
       Thread.sleep(time);
     } catch (Exception e) {

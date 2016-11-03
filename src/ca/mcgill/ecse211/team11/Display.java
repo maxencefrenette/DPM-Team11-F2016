@@ -38,13 +38,7 @@ public class Display extends Thread implements Observer {
       // adjust timing of wait period depending on how long it took to update screen
       long displayEnd = System.currentTimeMillis();
       if (displayEnd - displayStart < Constants.DISPLAY_WAIT_PERIOD) {
-        try {
-          Thread.sleep(Constants.DISPLAY_WAIT_PERIOD - (displayEnd - displayStart));
-        } catch (InterruptedException e) {
-          /*
-           * In case something interrupts the thread but there should not be anything for now.
-           */
-        }
+        Util.sleep(Constants.DISPLAY_WAIT_PERIOD - (displayEnd - displayStart));
       }
     }
   }
