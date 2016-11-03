@@ -46,4 +46,7 @@ public class Constants {
 	public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 9.0;
 	public static final double DIST_CENTER_TO_US_SENSOR = 8.0;
 	
+	// Other constants
+	public static final int HARDWARE_INITIALIZATION_MAXIMUM_TRIALS = 5;
+	public static final int HARDWARE_INITIALIZATION_RETRY_DELAY = 500;
 }
