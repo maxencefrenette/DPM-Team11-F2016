@@ -39,7 +39,8 @@ public class Constants {
 	public static final int LIGHT_POLLER_WAIT_PERIOD = 50;
 	
 	// Physical dimensions of robot
-	public static final double WHEEL_RADIUS = 2.15;
+	public static final double LEFT_WHEEL_RADIUS = 2.15;
+	public static final double RIGHT_WHEEL_RADIUS = 2.15;
 	public static final double WHEEL_BASE = 13.5;
 	public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 6.0;
 	public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 9.0;
