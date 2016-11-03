@@ -5,14 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 /**
- * 
- * The Logger class's purpose is to log any data passed to it into a file to be later used for
- * debugging purposes. All methods and
+ * Logs any data passed to it into a file to be later used for debugging purposes.
  * 
  * @author Justin Szeto
  * @version 1.0
  * @since 1.0
- *
  */
 
 public class Logger {
