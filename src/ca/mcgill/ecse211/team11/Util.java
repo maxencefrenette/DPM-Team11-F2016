@@ -17,4 +17,34 @@ public class Util {
     } catch (Exception e) {
     }
   }
+
+  /**
+   * Normalizes an angle so that -pi > angle >= pi
+   * 
+   * @param angle The angle to normalize (in radians)
+   * @return The normalized angle
+   */
+  public static double normalizeAngle180(double angle) {
+    while (angle < 0) {
+      angle += 2 * Math.PI;
+    }
+    angle %= (2 * Math.PI);
+    if (angle > Math.PI) {
+      angle -= 2 * Math.PI;
+    }
+    return angle;
+  }
+
+  /**
+   * Normalizes an angle so that 0 >= angle > 2pi
+   * 
+   * @param angle The angle to normalize (in radians)
+   * @return The normalized angle
+   */
+  public static double normalizeAngle360(double angle) {
+    while (angle < 0) {
+      angle += 2 * Math.PI;
+    }
+    return angle % (2 * Math.PI);
+  }
 }
