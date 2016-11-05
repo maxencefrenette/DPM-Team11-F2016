@@ -7,11 +7,13 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 
 /**
  * This class bootstraps the robot by initializing every system.
- * 
+ * <p>
  * It initializes all the sensors and motors and handles the eventual exceptions that could arise.
  * It also initializes all the robot's subsystems.
  * 
  * @author Maxence Frenette
+ * @version 1.0
+ * @since 1.0
  */
 public class Initializer {
   // Motors and sensors

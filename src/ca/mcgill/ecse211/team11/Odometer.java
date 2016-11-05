@@ -7,6 +7,8 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
  * rotation data from the wheel motors.
  * 
  * @author Maxence Frenette
+ * @version 1.0
+ * @since 1.0
  */
 public class Odometer extends Thread {
   /** The robot's x position */
@@ -22,7 +24,7 @@ public class Odometer extends Thread {
   /**
    * Creates and initializes the odometer.
    * 
-   * @param init The HardWareInitializer in charge of creating the connection with the components
+   * @param init The Initializer in charge of creating the connection with the components
    */
   public Odometer(Initializer init) {
     this.leftMotor = init.leftMotor;

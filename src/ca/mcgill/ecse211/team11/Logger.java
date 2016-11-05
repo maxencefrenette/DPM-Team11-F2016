@@ -11,7 +11,6 @@ import java.io.PrintStream;
  * @version 1.0
  * @since 1.0
  */
-
 public class Logger {
 
   private static PrintStream writer = System.out;

@@ -1,14 +1,12 @@
 package ca.mcgill.ecse211.team11;
 
 /**
- * 
  * The Constants class contains all the constants to be used in other classes. This makes adjusting
  * constants during the testing phase easier since all constants are in one location.
  * 
  * @author Justin Szeto
  * @version 1.0
  * @since 1.0
- * 
  */
 
 public class Constants {
