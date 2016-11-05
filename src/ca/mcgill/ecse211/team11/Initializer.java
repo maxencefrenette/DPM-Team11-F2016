@@ -24,20 +24,23 @@ public class Initializer {
   public EV3UltrasonicSensor ultrasonicSensor;
   
   // Subsystems
-  public Logger logger;
   public Display display;
   public Odometer odometer;
+  public Navigation navigation;
 
   public Initializer() {
+    Logger.setLogWriter(Constants.LOG_FILENAME);
+    Logger.setLogStartTime();
+    
     leftMotor = initMotor(Constants.LEFT_WHEEL_MOTOR_PORT);
     rightMotor = initMotor(Constants.RIGHT_WHEEL_MOTOR_PORT);
     lineDetectionLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
     objectIdentifierLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
     ultrasonicSensor = initUltrasonicSensor(Constants.US_SENSOR_PORT);
     
-    logger = new Logger();
     odometer = new Odometer(this);
     display = new Display(this);
+    navigation = new Navigation(this);
   }
 
   /**
@@ -55,7 +58,7 @@ public class Initializer {
         motor = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(port));
       } catch (Exception e) {
         Util.sleep(Constants.HARDWARE_INITIALIZATION_RETRY_DELAY);
-        // TODO log the error
+        Logger.logData(e.getMessage());
       }
     }
 
@@ -77,7 +80,7 @@ public class Initializer {
         cs = new EV3ColorSensor(LocalEV3.get().getPort(port));
       } catch (Exception e) {
         Util.sleep(Constants.HARDWARE_INITIALIZATION_RETRY_DELAY);
-        // TODO log the error
+        Logger.logData(e.getMessage());
       }
     }
 
@@ -99,7 +102,7 @@ public class Initializer {
         us = new EV3UltrasonicSensor(LocalEV3.get().getPort(port));
       } catch (Exception e) {
         Util.sleep(Constants.HARDWARE_INITIALIZATION_RETRY_DELAY);
-        // TODO log the error
+        Logger.logData(e.getMessage());
       }
     }
 
