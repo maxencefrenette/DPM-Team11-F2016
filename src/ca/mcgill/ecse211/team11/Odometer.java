@@ -24,7 +24,7 @@ public class Odometer extends Thread {
    * 
    * @param init The HardWareInitializer in charge of creating the connection with the components
    */
-  public Odometer(HardwareInitializer init) {
+  public Odometer(Initializer init) {
     this.leftMotor = init.leftMotor;
     this.rightMotor = init.leftMotor;
     this.x = 0;

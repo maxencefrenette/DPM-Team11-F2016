@@ -11,7 +11,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
  * 
  * @author Maxence Frenette
  */
-public class HardwareInitializer {
+public class Initializer {
 
   public EV3LargeRegulatedMotor leftMotor;
   public EV3LargeRegulatedMotor rightMotor;
@@ -19,7 +19,7 @@ public class HardwareInitializer {
   public EV3ColorSensor objectIdentifierLightSensor;
   public EV3UltrasonicSensor ultrasonicSensor;
 
-  public HardwareInitializer() {
+  public Initializer() {
     leftMotor = initMotor(Constants.LEFT_WHEEL_MOTOR_PORT);
     rightMotor = initMotor(Constants.RIGHT_WHEEL_MOTOR_PORT);
     lineDetectionLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
