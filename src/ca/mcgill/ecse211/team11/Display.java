@@ -1,8 +1,5 @@
 package ca.mcgill.ecse211.team11;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.lcd.TextLCD;
 
@@ -12,13 +9,22 @@ import lejos.hardware.lcd.TextLCD;
  * @author Justin Szeto
  * @version 1.0
  * @since 1.0
- *
  */
-
-public class Display extends Thread implements Observer {
-
-  private double[] position = new double[3];
-
+public class Display extends Thread {
+  private Odometer odometer;
+  
+  /**
+   * Creates and initializes the display.
+   * 
+   * @param init The Initializer in charge of creating the connection with the components.
+   */
+  public Display(Initializer init) {
+    odometer = init.odometer;
+  }
+  
+  /**
+   * Starts the automatic update of the display.
+   */
   public void run() {
     TextLCD t = LocalEV3.get().getTextLCD();
 
@@ -31,26 +37,15 @@ public class Display extends Thread implements Observer {
       t.drawString("T:              ", 0, 2);
 
       // display odometry information
-      for (int i = 0; i < 3; i++) {
-        t.drawString(String.format("%.2f", position[i]), 3, i);
-      }
+      t.drawString(String.format("%.2f", odometer.getX()), 3, 0);
+      t.drawString(String.format("%.2f", odometer.getY()), 3, 1);
+      t.drawString(String.format("%.2f", odometer.getTheta()), 3, 2);
 
       // adjust timing of wait period depending on how long it took to update screen
       long displayEnd = System.currentTimeMillis();
       if (displayEnd - displayStart < Constants.DISPLAY_WAIT_PERIOD) {
         Util.sleep(Constants.DISPLAY_WAIT_PERIOD - (displayEnd - displayStart));
       }
-    }
-  }
-
-  /**
-   * Update data to display on screen every time data in observed object changes.
-   */
-  @Override
-  public void update(Observable observed, Object o) {
-    // TODO Add in more classes of observable objects and what data to get from them
-    if (observed instanceof Odometer) {
-      position = ((Odometer) observed).getPosition();
     }
   }
 }

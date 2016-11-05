@@ -34,8 +34,8 @@ public class Initializer {
     ultrasonicSensor = initUltrasonicSensor(Constants.US_SENSOR_PORT);
     
     logger = new Logger();
-    display = new Display();
     odometer = new Odometer(this);
+    display = new Display(this);
   }
 
   /**
