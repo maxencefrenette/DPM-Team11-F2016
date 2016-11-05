@@ -6,18 +6,25 @@ import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
 
 /**
- * This class initializes all the sensors and motors and handles the eventual exceptions that could
- * arise.
+ * This class bootstraps the robot by initializing every system.
+ * 
+ * It initializes all the sensors and motors and handles the eventual exceptions that could arise.
+ * It also initializes all the robot's subsystems.
  * 
  * @author Maxence Frenette
  */
 public class Initializer {
-
+  // Motors and sensors
   public EV3LargeRegulatedMotor leftMotor;
   public EV3LargeRegulatedMotor rightMotor;
   public EV3ColorSensor lineDetectionLightSensor;
   public EV3ColorSensor objectIdentifierLightSensor;
   public EV3UltrasonicSensor ultrasonicSensor;
+  
+  // Subsystems
+  public Logger logger;
+  public Display display;
+  public Odometer odometer;
 
   public Initializer() {
     leftMotor = initMotor(Constants.LEFT_WHEEL_MOTOR_PORT);
@@ -25,6 +32,10 @@ public class Initializer {
     lineDetectionLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
     objectIdentifierLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
     ultrasonicSensor = initUltrasonicSensor(Constants.US_SENSOR_PORT);
+    
+    logger = new Logger();
+    display = new Display();
+    odometer = new Odometer(this);
   }
 
   /**
