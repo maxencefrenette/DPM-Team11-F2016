@@ -89,7 +89,7 @@ public class Navigation {
     double errorX = Math.abs(x-odometer.getX());
     double errorY = Math.abs(y-odometer.getY());
     
-    while ( errorX > Constants.DIST_ERROR && errorY > Constants.DIST_ERROR) {
+    while ( errorX > Constants.DIST_ERROR || errorY > Constants.DIST_ERROR) {
       double targetHeading = Util.calculateHeading(odometer.getX(), odometer.getY(), x, y);
      
       if (Math.abs(odometer.getTheta()-targetHeading) > Constants.DEGREE_ERROR) {
@@ -175,6 +175,7 @@ public class Navigation {
   }
   
   /**
+   * Moves robot forward by a given distance based on the odometer.
    * 
    * @param distance - Distance to move robot forward by
    */
@@ -196,8 +197,8 @@ public class Navigation {
     double errorX = Math.abs(targetX-odometer.getX());
     double errorY = Math.abs(targetY-odometer.getY());
     
-    while ( errorX > Constants.DIST_ERROR && errorY > Constants.DIST_ERROR) {
-      double targetHeading = Util.calculateHeading(odometer.getX(), odometer.getY(), targetX, targetY);
+    while ( errorX > Constants.DIST_ERROR || errorY > Constants.DIST_ERROR) {
+      double targetHeading = Util.calculateHeading(targetX, targetY, odometer.getX(), odometer.getY());
      
       if (Math.abs(odometer.getTheta()-targetHeading) > Constants.DEGREE_ERROR) {
         turnToWithMinAngle(targetHeading, false);
