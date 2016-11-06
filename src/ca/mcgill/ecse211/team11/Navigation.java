@@ -187,6 +187,7 @@ public class Navigation {
   }
   
   /**
+   * Moves robot backwards by a given distance based on the odometer.
    * 
    * @param distance - Distance to move robot backward by
    */
