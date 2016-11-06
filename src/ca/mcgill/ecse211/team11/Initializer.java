@@ -24,6 +24,7 @@ public class Initializer {
   public EV3UltrasonicSensor ultrasonicSensor;
   
   // Subsystems
+  public LightSensorController lightSensorController;
   public Display display;
   public Odometer odometer;
   public Navigation navigation;
@@ -37,6 +38,8 @@ public class Initializer {
     lineDetectionLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
     objectIdentifierLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
     ultrasonicSensor = initUltrasonicSensor(Constants.US_SENSOR_PORT);
+    
+    lightSensorController = new LightSensorController(lineDetectionLightSensor);
     
     odometer = new Odometer(this);
     display = new Display(this);
