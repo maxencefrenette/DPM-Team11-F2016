@@ -22,11 +22,12 @@ public class Constants {
   public static final String CLAW_CLOSING_MOTOR_PORT = "C";
   public static final String CLAW_RAISING_MOTOR_PORT = "D";
 
-  // Navigation speeds and accelerations
-  public static final int FORWARD_HIGH_SPEED = 200;
-  public static final int FORWARD_LOW_SPEED = 100;
+  // Navigation constants
+  public static final int FORWARD_SPEED = 200;
   public static final int TURNING_SPEED = 75;
   public static final int WHEEL_ACCELERATION = 2000;
+  public static final double DEGREE_ERROR = 1.0;
+  public static final double DIST_ERROR = 1.0;
 
   // Thread/Timer periods
   public static final int DISPLAY_WAIT_PERIOD = 100;
@@ -42,7 +43,12 @@ public class Constants {
   public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 9.0;
   public static final double DIST_CENTER_TO_US_SENSOR = 8.0;
 
+  // Wifi constants
+  public static final String SERVER_IP = "192.168.2.8";
+  public static final int TEAM_NUMBER = 11;
+  
   // Other constants
+  public static final String LOG_FILENAME = "Log.txt";
   public static final int HARDWARE_INITIALIZATION_MAXIMUM_TRIALS = 5;
   public static final int HARDWARE_INITIALIZATION_RETRY_DELAY = 500;
 }
