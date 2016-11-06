@@ -21,20 +21,30 @@ public class Util {
   }
 
   /**
+   * Computes r such that a = n*q + r and that -n/2 < r <= n/2
+   * 
+   * @param a The dividend
+   * @param n The divisor
+   * @return The value fo r
+   */
+  public static double specialMod(double a, double n) {
+    double r = a % n;
+    if (r <= -n/2) {
+      r += n;
+    } else if (n/2 < r) {
+      r -= n;
+    }
+    return r;
+  }
+  
+  /**
    * Normalizes an angle so that -pi > angle >= pi
    * 
    * @param angle The angle to normalize (in radians)
    * @return The normalized angle
    */
   public static double normalizeAngle180(double angle) {
-    while (angle < 0) {
-      angle += 2 * Math.PI;
-    }
-    angle %= (2 * Math.PI);
-    if (angle > Math.PI) {
-      angle -= 2 * Math.PI;
-    }
-    return angle;
+    return specialMod(angle, 2*Math.PI);
   }
 
   /**
