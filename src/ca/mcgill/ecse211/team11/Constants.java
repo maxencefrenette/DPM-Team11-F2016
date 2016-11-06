@@ -35,6 +35,9 @@ public class Constants {
   public static final int US_POLLER_WAIT_PERIOD = 50;
   public static final int LIGHT_POLLER_WAIT_PERIOD = 50;
 
+  // Sensor filter parameters
+  public static final int LIGHT_POLLER_MEDIAN_FILTER_SIZE = 3;
+
   // Physical dimensions of robot
   public static final double LEFT_WHEEL_RADIUS = 2.15;
   public static final double RIGHT_WHEEL_RADIUS = 2.15;
@@ -46,7 +49,7 @@ public class Constants {
   // Wifi constants
   public static final String SERVER_IP = "192.168.2.8";
   public static final int TEAM_NUMBER = 11;
-  
+
   // Other constants
   public static final String LOG_FILENAME = "Log.txt";
   public static final int HARDWARE_INITIALIZATION_MAXIMUM_TRIALS = 5;
