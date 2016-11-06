@@ -38,11 +38,14 @@ public class Logger {
    * print out data to System.out.
    * 
    * @param filename name of the file to print log data into
-   * @throws FileNotFoundException
    */
-  public static void setLogWriter(String filename) throws FileNotFoundException {
+  public static void setLogWriter(String filename) {
 
-    writer = new PrintStream(new File(filename));
+    try {
+      writer = new PrintStream(new File(filename));
+    } catch (FileNotFoundException e) {
+      // Error should not occur since new File is created every time
+    }
   }
 
   /**
