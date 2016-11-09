@@ -2,6 +2,7 @@ package ca.mcgill.ecse211.team11;
 
 import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
 
@@ -19,6 +20,8 @@ public class Initializer {
   // Motors and sensors
   public EV3LargeRegulatedMotor leftMotor;
   public EV3LargeRegulatedMotor rightMotor;
+  public NXTRegulatedMotor clawClosingMotor;
+  public NXTRegulatedMotor clawRaisingMotor;
   public EV3ColorSensor lineDetectionLightSensor;
   public EV3ColorSensor objectIdentifierLightSensor;
   public EV3UltrasonicSensor ultrasonicSensor;
@@ -26,6 +29,7 @@ public class Initializer {
   // Subsystems
   public LightSensorController lightSensorController;
   public USSensorController usSensorController;
+  public ClawMotorController clawMotorController;
   public Display display;
   public Odometer odometer;
   public Navigation navigation;
@@ -37,12 +41,15 @@ public class Initializer {
     
     leftMotor = initMotor(Constants.LEFT_WHEEL_MOTOR_PORT);
     rightMotor = initMotor(Constants.RIGHT_WHEEL_MOTOR_PORT);
+    clawClosingMotor = initClawMotor(Constants.CLAW_CLOSING_MOTOR_PORT);
+    clawRaisingMotor = initClawMotor(Constants.CLAW_RAISING_MOTOR_PORT);
     lineDetectionLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
     objectIdentifierLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
     ultrasonicSensor = initUltrasonicSensor(Constants.US_SENSOR_PORT);
     
     lightSensorController = new LightSensorController(lineDetectionLightSensor);
     usSensorController = new USSensorController(ultrasonicSensor);
+    clawMotorController = new ClawMotorController(clawClosingMotor, clawRaisingMotor);
     
     odometer = new Odometer(this);
     display = new Display(this);
@@ -63,6 +70,28 @@ public class Initializer {
     for (int i = 0; i < Constants.HARDWARE_INITIALIZATION_MAXIMUM_TRIALS && motor == null; i++) {
       try {
         motor = new EV3LargeRegulatedMotor(LocalEV3.get().getPort(port));
+      } catch (Exception e) {
+        Util.sleep(Constants.HARDWARE_INITIALIZATION_RETRY_DELAY);
+        Logger.logData(e.getMessage());
+      }
+    }
+
+    return motor;
+  }
+  
+  /**
+   * Initializes a single motor and manages initialization errors. If an exception is thrown, it
+   * will try again up to a maximum number of trials.
+   * 
+   * @param port The motor's port
+   * @return The initialized motor object
+   */
+  private NXTRegulatedMotor initClawMotor(String port) {
+    NXTRegulatedMotor motor = null;
+
+    for (int i = 0; i < Constants.HARDWARE_INITIALIZATION_MAXIMUM_TRIALS && motor == null; i++) {
+      try {
+        motor = new NXTRegulatedMotor(LocalEV3.get().getPort(port));
       } catch (Exception e) {
         Util.sleep(Constants.HARDWARE_INITIALIZATION_RETRY_DELAY);
         Logger.logData(e.getMessage());
