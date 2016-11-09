@@ -8,7 +8,7 @@
  * Modified by F.P. Ferrie February 28, 2014 Changed parameters for W2014 competition
  * 
  */
-package ca.mcgill.ecse211.wifi;
+package ca.mcgill.ecse211.team11;
 
 public enum StartCorner {
   BOTTOM_LEFT(1, 0, 0, "BL"), BOTTOM_RIGHT(2, 300, 0, "BR"), TOP_RIGHT(3, 300, 300,
