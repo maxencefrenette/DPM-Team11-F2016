@@ -77,4 +77,27 @@ public class Util {
     }
     return normalizeAngle360(angle);
   }
+  
+  /**
+   * Calculates the corrected heading for US Localization.
+   * <p>
+   * Assumes the robot is stopped at angleB when this calculation is performed.
+   * 
+   * @param angleA - Heading from odometer when detected rising edge while rotating CW.
+   * @param angleB - Heading from odometer when detected rising edge while rotating CCW.
+   * @param cornerNumber - The corner number the robot starts at.
+   * @return The corrected heading the robot is at in radians.
+   */
+  public static double calculateUSLocalizeHeading(double angleA, double angleB, int cornerNumber) {
+    double correctedHeading;
+    if (angleA < angleB) {
+      correctedHeading = angleB - Math.PI*3/4 -(angleA+angleB)/2 + Constants.HEADING_OFFSET;
+    } else {
+      correctedHeading = angleB + Math.PI/4 -(angleA+angleB)/2 + Constants.HEADING_OFFSET;
+    }
+    
+    // Adjust heading depending on starting corner so that 0 heading is east 
+    correctedHeading -= 90*(cornerNumber-1);
+    return correctedHeading;
+  }
 }
