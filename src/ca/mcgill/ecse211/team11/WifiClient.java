@@ -39,13 +39,21 @@ public class WifiClient {
    * <p>
    * The data is returned in a HashMap of String keys and Integer values.
    * The keys and their meaning are as followed:
+   * <p>
    * Key: "BTN", Meaning: Builder team number
+   * <p>
    * Key: "BSC", Meaning: Builder team start corner
+   * <p>
    * Key: "CTN", Meaning: Garbage collector team number
+   * <p>
    * Key: "CSC", Meaning: Garbage collector team start corner
+   * <p>
    * Keys: "LRZx", "LRZy", Meaning: Red zone lower left corner x and y coordinates in tiles
+   * <p>
    * Keys: "URZx", "URZy", Meaning: Red zone upper right corner x and y coordinates in tiles
+   * <p>
    * Keys: "LGZx", "LGZy", Meaning: Green zone lower left corner x and y coordinates in tiles
+   * <p>
    * Keys: "UGZx", "UGZy", Meaning: Green zone upper right corner x and y coordinates in tiles
    * <p>
    * Refer to project description pdf for more information about the values.
