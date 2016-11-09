@@ -12,6 +12,7 @@ import lejos.hardware.lcd.TextLCD;
  */
 public class Display extends Thread {
   private Odometer odometer;
+  private USSensorController usSensorController;
   
   /**
    * Creates and initializes the display.
@@ -20,6 +21,7 @@ public class Display extends Thread {
    */
   public Display(Initializer init) {
     odometer = init.odometer;
+    usSensorController = init.usSensorController;
   }
   
   /**
@@ -35,11 +37,17 @@ public class Display extends Thread {
       t.drawString("X:              ", 0, 0);
       t.drawString("Y:              ", 0, 1);
       t.drawString("T:              ", 0, 2);
+      
+      //clear line for displaying ultrasonic distance reading
+      t.drawString("Distance:       ", 0, 4);
 
       // display odometry information
       t.drawString(String.format("%.2f", odometer.getX()), 3, 0);
       t.drawString(String.format("%.2f", odometer.getY()), 3, 1);
       t.drawString(String.format("%.2f", odometer.getTheta()), 3, 2);
+      
+      //display ultrasonic distance reading
+      t.drawString(String.format("%.1f", usSensorController.getDistance()), 10, 4);
 
       // adjust timing of wait period depending on how long it took to update screen
       long displayEnd = System.currentTimeMillis();
