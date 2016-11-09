@@ -25,6 +25,7 @@ public class Initializer {
   
   // Subsystems
   public LightSensorController lightSensorController;
+  public USSensorController usSensorController;
   public Display display;
   public Odometer odometer;
   public Navigation navigation;
@@ -40,6 +41,7 @@ public class Initializer {
     ultrasonicSensor = initUltrasonicSensor(Constants.US_SENSOR_PORT);
     
     lightSensorController = new LightSensorController(lineDetectionLightSensor);
+    usSensorController = new USSensorController(ultrasonicSensor);
     
     odometer = new Odometer(this);
     display = new Display(this);
