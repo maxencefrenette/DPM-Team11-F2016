@@ -28,6 +28,11 @@ public class Constants {
   public static final int WHEEL_ACCELERATION = 2000;
   public static final double DEGREE_ERROR = 1.0;
   public static final double DIST_ERROR = 1.0;
+  
+  //US Localization constants
+  public static final double RISING_EDGE_RANGE = 0.30;
+  public static final int US_LOCALIZE_WAIT_TIME = 500;
+  public static final double HEADING_OFFSET = 0;
 
   // Thread/Timer periods
   public static final int DISPLAY_WAIT_PERIOD = 100;
@@ -37,6 +42,7 @@ public class Constants {
 
   // Sensor filter parameters
   public static final int LIGHT_POLLER_MEDIAN_FILTER_SIZE = 3;
+  public static final int US_POLLER_MEDIAN_FILTER_SIZE = 3;
 
   // Physical dimensions of robot
   public static final double LEFT_WHEEL_RADIUS = 2.15;
