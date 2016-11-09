@@ -29,6 +29,7 @@ public class Initializer {
   public Display display;
   public Odometer odometer;
   public Navigation navigation;
+  public USLocalization usLocalizer;
 
   public Initializer() {
     Logger.setLogWriter(Constants.LOG_FILENAME);
@@ -46,6 +47,7 @@ public class Initializer {
     odometer = new Odometer(this);
     display = new Display(this);
     navigation = new Navigation(this);
+    usLocalizer = new USLocalization(this);
   }
 
   /**
