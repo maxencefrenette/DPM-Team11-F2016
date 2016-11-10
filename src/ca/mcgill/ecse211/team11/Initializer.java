@@ -28,6 +28,7 @@ public class Initializer {
   
   // Subsystems
   public LightSensorController lightSensorController;
+  public ColorSensorController colorSensorController;
   public USSensorController usSensorController;
   public ClawMotorController clawMotorController;
   public Display display;
@@ -48,6 +49,7 @@ public class Initializer {
     ultrasonicSensor = initUltrasonicSensor(Constants.US_SENSOR_PORT);
     
     lightSensorController = new LightSensorController(lineDetectionLightSensor);
+    colorSensorController = new ColorSensorController(objectIdentifierLightSensor);
     usSensorController = new USSensorController(ultrasonicSensor);
     clawMotorController = new ClawMotorController(clawClosingMotor, clawRaisingMotor);
     
