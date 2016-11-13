@@ -36,7 +36,7 @@ public class Constants {
 
   // Thread/Timer periods
   public static final int DISPLAY_WAIT_PERIOD = 100;
-  public static final int ODOMETER_WAIT_PERIOD = 50;
+  public static final int ODOMETER_WAIT_PERIOD = 25;
   public static final int US_POLLER_WAIT_PERIOD = 50;
   public static final int LIGHT_POLLER_WAIT_PERIOD = 50;
 
