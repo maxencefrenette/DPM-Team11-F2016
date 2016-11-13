@@ -44,7 +44,7 @@ public class Display extends Thread {
       // display odometry information
       t.drawString(String.format("%.2f", odometer.getX()), 3, 0);
       t.drawString(String.format("%.2f", odometer.getY()), 3, 1);
-      t.drawString(String.format("%.2f", odometer.getTheta()), 3, 2);
+      t.drawString(String.format("%.2f", Math.toDegrees(odometer.getTheta())), 3, 2);
       
       //display ultrasonic distance reading
       t.drawString(String.format("%.1f", usSensorController.getDistance()), 10, 4);
