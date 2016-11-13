@@ -20,6 +20,8 @@ public class Odometer extends Thread {
    */
   private double theta;
   private EV3LargeRegulatedMotor leftMotor, rightMotor;
+  // lock object for mutual exclusion
+  private Object lock;
 
   /**
    * Creates and initializes the odometer.
@@ -32,6 +34,7 @@ public class Odometer extends Thread {
     this.x = 0;
     this.y = 0;
     this.theta = 0;
+    lock = new Object();
   }
 
   /**
@@ -58,7 +61,7 @@ public class Odometer extends Thread {
       // Change in orientation since last update
       double dTheta = (dR - dL) / Constants.WHEEL_BASE; 
 
-      synchronized (this) {
+      synchronized (lock) {
         theta += dTheta;
         x += dDist * Math.cos(theta);
         y += dDist * Math.sin(theta);
@@ -81,41 +84,41 @@ public class Odometer extends Thread {
    * @return The x
    */
   public synchronized double getX() {
-    return x;
+	  
+	  
   }
 
   /**
    * @param x The x to set
    */
   public synchronized void setX(double x) {
-    this.x = x;
   }
 
   /**
    * @return The y
    */
   public synchronized double getY() {
-    return y;
+	  
+	  
   }
 
   /**
    * @param y The y to set
    */
   public synchronized void setY(double y) {
-    this.y = y;
   }
 
   /**
    * @return The theta
    */
   public synchronized double getTheta() {
-    return theta;
+	  
+	  
   }
 
   /**
    * @param theta The theta to set
    */
   public synchronized void setTheta(double theta) {
-    this.theta = theta;
   }
 }
