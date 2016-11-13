@@ -45,7 +45,7 @@ public class Initializer {
     clawClosingMotor = initClawMotor(Constants.CLAW_CLOSING_MOTOR_PORT);
     clawRaisingMotor = initClawMotor(Constants.CLAW_RAISING_MOTOR_PORT);
     lineDetectionLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
-    objectIdentifierLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
+    objectIdentifierLightSensor = initColorSensor(Constants.LIGHT_SENSOR_OBJECT_IDENTIFIER_PORT);
     ultrasonicSensor = initUltrasonicSensor(Constants.US_SENSOR_PORT);
     
     lightSensorController = new LightSensorController(lineDetectionLightSensor);
