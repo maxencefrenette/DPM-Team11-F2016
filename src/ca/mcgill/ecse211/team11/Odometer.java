@@ -63,6 +63,9 @@ public class Odometer extends Thread {
         x += dDist * Math.cos(theta);
         y += dDist * Math.sin(theta);
         theta = Util.normalizeAngle360(theta); // Make sure theta stays within 0 and 2pi
+        
+        // Log updated data
+        Logger.logData("Odometer: X: " + x + " Y: " + y + " Theta: " + theta);
       }
 
       // Updates previous tacho count
