@@ -32,7 +32,7 @@ public class Odometer extends Thread {
    */
   public Odometer(Initializer init) {
     this.leftMotor = init.leftMotor;
-    this.rightMotor = init.leftMotor;
+    this.rightMotor = init.rightMotor;
     this.x = 0;
     this.y = 0;
     this.theta = Math.PI/2;
