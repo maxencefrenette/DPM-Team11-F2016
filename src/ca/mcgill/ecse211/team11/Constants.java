@@ -18,9 +18,9 @@ public class Constants {
 
   // Motor port labels
   public static final String LEFT_WHEEL_MOTOR_PORT = "A";
-  public static final String RIGHT_WHEEL_MOTOR_PORT = "B";
+  public static final String RIGHT_WHEEL_MOTOR_PORT = "D";
   public static final String CLAW_CLOSING_MOTOR_PORT = "C";
-  public static final String CLAW_RAISING_MOTOR_PORT = "D";
+  public static final String CLAW_RAISING_MOTOR_PORT = "B";
 
   // Navigation constants
   public static final int FORWARD_SPEED = 200;
@@ -56,8 +56,8 @@ public class Constants {
 
   // Physical dimensions of robot
   public static final double LEFT_WHEEL_RADIUS = 2.15;
-  public static final double RIGHT_WHEEL_RADIUS = 2.15;
-  public static final double WHEEL_BASE = 13.5;
+  public static final double RIGHT_WHEEL_RADIUS = 2.128;
+  public static final double WHEEL_BASE = 12.9;
   public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 6.0;
   public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 9.0;
   public static final double DIST_CENTER_TO_US_SENSOR = 8.0;
@@ -71,5 +71,5 @@ public class Constants {
   public static final int HARDWARE_INITIALIZATION_MAXIMUM_TRIALS = 5;
   public static final int HARDWARE_INITIALIZATION_RETRY_DELAY = 500;
   public static final int ODOMETRY_CORRECTION_MAX_ERROR_MARGIN = 2;
-  public static final double GRID_SIZE = 30;
+  public static final double GRID_SIZE = 30.48;
 }
