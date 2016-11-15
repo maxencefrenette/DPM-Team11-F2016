@@ -21,18 +21,22 @@ public class ClawMotorController {
   }
   
   public void closeClaw() {
-    //TODO Add code
+    clawClosingMotor.setSpeed(Constants.CLAW_CLOSING_SPEED);
+    clawClosingMotor.rotate(Constants.CLAW_CLOSING_DEGREE_ROTATION);
   }
   
   public void openClaw() {
-    //TODO Add code
+    clawClosingMotor.setSpeed(Constants.CLAW_OPENING_SPEED);
+    clawClosingMotor.rotate(Constants.CLAW_OPENING_DEGREE_ROTATION);
   }
   
   public void raiseClaw() {
-    //TODO Add code
+    clawRaisingMotor.setSpeed(Constants.CLAW_RAISING_SPEED);
+    clawRaisingMotor.rotate(Constants.CLAW_RAISING_DEGREE_ROTATION);
   }
   
   public void lowerClaw() {
-    //TODO Add code
+    clawRaisingMotor.setSpeed(Constants.CLAW_LOWERING_SPEED);
+    clawRaisingMotor.rotate(Constants.CLAW_LOWERING_DEGREE_ROTATION);
   }
 }

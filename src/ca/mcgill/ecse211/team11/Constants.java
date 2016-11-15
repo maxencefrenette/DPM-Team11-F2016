@@ -29,7 +29,17 @@ public class Constants {
   public static final double DEGREE_ERROR = 1.0;
   public static final double DIST_ERROR = 1.0;
   
-  //US Localization constants
+  // Claw Controller Constants
+  public static final int CLAW_RAISING_SPEED = 100;
+  public static final int CLAW_RAISING_DEGREE_ROTATION = 666;
+  public static final int CLAW_LOWERING_SPEED = 100;
+  public static final int CLAW_LOWERING_DEGREE_ROTATION = -666;
+  public static final int CLAW_CLOSING_SPEED = 50;
+  public static final int CLAW_CLOSING_DEGREE_ROTATION = 666;
+  public static final int CLAW_OPENING_SPEED = 30;
+  public static final int CLAW_OPENING_DEGREE_ROTATION = -666;
+  
+  // US Localization constants
   public static final double RISING_EDGE_RANGE = 0.30;
   public static final int US_LOCALIZE_WAIT_TIME = 500;
   public static final double HEADING_OFFSET = 0;
