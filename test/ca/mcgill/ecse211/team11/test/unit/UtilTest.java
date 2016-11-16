@@ -69,7 +69,8 @@ public class UtilTest {
     assertEquals("From 0,0 to 60,60", Math.toRadians(45), Util.calculateHeading(0, 0, 60, 60), 0.0001);
     assertEquals("From 60,60 to 0,0", Math.toRadians(180+45), Util.calculateHeading(60, 60, 0, 0), 0.0001);
     assertEquals("From 0,60 to 60,0", Math.toRadians(360-45), Util.calculateHeading(0, 60, 60, 0), 0.0001);
-    
+    assertEquals("From 60,30 to 30,30", Math.toRadians(180), Util.calculateHeading(60, 30, 30, 30), 0.0001);
+    assertEquals("From 30,30 to 0,0", Math.toRadians(180+45), Util.calculateHeading(30, 30, 0, 0), 0.0001);
   }
   
 }
