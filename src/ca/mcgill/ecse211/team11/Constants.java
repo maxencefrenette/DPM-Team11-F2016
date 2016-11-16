@@ -66,10 +66,13 @@ public class Constants {
   public static final String SERVER_IP = "192.168.2.8";
   public static final int TEAM_NUMBER = 11;
 
+  // Environment constants
+  public static final double GRID_SIZE = 30.48;
+  public static final int BOARD_SIZE = 8;
+  
   // Other constants
   public static final String LOG_FILENAME = "Log.txt";
   public static final int HARDWARE_INITIALIZATION_MAXIMUM_TRIALS = 5;
   public static final int HARDWARE_INITIALIZATION_RETRY_DELAY = 500;
   public static final int ODOMETRY_CORRECTION_MAX_ERROR_MARGIN = 2;
-  public static final double GRID_SIZE = 30.48;
 }
