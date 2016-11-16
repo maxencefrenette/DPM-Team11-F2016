@@ -30,7 +30,7 @@ public class LightSensorController extends Thread {
 
   public void run() {
     while (true) {
-      if (getData() < 0.30) {
+      if (getData() < 0.30 && observer != null) {
         observer.onLineCrossed();
       }
 
