@@ -28,9 +28,8 @@ public class OdometryTest {
 		display.start();
 		odometer.start();
 		init.lightSensorController.start();
-		//odometryCorrection.Start();
 		
-		// spawn a new Thread to avoid SquareDriver.drive() from blocking
+		// Spawn a new Thread to avoid SquareDriver.drive() from blocking
 		(new Thread() {
 			public void run() {
 				for (int i = 0; i < 4; i++) {
