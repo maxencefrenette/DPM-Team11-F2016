@@ -6,7 +6,7 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
  * This class controls the motors and moves the robot according to the information given by the odometer.
  * 
  * @author Justin Szeto
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  *
  */
@@ -92,7 +92,7 @@ public class Navigation {
     while ( errorX > Constants.DIST_ERROR || errorY > Constants.DIST_ERROR) {
       double targetHeading = Util.calculateHeading(odometer.getX(), odometer.getY(), x, y);
      
-      if (Math.abs(odometer.getTheta()-targetHeading) > Constants.DEGREE_ERROR) {
+      if (Math.abs(Util.normalizeAngle180(odometer.getTheta()-targetHeading)) > Constants.ANGLE_ERROR) {
         turnToWithMinAngle(targetHeading, false);
       }
       
@@ -125,7 +125,7 @@ public class Navigation {
   public void turnTo(double heading, boolean clockwise, boolean stop) {
     double normalizedHeading = Util.normalizeAngle360(heading);
     
-    while (Math.abs(normalizedHeading - odometer.getTheta()) > Constants.DEGREE_ERROR) {
+    while (Math.abs(normalizedHeading - odometer.getTheta()) > Constants.ANGLE_ERROR) {
       turnClockwise(clockwise);
     }
     if (stop) {
@@ -145,12 +145,12 @@ public class Navigation {
     double finalHeading = Util.normalizeAngle360(initialHeading+angle);
     
     if (angle > 0) {
-      while (Math.abs(odometer.getTheta()-finalHeading) > Constants.DEGREE_ERROR) {
+      while (Math.abs(odometer.getTheta()-finalHeading) > Constants.ANGLE_ERROR) {
         turnClockwise(false);
       }
       
     } else {
-      while (Math.abs(odometer.getTheta()-finalHeading) > Constants.DEGREE_ERROR) {
+      while (Math.abs(odometer.getTheta()-finalHeading) > Constants.ANGLE_ERROR) {
         turnClockwise(true);
       }
     }
@@ -201,7 +201,7 @@ public class Navigation {
     while ( errorX > Constants.DIST_ERROR || errorY > Constants.DIST_ERROR) {
       double targetHeading = Util.calculateHeading(targetX, targetY, odometer.getX(), odometer.getY());
      
-      if (Math.abs(odometer.getTheta()-targetHeading) > Constants.DEGREE_ERROR) {
+      if (Math.abs(Util.normalizeAngle180(odometer.getTheta()-targetHeading)) > Constants.ANGLE_ERROR) {
         turnToWithMinAngle(targetHeading, false);
       }
       

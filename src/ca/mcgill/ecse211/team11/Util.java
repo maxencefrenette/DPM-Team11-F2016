@@ -83,7 +83,7 @@ public class Util {
   public static double calculateHeading(double currentX, double currentY, double targetX, double targetY) {
     double angle = Math.atan2(targetY-currentY, targetX-currentX);
     if (targetX-currentX < 0) {
-      angle += Math.PI/2;
+      angle = Math.PI/2 - angle;
     }
     return normalizeAngle360(angle);
   }

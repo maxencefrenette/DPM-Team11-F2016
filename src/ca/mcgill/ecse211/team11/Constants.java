@@ -26,7 +26,7 @@ public class Constants {
   public static final int FORWARD_SPEED = 200;
   public static final int TURNING_SPEED = 75;
   public static final int WHEEL_ACCELERATION = 2000;
-  public static final double DEGREE_ERROR = 1.0;
+  public static final double ANGLE_ERROR = Math.toRadians(3.0);
   public static final double DIST_ERROR = 1.0;
   
   // Claw Controller Constants
