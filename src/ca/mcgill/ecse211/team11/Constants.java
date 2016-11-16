@@ -58,7 +58,7 @@ public class Constants {
   public static final double LEFT_WHEEL_RADIUS = 2.15;
   public static final double RIGHT_WHEEL_RADIUS = 2.128;
   public static final double WHEEL_BASE = 12.9;
-  public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 6.0;
+  public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 7.5;
   public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 9.0;
   public static final double DIST_CENTER_TO_US_SENSOR = 8.0;
 
