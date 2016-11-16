@@ -12,6 +12,14 @@ package ca.mcgill.ecse211.team11;
  */
 public class RobotBrain extends Thread {
 
+  private ColorSensorController colorSensorController;
+  private USSensorController usSensorController;
+  private ClawMotorController clawMotorController;
+  private Display display;
+  private Odometer odometer;
+  private Navigation navigation;
+  private Localization localizer;
+  
   public RobotBrain(Initializer init) {
     // TODO
   }
@@ -24,8 +32,9 @@ public class RobotBrain extends Thread {
    */
   public void run() {
     // TODO fetch data from the server
-    // TODO do us localization
-    // TODO do initial light localization
+    localizer.setCornerNumber(0); // TODO: Set the actual corner number.
+    localizer.usLocalize();
+    localizer.lightLocalize();
     State state = State.EXPLORE;
 
     while (true) {
