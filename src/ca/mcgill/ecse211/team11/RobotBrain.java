@@ -34,6 +34,7 @@ public class RobotBrain extends Thread {
     // TODO fetch data from the server
     localizer.setCornerNumber(0); // TODO: Set the actual corner number.
     localizer.usLocalize();
+    // TODO travel to the closest line crossing
     localizer.lightLocalize();
     State state = State.EXPLORE;
 
