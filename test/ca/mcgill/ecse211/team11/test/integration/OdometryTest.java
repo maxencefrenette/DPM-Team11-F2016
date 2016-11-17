@@ -3,9 +3,13 @@ package ca.mcgill.ecse211.team11.test.integration;
 import ca.mcgill.ecse211.team11.Display;
 import ca.mcgill.ecse211.team11.Initializer;
 import ca.mcgill.ecse211.team11.Odometer;
+import ca.mcgill.ecse211.team11.OdometryCorrection;
 import ca.mcgill.ecse211.team11.Constants;
+import ca.mcgill.ecse211.team11.LightSensorController;
+import ca.mcgill.ecse211.team11.Navigation;
 import lejos.hardware.Button;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.utility.Delay;
 
 /**
  * Tests the odometer by moving in a square.
@@ -24,10 +28,12 @@ public class OdometryTest {
 		
 		Odometer odometer = init.odometer;
 		Display display = init.display;
+		Navigation nav = init.navigation;
+		OdometryCorrection odoCorr = new OdometryCorrection(init);
 		
 		display.start();
 		odometer.start();
-		init.lightSensorController.start();
+		//odoCorr.getlsc().start();
 		
 		// Spawn a new Thread to avoid SquareDriver.drive() from blocking
 		(new Thread() {
@@ -49,6 +55,22 @@ public class OdometryTest {
 				}
 			}
 		}).start();
+		
+		
+		/*nav.turn(Math.PI/2, true);
+		Button.waitForAnyPress();
+		nav.turnTo(Math.PI/2, true, true);*/
+		
+		/*nav.travelTo(0, 60.96);
+		Delay.msDelay(500);
+		nav.travelTo(60.96, 60.96);
+		Delay.msDelay(500);
+		nav.travelTo(60.96, 0);
+		Delay.msDelay(500);
+		nav.travelTo(0, 0);*/
+		
+		
+		
 		Button.waitForAnyPress();
 		System.exit(0);
 	}
