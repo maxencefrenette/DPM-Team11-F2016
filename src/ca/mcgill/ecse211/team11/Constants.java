@@ -12,15 +12,15 @@ package ca.mcgill.ecse211.team11;
 public class Constants {
 
   // Sensor port labels
-  public static final String US_SENSOR_PORT = "S1";
+  public static final String US_SENSOR_PORT = "S3";
   public static final String LIGHT_SENSOR_LINE_DETECTION_PORT = "S2";
-  public static final String LIGHT_SENSOR_OBJECT_IDENTIFIER_PORT = "S3";
+  public static final String LIGHT_SENSOR_OBJECT_IDENTIFIER_PORT = "S1";
 
   // Motor port labels
   public static final String LEFT_WHEEL_MOTOR_PORT = "A";
-  public static final String RIGHT_WHEEL_MOTOR_PORT = "D";
-  public static final String CLAW_CLOSING_MOTOR_PORT = "C";
-  public static final String CLAW_RAISING_MOTOR_PORT = "B";
+  public static final String RIGHT_WHEEL_MOTOR_PORT = "B";
+  public static final String CLAW_CLOSING_MOTOR_PORT = "D";
+  public static final String CLAW_RAISING_MOTOR_PORT = "C";
 
   // Navigation constants
   public static final int FORWARD_SPEED = 200;
@@ -48,7 +48,7 @@ public class Constants {
   public static final int DISPLAY_WAIT_PERIOD = 500;
   public static final int ODOMETER_WAIT_PERIOD = 25;
   public static final int US_POLLER_WAIT_PERIOD = 50;
-  public static final int LIGHT_POLLER_WAIT_PERIOD = 50;
+  public static final int LIGHT_POLLER_WAIT_PERIOD = 10;
 
   // Sensor filter parameters
   public static final int LIGHT_POLLER_MEDIAN_FILTER_SIZE = 3;
@@ -56,11 +56,11 @@ public class Constants {
 
   // Physical dimensions of robot
   public static final double LEFT_WHEEL_RADIUS = 2.15;
-  public static final double RIGHT_WHEEL_RADIUS = 2.128;
+  public static final double RIGHT_WHEEL_RADIUS = 2.15;
   public static final double WHEEL_BASE = 12.9;
-  public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 7.5;
-  public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 9.0;
-  public static final double DIST_CENTER_TO_US_SENSOR = 8.0;
+  public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 7.4;
+  public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 5.9;
+  public static final double DIST_CENTER_TO_US_SENSOR = 7.1;
 
   // Wifi constants
   public static final String SERVER_IP = "192.168.2.8";
