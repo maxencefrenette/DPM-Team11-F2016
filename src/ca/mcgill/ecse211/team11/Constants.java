@@ -45,7 +45,7 @@ public class Constants {
   public static final double HEADING_OFFSET = 0;
 
   // Thread/Timer periods
-  public static final int DISPLAY_WAIT_PERIOD = 100;
+  public static final int DISPLAY_WAIT_PERIOD = 500;
   public static final int ODOMETER_WAIT_PERIOD = 25;
   public static final int US_POLLER_WAIT_PERIOD = 50;
   public static final int LIGHT_POLLER_WAIT_PERIOD = 50;
@@ -75,4 +75,5 @@ public class Constants {
   public static final int HARDWARE_INITIALIZATION_MAXIMUM_TRIALS = 5;
   public static final int HARDWARE_INITIALIZATION_RETRY_DELAY = 500;
   public static final int ODOMETRY_CORRECTION_MAX_ERROR_MARGIN = 2;
+  public static final int SOUND_VOLUME = 60;
 }
