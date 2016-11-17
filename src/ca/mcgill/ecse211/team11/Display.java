@@ -34,12 +34,12 @@ public class Display extends Thread {
       long displayStart = System.currentTimeMillis();
 
       // clear the lines for displaying odometry information
-      t.drawString("X:              ", 0, 0);
-      t.drawString("Y:              ", 0, 1);
-      t.drawString("T:              ", 0, 2);
+      t.drawString("X:                ", 0, 0);
+      t.drawString("Y:                ", 0, 1);
+      t.drawString("T:                ", 0, 2);
       
       //clear line for displaying ultrasonic distance reading
-      t.drawString("Distance:       ", 0, 4);
+      t.drawString("Distance:         ", 0, 4);
 
       // display odometry information
       t.drawString(String.format("%.2f", odometer.getX()), 3, 0);
