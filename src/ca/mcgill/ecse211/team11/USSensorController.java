@@ -17,7 +17,7 @@ public class USSensorController extends Thread {
   private float[] data;
   private float distance;
   private boolean loggingOn;
- 
+
   public USSensorController(EV3UltrasonicSensor usSensor) {
     sp = usSensor.getDistanceMode();
     sp = new MedianFilter(sp, Constants.US_POLLER_MEDIAN_FILTER_SIZE);
@@ -39,10 +39,10 @@ public class USSensorController extends Thread {
     while (true) {
       long pollingStart = System.currentTimeMillis();
 
-      //update distance
+      // update distance
       sp.fetchSample(data, 0);
       distance = data[0];
-      
+
       if (loggingOn) {
         Logger.logData("US Sensor Distance: " + distance);
       }
@@ -54,7 +54,7 @@ public class USSensorController extends Thread {
       }
     }
   }
-  
+
   /**
    * Enables or disables logging of data from ultrasonic sensor.
    * 
