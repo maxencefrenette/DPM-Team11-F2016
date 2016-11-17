@@ -104,7 +104,7 @@ public class Util {
     }
     
     // Adjust heading depending on starting corner so that 0 heading is east 
-    correctedHeading -= 90*(cornerNumber-1);
-    return correctedHeading;
+    correctedHeading += Math.PI/2*(cornerNumber-1);
+    return normalizeAngle360(correctedHeading);
   }
 }

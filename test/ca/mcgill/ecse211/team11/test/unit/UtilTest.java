@@ -73,4 +73,51 @@ public class UtilTest {
     assertEquals("From 30,30 to 0,0", Math.toRadians(180+45), Util.calculateHeading(30, 30, 0, 0), 0.0001);
   }
   
+  @Test
+  public void testcalculateUSLocalizeHeading() {
+    // Corner 1 tests
+    assertEquals("Initial true heading: 0degrees, AngleA: 135degrees, AngleB: 315degrees, Corner: 1",
+        Math.toRadians(315), Util.calculateUSLocalizeHeading(Math.toRadians(135), Math.toRadians(315), 1),
+        0.001);
+    assertEquals("Initial true heading: 45degrees, AngleA: 90degrees, AngleB: 270degrees, Corner: 1",
+        Math.toRadians(315), Util.calculateUSLocalizeHeading(Math.toRadians(90), Math.toRadians(270), 1),
+        0.001);
+    assertEquals("Initial true heading: 180degrees, AngleA: 315degrees, AngleB: 135degrees, Corner: 1",
+        Math.toRadians(315), Util.calculateUSLocalizeHeading(Math.toRadians(315), Math.toRadians(135), 1),
+        0.001);
+    
+    // Corner 2 tests
+    assertEquals("Initial true heading: 0degrees, AngleA: 225degrees, AngleB: 45degrees, Corner: 2",
+        Math.toRadians(45), Util.calculateUSLocalizeHeading(Math.toRadians(225), Math.toRadians(45), 2),
+        0.001);
+    assertEquals("Initial true heading: 45degrees, AngleA: 180degrees, AngleB: 0degrees, Corner: 2",
+        Math.toRadians(45), Util.calculateUSLocalizeHeading(Math.toRadians(180), Math.toRadians(0), 2),
+        0.001);
+    assertEquals("Initial true heading: 180degrees, AngleA: 45degrees, AngleB: 225degrees, Corner: 2",
+        Math.toRadians(45), Util.calculateUSLocalizeHeading(Math.toRadians(45), Math.toRadians(225), 2),
+        0.001);
+    
+    // Corner 3 tests
+    assertEquals("Initial true heading: 0degrees, AngleA: 315degrees, AngleB: 135degrees, Corner: 3",
+        Math.toRadians(135), Util.calculateUSLocalizeHeading(Math.toRadians(315), Math.toRadians(135), 3),
+        0.001);
+    assertEquals("Initial true heading: 45degrees, AngleA: 270degrees, AngleB: 90degrees, Corner: 3",
+        Math.toRadians(135), Util.calculateUSLocalizeHeading(Math.toRadians(270), Math.toRadians(90), 3),
+        0.001);
+    assertEquals("Initial true heading: 180degrees, AngleA: 135degrees, AngleB: 315degrees, Corner: 3",
+        Math.toRadians(135), Util.calculateUSLocalizeHeading(Math.toRadians(135), Math.toRadians(315), 3),
+        0.001);
+    
+    // Corner 4 tests
+    assertEquals("Initial true heading: 0degrees, AngleA: 45degrees, AngleB: 225degrees, Corner: 4",
+        Math.toRadians(225), Util.calculateUSLocalizeHeading(Math.toRadians(45), Math.toRadians(225), 4),
+        0.001);
+    assertEquals("Initial true heading: 45degrees, AngleA: 0degrees, AngleB: 180degrees, Corner: 4",
+        Math.toRadians(225), Util.calculateUSLocalizeHeading(Math.toRadians(0), Math.toRadians(180), 4),
+        0.001);
+    assertEquals("Initial true heading: 180degrees, AngleA: 225degrees, AngleB: 45degrees, Corner: 4",
+        Math.toRadians(225), Util.calculateUSLocalizeHeading(Math.toRadians(225), Math.toRadians(45), 4),
+        0.001);
+  }
+  
 }
