@@ -40,4 +40,8 @@ public class OdometryCorrection implements LightSensorObserver {
           + "cm. No odometry correction could be done.");
     }
   }
+  
+  public LightSensorController getlsc() {
+	  return this.lsc;
+  }
 }
