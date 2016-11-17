@@ -20,7 +20,7 @@ public class USSensorController extends Thread {
 
   public USSensorController(EV3UltrasonicSensor usSensor) {
     sp = usSensor.getDistanceMode();
-    sp = new MedianFilter(sp, Constants.US_POLLER_MEDIAN_FILTER_SIZE);
+    //sp = new MedianFilter(sp, Constants.US_POLLER_MEDIAN_FILTER_SIZE);
     data = new float[sp.sampleSize()];
   }
 
