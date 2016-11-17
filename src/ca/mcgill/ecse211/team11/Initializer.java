@@ -1,5 +1,6 @@
 package ca.mcgill.ecse211.team11;
 
+import lejos.hardware.Sound;
 import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.NXTRegulatedMotor;
@@ -39,6 +40,7 @@ public class Initializer {
   public Initializer() {
     Logger.setLogWriter(Constants.LOG_FILENAME);
     Logger.setLogStartTime();
+    Sound.setVolume(Constants.SOUND_VOLUME);
     
     leftMotor = initMotor(Constants.LEFT_WHEEL_MOTOR_PORT);
     rightMotor = initMotor(Constants.RIGHT_WHEEL_MOTOR_PORT);

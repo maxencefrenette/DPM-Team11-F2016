@@ -1,5 +1,7 @@
 package ca.mcgill.ecse211.team11;
 
+import lejos.hardware.Sound;
+
 /**
  * Performs localization using the ultrasonic sensor and the rising edge method.
  * 
@@ -14,6 +16,7 @@ public class Localization {
   private Navigation navigation;
   private USSensorController usSensorController;
   private int cornerNumber;
+  private boolean beeping = false;
 
   public Localization(Initializer init) {
     this.odometer = init.odometer;
@@ -25,11 +28,12 @@ public class Localization {
    * Performs US localization.
    */
   public void usLocalize() {
-
     // Rotate CW until wall detected
     while (usSensorController.getDistance() > Constants.RISING_EDGE_RANGE) {
       navigation.turnClockwise(true);
+      Util.sleep(50);
     }
+    beep();
 
     // Sleep this thread to allow robot to rotate past edge
     Util.sleep(Constants.US_LOCALIZE_WAIT_TIME);
@@ -37,7 +41,9 @@ public class Localization {
     // Continue rotating CW until wall no longer detected
     while (usSensorController.getDistance() <= Constants.RISING_EDGE_RANGE) {
       navigation.turnClockwise(true);
+      Util.sleep(50);
     }
+    beep();
 
     // Stop turning and record angle
     navigation.setSpeeds(0, 0);
@@ -46,7 +52,9 @@ public class Localization {
     // Rotate CCW until wall detected
     while (usSensorController.getDistance() > Constants.RISING_EDGE_RANGE) {
       navigation.turnClockwise(false);
+      Util.sleep(50);
     }
+    beep();
 
     // Sleep thread to allow robot to rotate past edge
     Util.sleep(Constants.US_LOCALIZE_WAIT_TIME);
@@ -54,30 +62,32 @@ public class Localization {
     // Continue rotating CCW until wall no longer detected
     while (usSensorController.getDistance() <= Constants.RISING_EDGE_RANGE) {
       navigation.turnClockwise(false);
+      Util.sleep(50);
     }
+    beep();
 
     // Stop turning and record angle
     navigation.setSpeeds(0, 0);
     double angleB = odometer.getTheta();
 
     odometer.setTheta(Util.calculateUSLocalizeHeading(angleA, angleB, cornerNumber));
-    
+
     // Calculate x and y
-    navigation.turnToWithMinAngle(-Math.PI/2, true);
+    navigation.turnToWithMinAngle(-Math.PI / 2, true);
     double x = usSensorController.getDistance() + Constants.DIST_CENTER_TO_US_SENSOR;
     navigation.turnToWithMinAngle(-Math.PI, true);
     double y = usSensorController.getDistance() + Constants.DIST_CENTER_TO_US_SENSOR;
     odometer.setX(x);
     odometer.setY(y);
   }
-  
+
   /**
    * Performs light localization.
    */
   public void lightLocalize() {
     // TODO
   }
-  
+
   /**
    * Sets the corner in which the robot started.
    * 
@@ -85,5 +95,23 @@ public class Localization {
    */
   public void setCornerNumber(int cornerNumber) {
     this.cornerNumber = cornerNumber;
+  }
+
+  /**
+   * Activates the debug beeps on the localization.
+   * 
+   * @param beeping Should the localization beep ?
+   */
+  public void setBeeping(boolean beeping) {
+    this.beeping = beeping;
+  }
+  
+  /**
+   * Beeps if the debug beeping is activated.
+   */
+  private void beep() {
+    if (beeping) {
+      Sound.beep();
+    }
   }
 }
