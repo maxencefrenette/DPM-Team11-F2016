@@ -22,7 +22,7 @@ public class LocalizationTest {
     init.localizer.setBeeping(true);
     
     // Main test
-    init.localizer.setCornerNumber(0);
+    init.localizer.setCornerNumber(1);
     init.localizer.usLocalize();
     init.navigation.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE);
     init.localizer.lightLocalize();
