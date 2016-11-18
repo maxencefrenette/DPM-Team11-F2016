@@ -25,6 +25,7 @@ public class LocalizationTest {
     init.localizer.setCornerNumber(1);
     init.localizer.usLocalize();
     init.navigation.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE);
+    init.navigation.turnToWithMinAngle(0, true);
     init.localizer.lightLocalize();
     Sound.beep();
   }
