@@ -92,9 +92,9 @@ public class Navigation {
     double targetHeading = Util.calculateHeading(odometer.getX(), odometer.getY(), x, y);
     double headingError = 0;
     double speedAdjustment = 0;
-    
-    turnToWithMinAngle(headingError, true);
-    
+
+    turnToWithMinAngle(targetHeading, true);
+
     while ((errorX > Constants.DIST_ERROR || errorY > Constants.DIST_ERROR)
         && Math.abs(headingError) < Math.PI / 2) {
       targetHeading = Util.calculateHeading(odometer.getX(), odometer.getY(), x, y);
