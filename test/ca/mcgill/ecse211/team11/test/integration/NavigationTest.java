@@ -1,5 +1,6 @@
 package ca.mcgill.ecse211.team11.test.integration;
 
+import ca.mcgill.ecse211.team11.Constants;
 import ca.mcgill.ecse211.team11.Display;
 import ca.mcgill.ecse211.team11.Initializer;
 import ca.mcgill.ecse211.team11.Navigation;
@@ -19,17 +20,17 @@ public class NavigationTest {
 		
 		Odometer odometer = init.odometer;
 		Display display = init.display;
-		Navigation navigation = init.navigation;
+		Navigation nav = init.navigation;
 		
 		//navigation.setAccelerations(150, 150);
 		
 		display.start();
 		odometer.start();
 		
-		navigation.travelTo(60, 30);
-		navigation.travelTo(30, 30);
-		navigation.travelTo(30, 60);
-		navigation.travelTo(60, 0);
+		nav.travelTo(2*Constants.GRID_SIZE, 4*Constants.GRID_SIZE);
+		//nav.travelTo(0, 0);
+		nav.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE);
+		nav.travelTo(2*Constants.GRID_SIZE, 0);
 		
 		Button.waitForAnyPress();
 		System.exit(0);
