@@ -1,5 +1,6 @@
 package ca.mcgill.ecse211.team11;
 
+import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.motor.NXTRegulatedMotor;
 
 /**
@@ -12,10 +13,10 @@ import lejos.hardware.motor.NXTRegulatedMotor;
  */
 public class ClawMotorController {
 
-  private NXTRegulatedMotor clawClosingMotor;
+  private EV3MediumRegulatedMotor clawClosingMotor;
   private NXTRegulatedMotor clawRaisingMotor;
 
-  public ClawMotorController(NXTRegulatedMotor clawClosingMotor, NXTRegulatedMotor clawRaisingMotor) {
+  public ClawMotorController(EV3MediumRegulatedMotor clawClosingMotor, NXTRegulatedMotor clawRaisingMotor) {
     this.clawClosingMotor = clawClosingMotor;
     this.clawRaisingMotor = clawRaisingMotor;
   }

@@ -3,6 +3,7 @@ package ca.mcgill.ecse211.team11;
 import lejos.hardware.Sound;
 import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
@@ -21,7 +22,7 @@ public class Initializer {
   // Motors and sensors
   public EV3LargeRegulatedMotor leftMotor;
   public EV3LargeRegulatedMotor rightMotor;
-  public NXTRegulatedMotor clawClosingMotor;
+  public EV3MediumRegulatedMotor clawClosingMotor;
   public NXTRegulatedMotor clawRaisingMotor;
   public EV3ColorSensor lineDetectionLightSensor;
   public EV3ColorSensor objectIdentifierLightSensor;
@@ -44,7 +45,7 @@ public class Initializer {
 
     leftMotor = initMotor(Constants.LEFT_WHEEL_MOTOR_PORT);
     rightMotor = initMotor(Constants.RIGHT_WHEEL_MOTOR_PORT);
-    clawClosingMotor = initClawMotor(Constants.CLAW_CLOSING_MOTOR_PORT);
+    clawClosingMotor = initClawClosingMotor(Constants.CLAW_CLOSING_MOTOR_PORT);
     clawRaisingMotor = initClawMotor(Constants.CLAW_RAISING_MOTOR_PORT);
     lineDetectionLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
     objectIdentifierLightSensor = initColorSensor(Constants.LIGHT_SENSOR_OBJECT_IDENTIFIER_PORT);
@@ -59,6 +60,20 @@ public class Initializer {
     display = new Display(this);
     navigation = new Navigation(this);
     localizer = new Localization(this);
+  }
+
+  private EV3MediumRegulatedMotor initClawClosingMotor(String clawClosingMotorPort) {
+    EV3MediumRegulatedMotor motor = null;
+  
+    for (int i = 0; i < Constants.HARDWARE_INITIALIZATION_MAXIMUM_TRIALS && motor == null; i++) {
+      try {
+        motor = new EV3MediumRegulatedMotor(LocalEV3.get().getPort(clawClosingMotorPort));
+      } catch (Exception e) {
+        Util.sleep(Constants.HARDWARE_INITIALIZATION_RETRY_DELAY);
+        Logger.logData(e.getMessage());
+      }
+    }
+      return motor;
   }
 
   /**
