@@ -1,4 +1,4 @@
-package NonBufferedMedianFilter;
+package ca.mcgill.ecse211.team11.test.unit;
 
 import static org.junit.Assert.*;
 import lejos.robotics.SampleProvider;
