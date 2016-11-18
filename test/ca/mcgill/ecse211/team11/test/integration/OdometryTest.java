@@ -28,8 +28,7 @@ public class OdometryTest {
 		
 		Odometer odometer = init.odometer;
 		Display display = init.display;
-		Navigation nav = init.navigation;
-		OdometryCorrection odoCorr = new OdometryCorrection(init);
+		//OdometryCorrection odoCorr = new OdometryCorrection(init);
 		
 		display.start();
 		odometer.start();
@@ -43,8 +42,8 @@ public class OdometryTest {
 					leftMotor.setSpeed(Constants.FORWARD_SPEED);
 					rightMotor.setSpeed(Constants.FORWARD_SPEED);
 
-					leftMotor.rotate(convertDistance(Constants.LEFT_WHEEL_RADIUS, 60.96), true);
-					rightMotor.rotate(convertDistance(Constants.RIGHT_WHEEL_RADIUS, 60.96), false);
+					rightMotor.rotate(convertDistance(Constants.RIGHT_WHEEL_RADIUS, 60.96), true);
+					leftMotor.rotate(convertDistance(Constants.LEFT_WHEEL_RADIUS, 60.96), false);
 
 					// turn 90 degrees clockwise
 					leftMotor.setSpeed(Constants.TURNING_SPEED);
@@ -55,21 +54,6 @@ public class OdometryTest {
 				}
 			}
 		}).start();
-		
-		
-		/*nav.turn(Math.PI/2, true);
-		Button.waitForAnyPress();
-		nav.turnTo(Math.PI/2, true, true);*/
-		
-		/*nav.travelTo(0, 60.96);
-		Delay.msDelay(500);
-		nav.travelTo(60.96, 60.96);
-		Delay.msDelay(500);
-		nav.travelTo(60.96, 0);
-		Delay.msDelay(500);
-		nav.travelTo(0, 0);*/
-		
-		
 		
 		Button.waitForAnyPress();
 		System.exit(0);
