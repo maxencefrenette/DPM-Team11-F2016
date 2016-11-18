@@ -30,9 +30,9 @@ public class Navigation {
    * @param leftMotorSpeed
    * @param rightMotorSpeed
    */
-  public void setSpeeds(float leftMotorSpeed, float rightMotorSpeed) {
-    leftMotor.setSpeed(leftMotorSpeed);
-    rightMotor.setSpeed(rightMotorSpeed);
+  public void setSpeeds(double leftMotorSpeed, double rightMotorSpeed) {
+    leftMotor.setSpeed((float) leftMotorSpeed);
+    rightMotor.setSpeed((float) rightMotorSpeed);
 
     if (leftMotorSpeed < 0) {
       leftMotor.backward();
@@ -89,20 +89,31 @@ public class Navigation {
   public void travelTo(double x, double y) {
     double errorX = Math.abs(x - odometer.getX());
     double errorY = Math.abs(y - odometer.getY());
+    double targetHeading = Util.calculateHeading(odometer.getX(), odometer.getY(), x, y);
+    double headingError = 0;
+    double speedAdjustment = 0;
+    
+    turnToWithMinAngle(headingError, true);
+    
+    while ((errorX > Constants.DIST_ERROR || errorY > Constants.DIST_ERROR)
+        && Math.abs(headingError) < Math.PI / 2) {
+      targetHeading = Util.calculateHeading(odometer.getX(), odometer.getY(), x, y);
+      headingError = Util.normalizeAngle180(targetHeading - odometer.getTheta());
 
-    while (errorX > Constants.DIST_ERROR || errorY > Constants.DIST_ERROR) {
-      double targetHeading = Util.calculateHeading(odometer.getX(), odometer.getY(), x, y);
-
-      if (Math.abs(Util.normalizeAngle180(odometer.getTheta() - targetHeading)) > Constants.ANGLE_ERROR) {
-        turnToWithMinAngle(targetHeading, false);
+      if (Math.abs(headingError) > Constants.ANGLE_ERROR) {
+        speedAdjustment = Constants.SPEED_ADJUSTMENT * Math.signum(headingError);
+      } else {
+        speedAdjustment = 0;
       }
 
-      setSpeeds(Constants.FORWARD_SPEED, Constants.FORWARD_SPEED);
+      setSpeeds(Constants.FORWARD_SPEED - speedAdjustment, Constants.FORWARD_SPEED
+          + speedAdjustment);
+      Util.sleep(50);
 
       errorX = Math.abs(x - odometer.getX());
       errorY = Math.abs(y - odometer.getY());
-
     }
+
     setSpeeds(0, 0);
   }
 

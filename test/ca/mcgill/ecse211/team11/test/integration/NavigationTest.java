@@ -22,8 +22,6 @@ public class NavigationTest {
     Display display = init.display;
     Navigation nav = init.navigation;
 
-    // navigation.setAccelerations(150, 150);
-
     display.start();
     odometer.start();
 
