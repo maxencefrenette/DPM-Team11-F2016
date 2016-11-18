@@ -32,13 +32,13 @@ public class Constants {
 
   // Claw Controller Constants
   public static final int CLAW_RAISING_SPEED = 100;
-  public static final int CLAW_RAISING_DEGREE_ROTATION = 666;
+  public static final int CLAW_RAISING_DEGREE_ROTATION = 6*180;
   public static final int CLAW_LOWERING_SPEED = 100;
-  public static final int CLAW_LOWERING_DEGREE_ROTATION = -666;
+  public static final int CLAW_LOWERING_DEGREE_ROTATION = -6*180;
   public static final int CLAW_CLOSING_SPEED = 50;
-  public static final int CLAW_CLOSING_DEGREE_ROTATION = 666;
+  public static final int CLAW_CLOSING_DEGREE_ROTATION = 50;
   public static final int CLAW_OPENING_SPEED = 30;
-  public static final int CLAW_OPENING_DEGREE_ROTATION = -666;
+  public static final int CLAW_OPENING_DEGREE_ROTATION = -50;
 
   // US Localization constants
   public static final double RISING_EDGE_RANGE = 0.30;
@@ -53,7 +53,7 @@ public class Constants {
   // Sensor filter parameters
   public static final int COLOR_SENSOR_MEDIAN_FILTER_SIZE = 1;
   public static final int LIGHT_SENSOR_MEDIAN_FILTER_SIZE = 1;
-  public static final int US_SENSOR_MEDIAN_FILTER_SIZE = 3;
+  public static final int US_SENSOR_MEDIAN_FILTER_SIZE = 5;
 
   // Physical dimensions of robot
   public static final double LEFT_WHEEL_RADIUS = 2.05;
@@ -64,7 +64,7 @@ public class Constants {
   public static final double DIST_CENTER_TO_US_SENSOR = 7.1;
 
   // Wifi constants
-  public static final String SERVER_IP = "192.168.2.8";
+  public static final String SERVER_IP = "192.168.2.3";
   public static final int TEAM_NUMBER = 11;
 
   // Environment constants
