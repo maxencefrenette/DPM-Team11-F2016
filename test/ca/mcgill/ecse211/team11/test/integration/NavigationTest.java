@@ -27,9 +27,9 @@ public class NavigationTest {
 		display.start();
 		odometer.start();
 		
-		nav.travelTo(2*Constants.GRID_SIZE, 4*Constants.GRID_SIZE);
-		//nav.travelTo(0, 0);
+		nav.travelTo(2*Constants.GRID_SIZE, Constants.GRID_SIZE);
 		nav.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE);
+		nav.travelTo(Constants.GRID_SIZE, 2*Constants.GRID_SIZE);
 		nav.travelTo(2*Constants.GRID_SIZE, 0);
 		
 		Button.waitForAnyPress();
