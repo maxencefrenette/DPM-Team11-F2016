@@ -6,8 +6,8 @@ package ca.mcgill.ecse211.team11;
  * The robot is programmed as a state machine. It has some states that it can be in and each state
  * corresponds to a method that will perform some actions, then determine the robot's next state.
  * 
- * @author Maxence
- * @version 1.0
+ * @author Maxence Frenette
+ * @version 2.0
  * @since 1.0
  */
 public class RobotBrain extends Thread {

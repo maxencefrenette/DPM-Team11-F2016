@@ -1,5 +1,12 @@
 package ca.mcgill.ecse211.team11;
 
+/**
+ * Corrects the odometer's position by using the lines on the ground.
+ * 
+ * @author Maxence Frenette
+ * @version 2.0
+ * @since 1.0
+ */
 public class OdometryCorrection implements LightSensorObserver {
   private LightSensorController lsc;
   private Odometer odometer;

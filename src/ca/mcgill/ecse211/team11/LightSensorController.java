@@ -8,8 +8,8 @@ import lejos.robotics.filter.MedianFilter;
  * Operates the light sensor that will be pointed downwards in order to detect lines for odometry
  * correction purposes.
  * 
- * @author Maxence
- * @version 1.0
+ * @author Maxence Frenette
+ * @version 2.0
  * @since 1.0
  */
 public class LightSensorController extends Thread {

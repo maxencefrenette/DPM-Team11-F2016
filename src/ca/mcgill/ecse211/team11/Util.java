@@ -4,7 +4,7 @@ package ca.mcgill.ecse211.team11;
  * Provides a assortment of utility methods that are used throughout the project.
  * 
  * @author Maxence Frenette
- * @version 1.0
+ * @version 2.0
  * @since 1.0
  */
 public class Util {

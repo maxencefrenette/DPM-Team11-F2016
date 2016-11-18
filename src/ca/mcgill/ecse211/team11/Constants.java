@@ -5,7 +5,7 @@ package ca.mcgill.ecse211.team11;
  * constants during the testing phase easier since all constants are in one location.
  * 
  * @author Justin Szeto
- * @version 1.0
+ * @version 2.0
  * @since 1.0
  */
 

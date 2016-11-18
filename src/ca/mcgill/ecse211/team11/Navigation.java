@@ -6,7 +6,7 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
  * This class controls the motors and moves the robot according to the information given by the odometer.
  * 
  * @author Justin Szeto
- * @version 1.1
+ * @version 2.0
  * @since 1.0
  *
  */

@@ -7,10 +7,10 @@ import org.junit.Test;
 import ca.mcgill.ecse211.team11.Util;
 
 /**
- * Tests the Util class
+ * Tests the Util class.
  * 
- * @author Maxence
- * @version 1.0
+ * @author Maxence Frenette
+ * @version 2.0
  * @since 1.0
  */
 public class UtilTest {

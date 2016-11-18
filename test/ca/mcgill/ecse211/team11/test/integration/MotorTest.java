@@ -9,7 +9,7 @@ import lejos.hardware.Button;
  * k*full revolutions
  * 
  * @author Saleh Bakhit
- * @version 1.0
+ * @version 2.0
  * @since 1.0
  */
 public class MotorTest {

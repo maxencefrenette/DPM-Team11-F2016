@@ -6,6 +6,13 @@ import ca.mcgill.ecse211.team11.Navigation;
 import ca.mcgill.ecse211.team11.Odometer;
 import lejos.hardware.Button;
 
+/**
+ * Tests the navigation class.
+ * 
+ * @author Saleh Bakhit
+ * @version 2.0
+ * @since 1.0
+ */
 public class NavigationTest {
 	public static void main(String[] args) {
 		Initializer init = new Initializer();

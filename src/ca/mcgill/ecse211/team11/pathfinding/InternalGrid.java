@@ -3,6 +3,15 @@ package ca.mcgill.ecse211.team11.pathfinding;
 import ca.mcgill.ecse211.team11.Constants;
 import ca.mcgill.ecse211.team11.Initializer;
 
+/**
+ * Stores the internal representation of the field.
+ * <p>
+ * The field is divided in discrete sectors that each have a state.
+ * 
+ * @author Maxence Frenette
+ * @version 2.0
+ * @since 2.0
+ */
 public class InternalGrid {
   private InternalGridSquare[][] grid;
   

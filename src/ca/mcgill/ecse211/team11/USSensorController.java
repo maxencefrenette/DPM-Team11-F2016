@@ -8,7 +8,7 @@ import lejos.robotics.filter.MedianFilter;
  * Operates the ultrasonic sensor used to measure distances in front of the robot.
  * 
  * @author Justin Szeto
- * @version 1.0
+ * @version 2.0
  * @since 1.0
  *
  */
