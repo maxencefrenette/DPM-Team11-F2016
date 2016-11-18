@@ -26,7 +26,7 @@ public class Initializer {
   public EV3ColorSensor lineDetectionLightSensor;
   public EV3ColorSensor objectIdentifierLightSensor;
   public EV3UltrasonicSensor ultrasonicSensor;
-  
+
   // Subsystems
   public LightSensorController lightSensorController;
   public ColorSensorController colorSensorController;
@@ -41,7 +41,7 @@ public class Initializer {
     Logger.setLogWriter(Constants.LOG_FILENAME);
     Logger.setLogStartTime();
     Sound.setVolume(Constants.SOUND_VOLUME);
-    
+
     leftMotor = initMotor(Constants.LEFT_WHEEL_MOTOR_PORT);
     rightMotor = initMotor(Constants.RIGHT_WHEEL_MOTOR_PORT);
     clawClosingMotor = initClawMotor(Constants.CLAW_CLOSING_MOTOR_PORT);
@@ -49,12 +49,12 @@ public class Initializer {
     lineDetectionLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
     objectIdentifierLightSensor = initColorSensor(Constants.LIGHT_SENSOR_OBJECT_IDENTIFIER_PORT);
     ultrasonicSensor = initUltrasonicSensor(Constants.US_SENSOR_PORT);
-    
+
     lightSensorController = new LightSensorController(lineDetectionLightSensor);
     colorSensorController = new ColorSensorController(objectIdentifierLightSensor);
     usSensorController = new USSensorController(ultrasonicSensor);
     clawMotorController = new ClawMotorController(clawClosingMotor, clawRaisingMotor);
-    
+
     odometer = new Odometer(this);
     display = new Display(this);
     navigation = new Navigation(this);
@@ -82,7 +82,7 @@ public class Initializer {
 
     return motor;
   }
-  
+
   /**
    * Initializes a single motor and manages initialization errors. If an exception is thrown, it
    * will try again up to a maximum number of trials.

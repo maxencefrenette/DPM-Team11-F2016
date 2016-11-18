@@ -22,9 +22,9 @@ public class NonBufferedMedianFilter extends AbstractFilter {
         data[j][i] = sourceData[j];
       }
     }
-    
+
     for (int i = 0; i < sampleSize; i++) {
-      recieverData[offset+i] = Util.median(data[i]);
+      recieverData[offset + i] = Util.median(data[i]);
     }
   }
 }

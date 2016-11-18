@@ -15,14 +15,14 @@ import ca.mcgill.ecse211.wifi.WifiConnection;
 public class WifiClient {
 
   private static WifiConnection conn;
-  
+
   /**
    * 
    * @return true if successful connection to server. false if connection failed
    */
   public static boolean connectToServer() {
     boolean isConnected;
-    
+
     try {
       Logger.logData("Wifi: Connecting...");
       conn = new WifiConnection(Constants.SERVER_IP, Constants.TEAM_NUMBER);
@@ -33,12 +33,12 @@ public class WifiClient {
     }
     return isConnected;
   }
-  
+
   /**
    * Retrieves data from the the server
    * <p>
-   * The data is returned in a HashMap of String keys and Integer values.
-   * The keys and their meaning are as followed:
+   * The data is returned in a HashMap of String keys and Integer values. The keys and their meaning
+   * are as followed:
    * <p>
    * Key: "BTN", Meaning: Builder team number
    * <p>
@@ -62,21 +62,21 @@ public class WifiClient {
    */
   public static HashMap<String, Integer> retrieveDataFromServer() {
     HashMap<String, Integer> data = null;
-    
+
     if (conn != null) {
       data = conn.StartData;
-      
+
       if (data == null) {
         Logger.logData("Wifi: Failed to receive transmission");
       } else {
         Logger.logData("Wifi: Transmission data received");
       }
-      
+
     } else {
       Logger.logData("Wifi: No connection established. Cannot retrieve data");
     }
-    
+
     return data;
   }
-  
+
 }

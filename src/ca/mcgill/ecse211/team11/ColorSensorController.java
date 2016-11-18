@@ -19,7 +19,7 @@ public class ColorSensorController {
     sp = new NonBufferedMedianFilter(sp, Constants.COLOR_SENSOR_MEDIAN_FILTER_SIZE);
     data = new float[sp.sampleSize()];
   }
-  
+
   /**
    * Fetches raw data from the color sensor.
    * 
@@ -29,7 +29,7 @@ public class ColorSensorController {
     sp.fetchSample(data, 0);
     return new float[] {data[0], data[1], data[2]};
   }
-  
+
   /**
    * Identifies the the nature of the block in front of the color sensor
    * 

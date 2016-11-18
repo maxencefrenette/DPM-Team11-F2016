@@ -28,7 +28,7 @@ public class Constants {
   public static final int WHEEL_ACCELERATION = 2000;
   public static final double ANGLE_ERROR = Math.toRadians(3.0);
   public static final double DIST_ERROR = 1.0;
-  
+
   // Claw Controller Constants
   public static final int CLAW_RAISING_SPEED = 100;
   public static final int CLAW_RAISING_DEGREE_ROTATION = 666;
@@ -38,7 +38,7 @@ public class Constants {
   public static final int CLAW_CLOSING_DEGREE_ROTATION = 666;
   public static final int CLAW_OPENING_SPEED = 30;
   public static final int CLAW_OPENING_DEGREE_ROTATION = -666;
-  
+
   // US Localization constants
   public static final double RISING_EDGE_RANGE = 0.30;
   public static final int US_LOCALIZE_WAIT_TIME = 1000;
@@ -69,7 +69,7 @@ public class Constants {
   // Environment constants
   public static final double GRID_SIZE = 30.48;
   public static final int BOARD_SIZE = 8;
-  
+
   // Other constants
   public static final String LOG_FILENAME = "Log.txt";
   public static final int HARDWARE_INITIALIZATION_MAXIMUM_TRIALS = 5;

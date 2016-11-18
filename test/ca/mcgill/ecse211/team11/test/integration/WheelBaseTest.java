@@ -15,24 +15,24 @@ import lejos.hardware.Button;
  * @see ca.mcgill.ecse211.team11.Constants#WHEEL_BASE
  */
 public class WheelBaseTest {
-	public static void main(String[] args) {
-		Initializer init = new Initializer();
-		
-		Navigation nav = init.navigation;
-		Odometer odo = init.odometer;
-		Display dis = init.display;
-		
-		dis.start();
-		odo.start();
-		
-		boolean conTest = true;
-		while(conTest) {
-			nav.turn(Math.PI, true);
-			
-			//Button.waitForAnyPress();
-			if(Button.waitForAnyPress() != Button.ID_ESCAPE) {
-				conTest = false;
-			}
-		}
-	}
+  public static void main(String[] args) {
+    Initializer init = new Initializer();
+
+    Navigation nav = init.navigation;
+    Odometer odo = init.odometer;
+    Display dis = init.display;
+
+    dis.start();
+    odo.start();
+
+    boolean conTest = true;
+    while (conTest) {
+      nav.turn(Math.PI, true);
+
+      // Button.waitForAnyPress();
+      if (Button.waitForAnyPress() != Button.ID_ESCAPE) {
+        conTest = false;
+      }
+    }
+  }
 }

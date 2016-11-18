@@ -4,7 +4,7 @@
  * @date November 3, 2011
  * 
  * @class ECSE 211 - Design Principle and Methods
- *
+ * 
  * Modified by F.P. Ferrie February 28, 2014 Changed parameters for W2014 competition
  * 
  * Modified by Francois OD November 11, 2015 Ported to EV3 and wifi (from NXT and bluetooth) Changed

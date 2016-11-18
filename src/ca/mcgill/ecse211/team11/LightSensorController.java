@@ -30,7 +30,7 @@ public class LightSensorController {
     sp.fetchSample(data, 0);
     return data[0];
   }
-  
+
   /**
    * Tests if the light sensor is seeing a line.
    * 

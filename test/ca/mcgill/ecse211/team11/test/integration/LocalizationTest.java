@@ -19,7 +19,7 @@ public class LocalizationTest {
     init.display.start();
     init.odometer.start();
     init.localizer.setBeeping(true);
-    
+
     // Main test
     init.localizer.setCornerNumber(1);
     init.localizer.usLocalize();

@@ -15,24 +15,24 @@ import lejos.hardware.Button;
  * @since 1.0
  */
 public class NavigationTest {
-	public static void main(String[] args) {
-		Initializer init = new Initializer();
-		
-		Odometer odometer = init.odometer;
-		Display display = init.display;
-		Navigation nav = init.navigation;
-		
-		//navigation.setAccelerations(150, 150);
-		
-		display.start();
-		odometer.start();
-		
-		nav.travelTo(2*Constants.GRID_SIZE, Constants.GRID_SIZE);
-		nav.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE);
-		nav.travelTo(Constants.GRID_SIZE, 2*Constants.GRID_SIZE);
-		nav.travelTo(2*Constants.GRID_SIZE, 0);
-		
-		Button.waitForAnyPress();
-		System.exit(0);
-	}
+  public static void main(String[] args) {
+    Initializer init = new Initializer();
+
+    Odometer odometer = init.odometer;
+    Display display = init.display;
+    Navigation nav = init.navigation;
+
+    // navigation.setAccelerations(150, 150);
+
+    display.start();
+    odometer.start();
+
+    nav.travelTo(2 * Constants.GRID_SIZE, Constants.GRID_SIZE);
+    nav.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE);
+    nav.travelTo(Constants.GRID_SIZE, 2 * Constants.GRID_SIZE);
+    nav.travelTo(2 * Constants.GRID_SIZE, 0);
+
+    Button.waitForAnyPress();
+    System.exit(0);
+  }
 }

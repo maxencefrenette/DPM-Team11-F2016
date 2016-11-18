@@ -8,7 +8,7 @@ package ca.mcgill.ecse211.team11;
  * @since 1.0
  */
 public class Main {
-  
+
   /**
    * Entry point of the program.
    * <p>

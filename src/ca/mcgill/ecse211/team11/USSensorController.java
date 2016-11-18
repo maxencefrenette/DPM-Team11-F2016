@@ -30,7 +30,7 @@ public class USSensorController {
     sp.fetchSample(data, 0);
     return data[0];
   }
-  
+
   public double getLastDistance() {
     return data[0];
   }

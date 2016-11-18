@@ -19,7 +19,7 @@ public class RobotBrain extends Thread {
   private Odometer odometer;
   private Navigation navigation;
   private Localization localizer;
-  
+
   public RobotBrain(Initializer init) {
     // TODO
   }
