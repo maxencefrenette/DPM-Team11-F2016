@@ -7,19 +7,19 @@ import ca.mcgill.ecse211.team11.Odometer;
 import lejos.hardware.Button;
 
 public class WheelRadiusTest {
-	public static void main(String[] args) {
-		Initializer init = new Initializer();
-		
-		Navigation nav = init.navigation;
-		Odometer odo = init.odometer;
-		Display dis = init.display;
-		
-		dis.start();
-		odo.start();
-		
-		nav.travelTo(0, 60.96);
-		
-		Button.waitForAnyPress();
-		System.exit(0);
-	}
+  public static void main(String[] args) {
+    Initializer init = new Initializer();
+
+    Navigation nav = init.navigation;
+    Odometer odo = init.odometer;
+    Display dis = init.display;
+
+    dis.start();
+    odo.start();
+
+    nav.travelTo(0, 60.96);
+
+    Button.waitForAnyPress();
+    System.exit(0);
+  }
 }
