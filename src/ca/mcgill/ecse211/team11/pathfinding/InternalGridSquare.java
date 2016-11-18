@@ -1,4 +1,4 @@
-package ca.mcgill.ecse211.team11;
+package ca.mcgill.ecse211.team11.pathfinding;
 
 public enum InternalGridSquare {
   UNKNOWN,

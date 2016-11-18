@@ -1,4 +1,7 @@
-package ca.mcgill.ecse211.team11;
+package ca.mcgill.ecse211.team11.pathfinding;
+
+import ca.mcgill.ecse211.team11.Constants;
+import ca.mcgill.ecse211.team11.Initializer;
 
 public class InternalGrid {
   private InternalGridSquare[][] grid;
