@@ -14,6 +14,8 @@ import lejos.robotics.SampleProvider;
 public class LightSensorController {
   private SampleProvider sp;
   private float[] data;
+  private float lastLightLevel;
+  private long lastLightLevelTime;
 
   public LightSensorController(EV3ColorSensor colorSensor) {
     sp = colorSensor.getRedMode();
@@ -37,6 +39,19 @@ public class LightSensorController {
    * @return True is the light sensor is seeing a line, false otherwise.
    */
   public boolean isLineCrossed() {
-    return getLightLevel() < Constants.LINE_CROSSED_LIGHT_THRESHOLD;
+    float lightLevel = getLightLevel();
+    long lightLevelTime = System.currentTimeMillis();
+    boolean isLineCrossed;
+    
+    if (lightLevelTime - lastLightLevelTime < 250) {
+      Logger.logData("" + (lightLevel - lastLightLevel));
+      isLineCrossed = (lightLevel - lastLightLevel) < Constants.LINE_CROSSED_LIGHT_THRESHOLD;
+    } else {
+      isLineCrossed = false;
+    }
+    
+    lastLightLevel = lightLevel;
+    lastLightLevelTime = lightLevelTime;
+    return isLineCrossed;
   }
 }
