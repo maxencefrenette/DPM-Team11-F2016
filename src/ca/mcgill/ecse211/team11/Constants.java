@@ -55,9 +55,9 @@ public class Constants {
   public static final int US_POLLER_MEDIAN_FILTER_SIZE = 3;
 
   // Physical dimensions of robot
-  public static final double LEFT_WHEEL_RADIUS = 2.15;
-  public static final double RIGHT_WHEEL_RADIUS = 2.15;
-  public static final double WHEEL_BASE = 12.9;
+  public static final double LEFT_WHEEL_RADIUS = 2.05;
+  public static final double RIGHT_WHEEL_RADIUS = 2.05;
+  public static final double WHEEL_BASE = 11.9;
   public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 7.4;
   public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 5.9;
   public static final double DIST_CENTER_TO_US_SENSOR = 7.1;
