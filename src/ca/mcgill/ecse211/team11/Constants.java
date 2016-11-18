@@ -41,7 +41,7 @@ public class Constants {
   
   // US Localization constants
   public static final double RISING_EDGE_RANGE = 0.30;
-  public static final int US_LOCALIZE_WAIT_TIME = 500;
+  public static final int US_LOCALIZE_WAIT_TIME = 1000;
   public static final double HEADING_OFFSET = 0;
 
   // Thread/Timer periods

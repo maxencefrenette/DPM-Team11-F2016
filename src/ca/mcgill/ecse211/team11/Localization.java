@@ -32,8 +32,8 @@ public class Localization {
    */
   public void usLocalize() {
     // Rotate CW until wall detected
+    navigation.turnClockwise(true);
     while (usSensorController.getDistance() > Constants.RISING_EDGE_RANGE) {
-      navigation.turnClockwise(true);
       Util.sleep(50);
     }
     beep();
@@ -43,21 +43,19 @@ public class Localization {
 
     // Continue rotating CW until wall no longer detected
     while (usSensorController.getDistance() <= Constants.RISING_EDGE_RANGE) {
-      navigation.turnClockwise(true);
       Util.sleep(50);
     }
     beep();
 
     // Stop turning and record angle
-    navigation.setSpeeds(0, 0);
     double angleA = odometer.getTheta();
+    navigation.setSpeeds(0, 0);
 
     // Rotate CCW until wall detected
+    navigation.turnClockwise(false);
     while (usSensorController.getDistance() > Constants.RISING_EDGE_RANGE) {
-      navigation.turnClockwise(false);
       Util.sleep(50);
     }
-    beep();
 
     // Sleep thread to allow robot to rotate past edge
     Util.sleep(Constants.US_LOCALIZE_WAIT_TIME);
@@ -70,16 +68,18 @@ public class Localization {
     beep();
 
     // Stop turning and record angle
-    navigation.setSpeeds(0, 0);
     double angleB = odometer.getTheta();
+    navigation.setSpeeds(0, 0);
 
     odometer.setTheta(Util.calculateUSLocalizeHeading(angleA, angleB, cornerNumber));
 
     //TODO Modify to make it apply to any corner, and go over coordinate convention from pdf
     // Calculate x and y
     navigation.turnToWithMinAngle(-Math.PI / 2, true);
+    beep();
     double x = usSensorController.getDistance()*100 + Constants.DIST_CENTER_TO_US_SENSOR;
     navigation.turnToWithMinAngle(-Math.PI, true);
+    beep();
     double y = usSensorController.getDistance()*100 + Constants.DIST_CENTER_TO_US_SENSOR;
     odometer.setX(x);
     odometer.setY(y);
