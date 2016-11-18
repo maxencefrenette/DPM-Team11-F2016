@@ -1,5 +1,6 @@
 package ca.mcgill.ecse211.team11.test.integration;
 
+import lejos.hardware.Button;
 import lejos.hardware.Sound;
 import ca.mcgill.ecse211.team11.Constants;
 import ca.mcgill.ecse211.team11.Initializer;
@@ -27,5 +28,8 @@ public class LocalizationTest {
     init.navigation.turnToWithMinAngle(0, true);
     init.localizer.lightLocalize();
     Sound.beep();
+
+    Button.waitForAnyPress();
+    System.exit(0);
   }
 }

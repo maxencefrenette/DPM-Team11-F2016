@@ -34,5 +34,8 @@ public class WheelBaseTest {
         conTest = false;
       }
     }
+    
+    Button.waitForAnyPress();
+    System.exit(0);
   }
 }
