@@ -12,6 +12,7 @@ import ca.mcgill.ecse211.team11.Util;
  * @author Maxence Frenette
  * @version 2.0
  * @since 1.0
+ * @see ca.mcgill.ecse211.team11.Util
  */
 public class UtilTest {
 
@@ -120,4 +121,10 @@ public class UtilTest {
         0.001);
   }
   
+  @Test
+  public void testMedian() {
+    assertEquals("Median of one number", 1, Util.median(new float[] {1}), 0.001);
+    assertEquals("Median of even array", 2.5, Util.median(new float[] {1, 4}), 0.001);
+    assertEquals("Median of odd array", 3, Util.median(new float[] {1, 3, 5}), 0.001);
+  }
 }

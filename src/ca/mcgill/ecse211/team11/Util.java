@@ -1,5 +1,7 @@
 package ca.mcgill.ecse211.team11;
 
+import java.util.Arrays;
+
 /**
  * Provides a assortment of utility methods that are used throughout the project.
  * 
@@ -106,5 +108,20 @@ public class Util {
     // Adjust heading depending on starting corner so that 0 heading is east 
     correctedHeading += Math.PI/2*(cornerNumber-1);
     return normalizeAngle360(correctedHeading);
+  }
+  
+  /**
+   * Calculates an array's median.
+   * 
+   * @param array
+   * @return The array's median
+   */
+  public static float median(float[] array) {
+    float[] clonedArray = array.clone();
+    Arrays.sort(clonedArray);
+    if (clonedArray.length % 2 == 0)
+      return (clonedArray[clonedArray.length / 2] + clonedArray[clonedArray.length / 2 - 1]) / 2;
+    else
+      return clonedArray[clonedArray.length / 2];
   }
 }
