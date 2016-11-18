@@ -27,6 +27,8 @@ public class LocalizationTest {
     init.navigation.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE);
     init.navigation.turnToWithMinAngle(0, true);
     init.localizer.lightLocalize();
+    init.navigation.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE);
+    init.navigation.turnToWithMinAngle(0, true);
     Sound.beep();
 
     Button.waitForAnyPress();

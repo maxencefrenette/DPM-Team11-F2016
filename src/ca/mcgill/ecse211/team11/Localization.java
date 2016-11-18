@@ -89,8 +89,6 @@ public class Localization {
    * Performs light localization.
    */
   public void lightLocalize() {
-    // TODO
-
     navigation.turnClockwise(true);
     // counts number of lines seen
     int count = 0;
@@ -103,10 +101,7 @@ public class Localization {
     // break after 4 lines are seen
     while (count < 4) {
       // black line detected
-      if (lightSensorController.getLightLevel() * 1000 <= 400
-          && lightSensorController.getLightLevel() * 1000 > 0)
-
-      {
+      if (lightSensorController.isLineCrossed()) {
         // records positive Y axis angle
         if (odometer.getTheta() < Math.toRadians(135) && odometer.getTheta() > Math.toRadians(45)) {
           y1 = odometer.getTheta();
@@ -130,25 +125,27 @@ public class Localization {
           x2 = odometer.getTheta();
           count++;
         }
-
+        
+        beep();
       }
-    }
+      
+      Util.sleep(50);
+    } // End of while (count < 4)
 
     navigation.setSpeeds(0, 0);
 
-
-    // TODO generalize for any intersection
     // Calculate how far off robot is from (0,0,0)
-    double xOffset =
-        -(Constants.DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR) * Math.cos(Math.abs(y1 - y2) / 2);
-    double yOffset =
-        -(Constants.DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR) * Math.cos(Math.abs(x1 - x2) / 2);
-    double thetaOffset = (Math.abs(y1 - y2) - 360 + y2);
+    double dx =
+        -(Constants.DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR)
+            * Math.cos(Util.normalizeAngle180(y1 - y2) / 2);
+    double dy =
+        -(Constants.DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR)
+            * Math.cos(Util.normalizeAngle180(x1 - x2) / 2);
+    double dTheta = Util.normalizeAngle180(y1 + y2) / 2;
 
-    odometer.setX(xOffset);
-    odometer.setY(yOffset);
-    odometer.setTheta(thetaOffset);
-
+    odometer.setX(odometer.getX() - Util.specialMod(odometer.getX(), Constants.GRID_SIZE) + dx);
+    odometer.setY(odometer.getY() - Util.specialMod(odometer.getY(), Constants.GRID_SIZE) + dy);
+    odometer.setTheta(odometer.getTheta() + dTheta);
   }
 
   /**
