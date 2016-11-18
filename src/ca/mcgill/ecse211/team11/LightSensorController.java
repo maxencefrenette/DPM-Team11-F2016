@@ -2,7 +2,6 @@ package ca.mcgill.ecse211.team11;
 
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.robotics.SampleProvider;
-import lejos.robotics.filter.MedianFilter;
 
 /**
  * Operates the light sensor that will be pointed downwards in order to detect lines for odometry
@@ -12,33 +11,32 @@ import lejos.robotics.filter.MedianFilter;
  * @version 2.0
  * @since 1.0
  */
-public class LightSensorController extends Thread {
+public class LightSensorController {
   private SampleProvider sp;
   private float[] data;
-  private LightSensorObserver observer;
 
   public LightSensorController(EV3ColorSensor colorSensor) {
     sp = colorSensor.getRedMode();
-    sp = new MedianFilter(sp, Constants.LIGHT_POLLER_MEDIAN_FILTER_SIZE);
+    sp = new NonBufferedMedianFilter(sp, Constants.LIGHT_SENSOR_MEDIAN_FILTER_SIZE);
     data = new float[sp.sampleSize()];
   }
 
-  public float getData() {
+  /**
+   * Fetches the light level seen by the light sensor.
+   * 
+   * @return The light level read by the light sensor.
+   */
+  public synchronized float getLightLevel() {
     sp.fetchSample(data, 0);
     return data[0];
   }
-
-  public void run() {
-    while (true) {
-      if (getData() < 0.30 && observer != null) {
-        observer.onLineCrossed();
-      }
-
-      Util.sleep(Constants.LIGHT_POLLER_WAIT_PERIOD);
-    }
-  }
-
-  public void setObserver(LightSensorObserver observer) {
-    this.observer = observer;
+  
+  /**
+   * Tests if the light sensor is seeing a line.
+   * 
+   * @return True is the light sensor is seeing a line, false otherwise.
+   */
+  public boolean isLineCrossed() {
+    return getLightLevel() < Constants.LINE_CROSSED_LIGHT_THRESHOLD;
   }
 }

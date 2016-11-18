@@ -104,7 +104,7 @@ public class Localization {
     while(count<4) 
     {
         //black line detected
-        if(lightSensorController.getData()*1000<=400 && lightSensorController.getData()*1000>0) 
+        if(lightSensorController.getLightLevel()*1000<=400 && lightSensorController.getLightLevel()*1000>0) 
                                                          
         {
             //records positive Y axis angle

@@ -18,7 +18,6 @@ public class LocalizationTest {
     Initializer init = new Initializer();
     init.display.start();
     init.odometer.start();
-    init.usSensorController.start();
     init.localizer.setBeeping(true);
     
     // Main test

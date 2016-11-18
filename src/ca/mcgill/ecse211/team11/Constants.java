@@ -47,12 +47,12 @@ public class Constants {
   // Thread/Timer periods
   public static final int DISPLAY_WAIT_PERIOD = 500;
   public static final int ODOMETER_WAIT_PERIOD = 25;
-  public static final int US_POLLER_WAIT_PERIOD = 50;
   public static final int LIGHT_POLLER_WAIT_PERIOD = 10;
 
   // Sensor filter parameters
-  public static final int LIGHT_POLLER_MEDIAN_FILTER_SIZE = 3;
-  public static final int US_POLLER_MEDIAN_FILTER_SIZE = 3;
+  public static final int COLOR_SENSOR_MEDIAN_FILTER_SIZE = 1;
+  public static final int LIGHT_SENSOR_MEDIAN_FILTER_SIZE = 3;
+  public static final int US_SENSOR_MEDIAN_FILTER_SIZE = 3;
 
   // Physical dimensions of robot
   public static final double LEFT_WHEEL_RADIUS = 2.05;
@@ -76,4 +76,5 @@ public class Constants {
   public static final int HARDWARE_INITIALIZATION_RETRY_DELAY = 500;
   public static final int ODOMETRY_CORRECTION_MAX_ERROR_MARGIN = 2;
   public static final int SOUND_VOLUME = 60;
+  public static final double LINE_CROSSED_LIGHT_THRESHOLD = 0.30;
 }

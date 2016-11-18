@@ -16,6 +16,7 @@ public class ColorSensorController {
 
   public ColorSensorController(EV3ColorSensor colorSensor) {
     sp = colorSensor.getRGBMode();
+    sp = new NonBufferedMedianFilter(sp, Constants.COLOR_SENSOR_MEDIAN_FILTER_SIZE);
     data = new float[sp.sampleSize()];
   }
   
@@ -24,7 +25,7 @@ public class ColorSensorController {
    * 
    * @return The RGB values read by the color sensor
    */
-  public float[] getData() {
+  public float[] getColor() {
     sp.fetchSample(data, 0);
     return new float[] {data[0], data[1], data[2]};
   }
@@ -35,7 +36,7 @@ public class ColorSensorController {
    * @return Is the block a blue block ?
    */
   public boolean identifyBlock() {
-    float[] newData = getData();
+    float[] newData = getColor();
     return newData[2] > newData[0];
   }
 }

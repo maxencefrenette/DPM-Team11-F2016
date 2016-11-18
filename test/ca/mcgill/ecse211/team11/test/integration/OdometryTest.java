@@ -32,7 +32,7 @@ public class OdometryTest {
 		
 		display.start();
 		odometer.start();
-		//odoCorr.getlsc().start();
+		//odoCorr.start();
 		
 		// Spawn a new Thread to avoid SquareDriver.drive() from blocking
 		(new Thread() {

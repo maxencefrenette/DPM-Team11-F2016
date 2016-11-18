@@ -47,7 +47,7 @@ public class Display extends Thread {
       t.drawString(String.format("%.2f", Math.toDegrees(odometer.getTheta())), 3, 2);
       
       //display ultrasonic distance reading
-      t.drawString(String.format("%.3f", usSensorController.getDistance()), 10, 4);
+      t.drawString(String.format("%.3f", usSensorController.getLastDistance()), 10, 4);
 
       // adjust timing of wait period depending on how long it took to update screen
       long displayEnd = System.currentTimeMillis();
