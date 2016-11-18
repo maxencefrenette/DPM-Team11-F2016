@@ -24,6 +24,7 @@ public class Odometer extends Thread {
 
   // lock object for mutual exclusion
   private Object lock;
+  private boolean logging = false;
 
   /**
    * Creates and initializes the odometer.
@@ -69,7 +70,9 @@ public class Odometer extends Thread {
         theta = Util.normalizeAngle360(theta); // Make sure theta stays within 0 and 2pi
 
         // Log updated data
-        Logger.logData("Odometer: X: " + x + " Y: " + y + " Theta: " + theta);
+        if (logging) {
+          Logger.logData("Odometer: X: " + x + " Y: " + y + " Theta: " + theta);
+        }
       }
 
       // Updates previous tacho count
@@ -152,5 +155,14 @@ public class Odometer extends Thread {
     synchronized (lock) {
       this.theta = theta;
     }
+  }
+
+  /**
+   * Set to true to log the robot's position on each update.
+   * 
+   * @param logging
+   */
+  public void setLogging(boolean logging) {
+    this.logging = logging;
   }
 }

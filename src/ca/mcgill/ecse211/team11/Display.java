@@ -49,6 +49,12 @@ public class Display extends Thread {
       // display ultrasonic distance reading
       t.drawString(String.format("%.3f", usSensorController.getLastDistance()), 10, 4);
 
+      // Displays the last logged message
+      int _18 = Math.min(18, Logger.lastMessage.length());
+      int _36 = Math.min(36, Logger.lastMessage.length());
+      t.drawString(Logger.lastMessage.substring(0, _18), 0, 6);
+      t.drawString(Logger.lastMessage.substring(_18, _36), 0, 7);
+
       // adjust timing of wait period depending on how long it took to update screen
       long displayEnd = System.currentTimeMillis();
       if (displayEnd - displayStart < Constants.DISPLAY_WAIT_PERIOD) {

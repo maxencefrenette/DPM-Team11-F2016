@@ -15,6 +15,7 @@ public class Logger {
 
   private static PrintStream writer = System.out;
   private static long startTime = 0;
+  public static String lastMessage = "";
 
   /**
    * Log the time and the data passed as parameter.
@@ -25,9 +26,9 @@ public class Logger {
    * @param message
    */
   public static void logData(String message) {
-
     long currentTime = System.currentTimeMillis() - startTime;
     writer.println("Time in ms: " + currentTime + ", " + message);
+    lastMessage = message;
   }
 
   /**
@@ -40,7 +41,6 @@ public class Logger {
    * @param filename name of the file to print log data into
    */
   public static void setLogWriter(String filename) {
-
     try {
       writer = new PrintStream(new File(filename));
     } catch (FileNotFoundException e) {
