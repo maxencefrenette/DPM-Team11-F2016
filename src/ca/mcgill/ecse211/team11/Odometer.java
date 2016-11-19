@@ -67,11 +67,11 @@ public class Odometer extends Thread {
         theta += dTheta;
         x += dDist * Math.cos(theta);
         y += dDist * Math.sin(theta);
-        theta = Util.normalizeAngle360(theta); // Make sure theta stays within 0 and 2pi
 
         // Log updated data
         if (logging) {
-          Logger.logData("Odometer: X: " + x + " Y: " + y + " Theta: " + theta);
+          // Make sure to log the normalized theta
+          Logger.logData("Odometer: X: " + x + " Y: " + y + " Theta: " + getTheta());
         }
       }
 
@@ -136,9 +136,9 @@ public class Odometer extends Thread {
   }
 
   /**
-   * @return The theta
+   * @return The unnormalized theta
    */
-  public synchronized double getTheta() {
+  public synchronized double getUnwrappedTheta() {
     double result;
 
     synchronized (lock) {
@@ -146,6 +146,13 @@ public class Odometer extends Thread {
     }
 
     return result;
+  }
+
+  /**
+   * @return The theta normalized to be between 0 and 2pi.
+   */
+  public double getTheta() {
+    return Util.normalizeAngle360(getUnwrappedTheta());
   }
 
   /**
