@@ -31,6 +31,8 @@ public class Localization {
    * Performs US localization.
    */
   public void usLocalize() {
+    double minimumDistance = usSensorController.getDistance();
+    
     // Rotate CW until wall detected
     navigation.turnClockwise(true);
     while (usSensorController.getDistance() > Constants.RISING_EDGE_RANGE) {
@@ -43,6 +45,9 @@ public class Localization {
 
     // Continue rotating CW until wall no longer detected
     while (usSensorController.getDistance() <= Constants.RISING_EDGE_RANGE) {
+      if (usSensorController.getLastDistance() < minimumDistance) {
+        minimumDistance = usSensorController.getLastDistance();
+      }
       Util.sleep(50);
     }
     beep();
@@ -59,10 +64,12 @@ public class Localization {
 
     // Sleep thread to allow robot to rotate past edge
     Util.sleep(Constants.US_LOCALIZE_WAIT_TIME);
-
+    
     // Continue rotating CCW until wall no longer detected
     while (usSensorController.getDistance() <= Constants.RISING_EDGE_RANGE) {
-      navigation.turnClockwise(false);
+      if (usSensorController.getLastDistance() < minimumDistance) {
+        minimumDistance = usSensorController.getLastDistance();
+      }
       Util.sleep(50);
     }
     beep();
@@ -73,14 +80,26 @@ public class Localization {
 
     odometer.setTheta(Util.calculateUSLocalizeHeading(angleA, angleB, cornerNumber));
 
-    // TODO Modify to make it apply to any corner, and go over coordinate convention from pdf
     // Calculate x and y
-    navigation.turnToWithMinAngle(-Math.PI / 2, true);
-    beep();
-    double x = usSensorController.getDistance() * 100 + Constants.DIST_CENTER_TO_US_SENSOR;
-    navigation.turnToWithMinAngle(-Math.PI, true);
-    beep();
-    double y = usSensorController.getDistance() * 100 + Constants.DIST_CENTER_TO_US_SENSOR;
+    double x = minimumDistance* 100 + Constants.DIST_CENTER_TO_US_SENSOR;
+    double y = minimumDistance* 100 + Constants.DIST_CENTER_TO_US_SENSOR;
+    switch (cornerNumber) {
+      case 1:
+        break;
+        
+      case 2:
+        x = Constants.GRID_SIZE*12 - x;
+        break;
+       
+      case 3:
+        x = Constants.GRID_SIZE*12 - x;
+        y = Constants.GRID_SIZE*12 - y;
+        break;
+        
+      case 4:
+        y = Constants.GRID_SIZE*12 - y;
+        break;
+    }
     odometer.setX(x);
     odometer.setY(y);
   }

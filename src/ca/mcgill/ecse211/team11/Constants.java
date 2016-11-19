@@ -41,7 +41,7 @@ public class Constants {
   public static final int CLAW_OPENING_DEGREE_ROTATION = -50;
 
   // US Localization constants
-  public static final double RISING_EDGE_RANGE = 0.30;
+  public static final double RISING_EDGE_RANGE = 0.40;
   public static final int US_LOCALIZE_WAIT_TIME = 1000;
   public static final double HEADING_OFFSET = 0;
 
@@ -53,7 +53,7 @@ public class Constants {
   // Sensor filter parameters
   public static final int COLOR_SENSOR_MEDIAN_FILTER_SIZE = 1;
   public static final int LIGHT_SENSOR_MEDIAN_FILTER_SIZE = 1;
-  public static final int US_SENSOR_MEDIAN_FILTER_SIZE = 5;
+  public static final int US_SENSOR_MEDIAN_FILTER_SIZE = 7;
 
   // Physical dimensions of robot
   public static final double LEFT_WHEEL_RADIUS = 2.05;
