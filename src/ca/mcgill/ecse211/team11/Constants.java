@@ -53,15 +53,15 @@ public class Constants {
   // Sensor filter parameters
   public static final int COLOR_SENSOR_MEDIAN_FILTER_SIZE = 1;
   public static final int LIGHT_SENSOR_MEDIAN_FILTER_SIZE = 1;
-  public static final int US_SENSOR_MEDIAN_FILTER_SIZE = 7;
+  public static final int US_SENSOR_MEDIAN_FILTER_SIZE = 15;
 
   // Physical dimensions of robot
   public static final double LEFT_WHEEL_RADIUS = 2.05;
   public static final double RIGHT_WHEEL_RADIUS = 2.05;
-  public static final double WHEEL_BASE = 11.9;
-  public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 7.5;
+  public static final double WHEEL_BASE = 10.4;
+  public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 12.3;
   public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 5.9;
-  public static final double DIST_CENTER_TO_US_SENSOR = 7.1;
+  public static final double DIST_CENTER_TO_US_SENSOR = 6.6;
 
   // Wifi constants
   public static final String SERVER_IP = "192.168.2.3";

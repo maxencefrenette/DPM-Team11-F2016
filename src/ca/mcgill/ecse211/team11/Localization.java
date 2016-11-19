@@ -31,7 +31,7 @@ public class Localization {
    * Performs US localization.
    */
   public void usLocalize() {
-    double minimumDistance = usSensorController.getDistance();
+    double minimumDistance = 999;
     
     // Rotate CW until wall detected
     navigation.turnClockwise(true);
@@ -121,27 +121,34 @@ public class Localization {
     while (count < 4) {
       // black line detected
       if (lightSensorController.isLineCrossed()) {
+        
         // records positive Y axis angle
         if (odometer.getTheta() < Math.toRadians(135) && odometer.getTheta() > Math.toRadians(45)) {
           y1 = odometer.getTheta();
+          Logger.logData("Y1: " + y1);
           count++;
         }
 
         // records negative Y axis angle
         if (odometer.getTheta() < Math.toRadians(315) && odometer.getTheta() > Math.toRadians(225)) {
           y2 = odometer.getTheta();
+
+          Logger.logData("Y2: " + y2);
           count++;
         }
 
         // records positive X axis angle
         if (odometer.getTheta() > Math.toRadians(315) || odometer.getTheta() < Math.toRadians(45)) {
           x1 = odometer.getTheta();
+
+          Logger.logData("X1: " + x1);
           count++;
         }
 
         // records negative X axis angle
         if (odometer.getTheta() < Math.toRadians(225) && odometer.getTheta() > Math.toRadians(135)) {
           x2 = odometer.getTheta();
+          Logger.logData("X2: " + x2);
           count++;
         }
 
