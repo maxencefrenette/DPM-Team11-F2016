@@ -10,7 +10,7 @@ import lejos.hardware.Button;
  * Tests the calibration of the WHEEL_BASE constant.
  * 
  * @author Saleh Bakhit
- * @version 2.0
+ * @version 3.0
  * @since 1.0
  * @see ca.mcgill.ecse211.team11.Constants#WHEEL_BASE
  */

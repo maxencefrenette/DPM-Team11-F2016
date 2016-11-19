@@ -7,7 +7,7 @@ import lejos.robotics.SampleProvider;
  * Operates the color sensor used for object identification.
  * 
  * @author Maxence Frenette
- * @version 2.0
+ * @version 3.0
  * @since 1.0
  */
 public class ColorSensorController {

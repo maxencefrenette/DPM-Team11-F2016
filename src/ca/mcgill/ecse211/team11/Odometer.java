@@ -7,7 +7,7 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
  * rotation data from the wheel motors.
  * 
  * @author Maxence Frenette
- * @version 2.0
+ * @version 3.0
  * @since 1.0
  */
 public class Odometer extends Thread {

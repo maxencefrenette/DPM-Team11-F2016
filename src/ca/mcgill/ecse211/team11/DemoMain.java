@@ -8,7 +8,7 @@ import lejos.hardware.Sound;
  * Main class for the beta demo
  * 
  * @author Justin Szeto
- * @version 2.0
+ * @version 3.0
  * @since 2.0
  */
 public class DemoMain {

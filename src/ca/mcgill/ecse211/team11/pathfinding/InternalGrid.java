@@ -9,7 +9,7 @@ import ca.mcgill.ecse211.team11.Initializer;
  * The field is divided in discrete sectors that each have a state.
  * 
  * @author Maxence Frenette
- * @version 2.0
+ * @version 3.0
  * @since 2.0
  */
 public class InternalGrid {
