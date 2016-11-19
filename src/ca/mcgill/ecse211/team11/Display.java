@@ -54,10 +54,17 @@ public class Display extends Thread {
       t.drawString(String.format("%.3f", usSensorController.getLastDistance()), 10, 4);
 
       // Displays the last logged message
-      int _18 = Math.min(18, Logger.lastMessage.length());
-      int _36 = Math.min(36, Logger.lastMessage.length());
-      t.drawString(Logger.lastMessage.substring(0, _18), 0, 6);
-      t.drawString(Logger.lastMessage.substring(_18, _36), 0, 7);
+      try {
+        String lastMessage = Logger.lastMessage;
+        int _18 = Math.min(18, lastMessage.length());
+        int _36 = Math.min(36, lastMessage.length());
+        t.drawString(lastMessage.substring(0, _18), 0, 6);
+        t.drawString(lastMessage.substring(_18, _36), 0, 7);
+      } catch (Exception e) {
+        // For some reason, the above code seems to randomly fail sometimes. It should never happen
+        // since the above code is correct, but if it ever does so again, it is better to fail
+        // silently than to crash.
+      }
 
       // adjust timing of wait period depending on how long it took to update screen
       long displayEnd = System.currentTimeMillis();
