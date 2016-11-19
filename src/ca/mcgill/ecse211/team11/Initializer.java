@@ -64,7 +64,7 @@ public class Initializer {
 
   private EV3MediumRegulatedMotor initClawClosingMotor(String clawClosingMotorPort) {
     EV3MediumRegulatedMotor motor = null;
-  
+
     for (int i = 0; i < Constants.HARDWARE_INITIALIZATION_MAXIMUM_TRIALS && motor == null; i++) {
       try {
         motor = new EV3MediumRegulatedMotor(LocalEV3.get().getPort(clawClosingMotorPort));
@@ -73,7 +73,7 @@ public class Initializer {
         Logger.logData(e.getMessage());
       }
     }
-      return motor;
+    return motor;
   }
 
   /**

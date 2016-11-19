@@ -125,10 +125,10 @@ public class Localization {
           x2 = odometer.getTheta();
           count++;
         }
-        
+
         beep();
       }
-      
+
       Util.sleep(50);
     } // End of while (count < 4)
 

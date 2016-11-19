@@ -16,7 +16,8 @@ public class ClawMotorController {
   private EV3MediumRegulatedMotor clawClosingMotor;
   private NXTRegulatedMotor clawRaisingMotor;
 
-  public ClawMotorController(EV3MediumRegulatedMotor clawClosingMotor, NXTRegulatedMotor clawRaisingMotor) {
+  public ClawMotorController(EV3MediumRegulatedMotor clawClosingMotor,
+      NXTRegulatedMotor clawRaisingMotor) {
     this.clawClosingMotor = clawClosingMotor;
     this.clawRaisingMotor = clawRaisingMotor;
   }

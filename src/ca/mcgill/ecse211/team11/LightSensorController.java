@@ -42,14 +42,14 @@ public class LightSensorController {
     float lightLevel = getLightLevel();
     long lightLevelTime = System.currentTimeMillis();
     boolean isLineCrossed;
-    
+
     if (lightLevelTime - lastLightLevelTime < 250) {
       Logger.logData("" + (lightLevel - lastLightLevel));
       isLineCrossed = (lightLevel - lastLightLevel) < Constants.LINE_CROSSED_LIGHT_THRESHOLD;
     } else {
       isLineCrossed = false;
     }
-    
+
     lastLightLevel = lightLevel;
     lastLightLevelTime = lightLevelTime;
     return isLineCrossed;

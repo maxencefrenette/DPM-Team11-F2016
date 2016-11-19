@@ -40,11 +40,11 @@ public class Display extends Thread {
 
       // clear line for displaying ultrasonic distance reading
       t.drawString("Distance:         ", 0, 4);
-      
+
       // Clears the line for displaying the last logged message
       t.drawString("                  ", 0, 6);
       t.drawString("                  ", 0, 7);
-      
+
       // display odometry information
       t.drawString(String.format("%.2f", odometer.getX()), 3, 0);
       t.drawString(String.format("%.2f", odometer.getY()), 3, 1);

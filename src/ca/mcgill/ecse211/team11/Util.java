@@ -31,14 +31,14 @@ public class Util {
    */
   public static double specialMod(double a, double n) {
     double r = a % n;
-    if (r <= -n/2) {
+    if (r <= -n / 2) {
       r += n;
-    } else if (n/2 < r) {
+    } else if (n / 2 < r) {
       r -= n;
     }
     return r;
   }
-  
+
   /**
    * Normalizes an angle so that -pi > angle >= pi
    * 
@@ -46,7 +46,7 @@ public class Util {
    * @return The normalized angle
    */
   public static double normalizeAngle180(double angle) {
-    return specialMod(angle, 2*Math.PI);
+    return specialMod(angle, 2 * Math.PI);
   }
 
   /**
@@ -61,7 +61,7 @@ public class Util {
     }
     return angle % (2 * Math.PI);
   }
-  
+
   /**
    * Find the minimum angle the robot needs to turn to reach the desired heading
    * 
@@ -70,9 +70,9 @@ public class Util {
    * @return The minimum angle to turn to the endHeading. Positive for CCW. Negative for CW.
    */
   public static double findMinAngle(double startHeading, double endHeading) {
-    return normalizeAngle180(endHeading-startHeading);
+    return normalizeAngle180(endHeading - startHeading);
   }
-  
+
   /**
    * Calculates the heading the robot needs to face in order to travel a straight path to target.
    * 
@@ -82,11 +82,12 @@ public class Util {
    * @param targetY - y coordinate of target destination
    * @return The heading in radians
    */
-  public static double calculateHeading(double currentX, double currentY, double targetX, double targetY) {
-    double angle = Math.atan2(targetY-currentY, targetX-currentX);
+  public static double calculateHeading(double currentX, double currentY, double targetX,
+      double targetY) {
+    double angle = Math.atan2(targetY - currentY, targetX - currentX);
     return normalizeAngle360(angle);
   }
-  
+
   /**
    * Calculates the corrected heading for US Localization.
    * <p>
@@ -100,16 +101,17 @@ public class Util {
   public static double calculateUSLocalizeHeading(double angleA, double angleB, int cornerNumber) {
     double correctedHeading;
     if (angleA < angleB) {
-      correctedHeading = angleB - Math.PI*3/4 -(angleA+angleB)/2 + Constants.HEADING_OFFSET;
+      correctedHeading =
+          angleB - Math.PI * 3 / 4 - (angleA + angleB) / 2 + Constants.HEADING_OFFSET;
     } else {
-      correctedHeading = angleB + Math.PI/4 -(angleA+angleB)/2 + Constants.HEADING_OFFSET;
+      correctedHeading = angleB + Math.PI / 4 - (angleA + angleB) / 2 + Constants.HEADING_OFFSET;
     }
-    
-    // Adjust heading depending on starting corner so that 0 heading is east 
-    correctedHeading += Math.PI/2*(cornerNumber-1);
+
+    // Adjust heading depending on starting corner so that 0 heading is east
+    correctedHeading += Math.PI / 2 * (cornerNumber - 1);
     return normalizeAngle360(correctedHeading);
   }
-  
+
   /**
    * Calculates an array's median.
    * 
