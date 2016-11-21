@@ -32,13 +32,13 @@ public class Constants {
 
   // Claw Controller Constants
   public static final int CLAW_RAISING_SPEED = 100;
-  public static final int CLAW_RAISING_DEGREE_ROTATION = 6 * 180;
+  public static final int CLAW_RAISING_DEGREE_ROTATION = -6 * 180;
   public static final int CLAW_LOWERING_SPEED = 100;
-  public static final int CLAW_LOWERING_DEGREE_ROTATION = -6 * 180;
-  public static final int CLAW_CLOSING_SPEED = 50;
-  public static final int CLAW_CLOSING_DEGREE_ROTATION = 50;
+  public static final int CLAW_LOWERING_DEGREE_ROTATION = 6 * 180;
+  public static final int CLAW_CLOSING_SPEED = 30;
+  public static final int CLAW_CLOSING_DEGREE_ROTATION = -50;
   public static final int CLAW_OPENING_SPEED = 30;
-  public static final int CLAW_OPENING_DEGREE_ROTATION = -50;
+  public static final int CLAW_OPENING_DEGREE_ROTATION = 50;
 
   // US Localization constants
   public static final double RISING_EDGE_RANGE = 0.40;
