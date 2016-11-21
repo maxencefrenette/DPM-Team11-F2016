@@ -88,16 +88,16 @@ public class Localization {
         break;
         
       case 2:
-        x = Constants.GRID_SIZE*12 - x;
+        x = Constants.GRID_SIZE*Constants.BOARD_SIZE - x;
         break;
        
       case 3:
-        x = Constants.GRID_SIZE*12 - x;
-        y = Constants.GRID_SIZE*12 - y;
+        x = Constants.GRID_SIZE*Constants.BOARD_SIZE - x;
+        y = Constants.GRID_SIZE*Constants.BOARD_SIZE - y;
         break;
         
       case 4:
-        y = Constants.GRID_SIZE*12 - y;
+        y = Constants.GRID_SIZE*Constants.BOARD_SIZE - y;
         break;
     }
     odometer.setX(x);

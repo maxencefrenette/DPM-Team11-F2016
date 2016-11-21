@@ -58,7 +58,7 @@ public class Constants {
   // Physical dimensions of robot
   public static final double LEFT_WHEEL_RADIUS = 2.05;
   public static final double RIGHT_WHEEL_RADIUS = 2.05;
-  public static final double WHEEL_BASE = 10.4;
+  public static final double WHEEL_BASE = 11.7;
   public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 12.3;
   public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 5.9;
   public static final double DIST_CENTER_TO_US_SENSOR = 6.6;
@@ -69,7 +69,7 @@ public class Constants {
 
   // Environment constants
   public static final double GRID_SIZE = 30.48;
-  public static final int BOARD_SIZE = 8;
+  public static final int BOARD_SIZE = 12;
 
   // Other constants
   public static final String LOG_FILENAME = "Log.txt";
@@ -77,5 +77,5 @@ public class Constants {
   public static final int HARDWARE_INITIALIZATION_RETRY_DELAY = 500;
   public static final int ODOMETRY_CORRECTION_MAX_ERROR_MARGIN = 2;
   public static final int SOUND_VOLUME = 60;
-  public static final double LINE_CROSSED_LIGHT_THRESHOLD = -0.03;
+  public static final double LINE_CROSSED_LIGHT_THRESHOLD = -0.06;
 }
