@@ -142,4 +142,11 @@ public class UtilTest {
     assertEquals("Median of even array", 2.5, Util.median(new float[] {1, 4}), e);
     assertEquals("Median of odd array", 3, Util.median(new float[] {1, 3, 5}), e);
   }
+  
+  @Test
+  public void testConvertToInternalGrid() {
+    assertArrayEquals("X: 30.1, Y: 30.1", new int[] {1,1}, Util.convertToInternalGrid(30.1, 30.1));
+    assertArrayEquals("X: 200, Y: 36", new int[] {13,2}, Util.convertToInternalGrid(200, 36));
+    assertArrayEquals("X: -1, Y: -3", new int[] {0,0}, Util.convertToInternalGrid(-1, -3));
+  }
 }
