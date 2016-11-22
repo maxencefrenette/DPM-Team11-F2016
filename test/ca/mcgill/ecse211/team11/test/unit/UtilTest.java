@@ -149,4 +149,80 @@ public class UtilTest {
     assertArrayEquals("X: 200, Y: 36", new int[] {13,2}, Util.convertToInternalGrid(200, 36));
     assertArrayEquals("X: -1, Y: -3", new int[] {0,0}, Util.convertToInternalGrid(-1, -3));
   }
+  
+  @Test
+  public void testGetGridsInLineOfSight() {
+    // First Octant
+    assertArrayEquals("Initial Grid: 0,0 Final Grid: 5,0", 
+        new Integer[][] { {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0} }, 
+        Util.getGridsInLineOfSight(0, 0, 5, 0).toArray());
+    
+    assertArrayEquals("Initial Grid: 0,0 Final Grid: 6,3", 
+        new Integer[][] { {0,0}, {1,0}, {2,1}, {3,1}, {4,2}, {5,2}, {6,3} }, 
+        Util.getGridsInLineOfSight(0, 0, 6, 3).toArray());
+
+    assertArrayEquals("Initial Grid: 0,0 Final Grid: 4,4", 
+        new Integer[][] { {0,0}, {1,1}, {2,2}, {3,3}, {4,4}}, 
+        Util.getGridsInLineOfSight(0, 0, 4, 4).toArray());
+    
+    // Second Octant
+    assertArrayEquals("Initial Grid: 0,0 Final Grid: 0,5", 
+        new Integer[][] { {0,0}, {0,1}, {0,2}, {0,3}, {0,4}, {0,5} }, 
+        Util.getGridsInLineOfSight(0, 0, 0, 5).toArray());
+    
+    assertArrayEquals("Initial Grid: 0,0 Final Grid: 3,6", 
+        new Integer[][] { {0,0}, {0,1}, {1,2}, {1,3}, {2,4}, {2,5}, {3,6} }, 
+        Util.getGridsInLineOfSight(0, 0, 3, 6).toArray());
+
+    // Third Octant
+    assertArrayEquals("Initial Grid: 3,6 Final Grid: 0,12", 
+        new Integer[][] { {3,6}, {3,7}, {2,8}, {2,9}, {1,10}, {1,11}, {0,12} }, 
+        Util.getGridsInLineOfSight(3, 6, 0, 12).toArray());
+    
+    // Fourth Octant
+    assertArrayEquals("Initial Grid: 12,0 Final Grid: 6,3", 
+        new Integer[][] { {12,0}, {11,0}, {10,1}, {9,1}, {8,2}, {7,2}, {6,3} }, 
+        Util.getGridsInLineOfSight(12, 0, 6, 3).toArray());
+
+    assertArrayEquals("Initial Grid: 8,0 Final Grid: 4,4", 
+        new Integer[][] { {8,0}, {7,1}, {6,2}, {5,3}, {4,4}}, 
+        Util.getGridsInLineOfSight(8, 0, 4, 4).toArray());
+    
+    // Fifth Octant
+    assertArrayEquals("Initial Grid: 5,0 Final Grid: 0,0", 
+        new Integer[][] { {5,0}, {4,0}, {3,0}, {2,0}, {1,0}, {0,0} }, 
+        Util.getGridsInLineOfSight(5, 0, 0, 0).toArray());
+    
+    assertArrayEquals("Initial Grid: 6,3 Final Grid: 0,0", 
+        new Integer[][] { {6,3}, {5,3}, {4,2}, {3,2}, {2,1}, {1,1}, {0,0} }, 
+        Util.getGridsInLineOfSight(6, 3, 0, 0).toArray());
+
+    assertArrayEquals("Initial Grid: 4,4 Final Grid: 0,0", 
+        new Integer[][] { {4,4}, {3,3}, {2,2}, {1,1}, {0,0}}, 
+        Util.getGridsInLineOfSight(4, 4, 0, 0).toArray());
+    
+    // Sixth Octant
+    assertArrayEquals("Initial Grid: 3,6 Final Grid: 0,0", 
+        new Integer[][] { {3,6}, {3,5}, {2,4}, {2,3}, {1,2}, {1,1}, {0,0} }, 
+        Util.getGridsInLineOfSight(3, 6, 0, 0).toArray());
+    
+    // Seventh Octant
+    assertArrayEquals("Initial Grid: 5,0 Final Grid: 0,0", 
+        new Integer[][] { {5,0}, {4,0}, {3,0}, {2,0}, {1,0}, {0,0} }, 
+        Util.getGridsInLineOfSight(5, 0, 0, 0).toArray());
+    
+    assertArrayEquals("Initial Grid: 3,6 Final Grid: 6,0", 
+        new Integer[][] { {3,6}, {3,5}, {4,4}, {4,3}, {5,2}, {5,1}, {6,0} }, 
+        Util.getGridsInLineOfSight(3, 6, 6, 0).toArray());
+    
+    // Eighth Octant
+    assertArrayEquals("Initial Grid: 12,0 Final Grid: 6,3", 
+        new Integer[][] { {6,3}, {7,3}, {8,2}, {9,2}, {10,1}, {11,1}, {12,0} }, 
+        Util.getGridsInLineOfSight(6, 3, 12, 0).toArray());
+
+    assertArrayEquals("Initial Grid: 4,4 Final Grid: 8,0", 
+        new Integer[][] { {4,4}, {5,3}, {6,2}, {7,1}, {8,0}}, 
+        Util.getGridsInLineOfSight(4, 4, 8, 0).toArray());
+
+  }
 }
