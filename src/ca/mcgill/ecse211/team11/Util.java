@@ -1,5 +1,6 @@
 package ca.mcgill.ecse211.team11;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -139,5 +140,51 @@ public class Util {
     int internalGridY = (int) (y/(Constants.GRID_SIZE/2));
     
     return new int[] { internalGridX, internalGridY };
+  }
+  
+  /**
+   * Get the list of grids from an initial grid to a final grid using Bresenham's line algorithm.
+   * 
+   * @param initialX initial grid's X
+   * @param initialY initial grid's Y
+   * @param finalX final grid's X
+   * @param finalY final grid's Y
+   * @return An ArrayList containing all the internal grids from the initial grid to the final grid.
+   */
+  public static ArrayList<Integer[]> getGridsInLineOfSight(int initialX, int initialY, int finalX, int finalY) {
+    ArrayList<Integer[]> gridsInLineOfSight = new ArrayList<Integer[]>();
+    
+    // Using Bresenham's line algorithm to approximate grids in line of sight
+    int dx = finalX - initialX;
+    int dy = finalY - initialY;
+    
+    if (Math.abs(dy) > Math.abs(dx)) {
+      int diff = 2*Math.abs(dx) - Math.abs(dy);
+      int x = initialX;
+      
+      for (int y = initialY; y != finalY+Integer.signum(dy); y+=Integer.signum(dy)) {
+        gridsInLineOfSight.add(new Integer[] {x,y});
+        if (diff > 0) {
+          x += Integer.signum(dx);
+          diff -= Math.abs(dy);
+        }
+        diff += Math.abs(dx);
+      }
+    } else {
+      
+      int diff = 2*Math.abs(dy) - Math.abs(dx);
+      int y = initialY;
+      
+      for (int x = initialX; x != finalX+Integer.signum(dx); x+=Integer.signum(dx)) {
+        gridsInLineOfSight.add(new Integer[] {x,y});
+        if (diff > 0) {
+          y += Integer.signum(dy);
+          diff -= Math.abs(dx);
+        }
+        diff += Math.abs(dy);
+      }  
+    }
+    
+    return gridsInLineOfSight;
   }
 }
