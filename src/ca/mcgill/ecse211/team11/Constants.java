@@ -78,4 +78,5 @@ public class Constants {
   public static final int ODOMETRY_CORRECTION_MAX_ERROR_MARGIN = 2;
   public static final int SOUND_VOLUME = 60;
   public static final double LINE_CROSSED_LIGHT_THRESHOLD = -0.06;
+  public static final double SCANNING_RANGE = 0.5;
 }
