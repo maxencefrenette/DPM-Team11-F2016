@@ -2,6 +2,7 @@ package ca.mcgill.ecse211.team11.pathfinding;
 
 import ca.mcgill.ecse211.team11.Constants;
 import ca.mcgill.ecse211.team11.Initializer;
+import ca.mcgill.ecse211.team11.Logger;
 
 /**
  * Stores the internal representation of the field.
@@ -31,5 +32,19 @@ public class InternalGrid {
    */
   public void scan() {
     // TODO
+  }
+  
+  public void printBoard()
+  {
+	  String board = "";
+	  for (int i = 0; i<grid.length; i++)
+	  {
+		  for (int j = 0; j<grid.length; j++)
+		  {
+			  board = board + "|" + i + "|" + " |" + j + "| {" + grid[i][j] + "} ";
+		  }
+		  board = board + "\n ";
+	  }
+	  Logger.logData(board);
   }
 }

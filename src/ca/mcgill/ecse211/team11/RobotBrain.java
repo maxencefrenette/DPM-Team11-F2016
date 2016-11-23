@@ -81,7 +81,16 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State catchBlock() {
-    // TODO
+	  navigation.goBackward(20);
+	  navigation.turn(180,true);
+	  clawMotorController.openClaw();
+	  clawMotorController.lowerClaw();
+	  navigation.goBackward(25);
+	  clawMotorController.closeClaw();
+	  clawMotorController.raiseClaw();	  
+	  //pathfind to greenzone
+	  clawMotorController.lowerClaw();
+	  clawMotorController.openClaw();
     return State.STACK_BLOCK;
   }
 
