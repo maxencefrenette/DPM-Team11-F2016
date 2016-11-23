@@ -31,5 +31,64 @@ public class InternalGrid {
    */
   public void scan() {
     // TODO
+  
+  /**
+   * Update internal grid with green zone tiles
+   * 
+   * @param LGZx x coordinate of lower left corner of green zone given through WiFi
+   * @param LGZy y coordinate of lower left corner of green zone given through WiFi
+   * @param UGZx x coordinate of upper right corner of green zone given through WiFi
+   * @param UGZy y coordinate of upper right corner of green zone given through WiFi
+   */
+  public void updateGreenZone(int LGZx, int LGZy, int UGZx, int UGZy) {
+    int dx = (UGZx - LGZx)*2;
+    int dy = (UGZy - LGZy)*2;
+    
+    int lowerLeftGridX = (LGZx+1)*2;
+    int lowerLeftGridY = (LGZy+1)*2;
+    
+    for (int i = lowerLeftGridX; i < lowerLeftGridX + dx; i++) {
+      for (int j = lowerLeftGridY; i < lowerLeftGridY + dy; j++) {
+        grid[i][j] = InternalGridSquare.GREEN_ZONE;
+      }
+    }
+  }
+  
+  /**
+   * Update internal grid with red zone tiles
+   * 
+   * @param LRZx x coordinate of lower left corner of green zone given through WiFi
+   * @param LRZy y coordinate of lower left corner of green zone given through WiFi
+   * @param URZx x coordinate of upper right corner of green zone given through WiFi
+   * @param URZy y coordinate of upper right corner of green zone given through WiFi
+   */
+  public void updateRedZone(int LRZx, int LRZy, int URZx, int URZy) {
+    int dx = (URZx - LRZx)*2;
+    int dy = (URZy - LRZy)*2;
+    
+    int lowerLeftGridX = (LRZx+1)*2;
+    int lowerLeftGridY = (LRZy+1)*2;
+    
+    for (int i = lowerLeftGridX; i < lowerLeftGridX + dx; i++) {
+      for (int j = lowerLeftGridY; i < lowerLeftGridY + dy; j++) {
+        grid[i][j] = InternalGridSquare.RED_ZONE;
+      }
+    }
+  }
+  
+  /**
+   * 
+   * @param gridCoordinates grid's X and Y
+   * @return true if allowed to edit grid's status. false if not allowed to edit grid's status.
+   */
+  private boolean isModifiableGrid(Integer[] gridCoordinates) {
+    InternalGridSquare gridStatus = grid[gridCoordinates[0]][gridCoordinates[1]];
+    
+    if(gridStatus == InternalGridSquare.NO_ENTRY || gridStatus == InternalGridSquare.GREEN_ZONE
+        || gridStatus == InternalGridSquare.RED_ZONE) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
