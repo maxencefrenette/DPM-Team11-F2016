@@ -4,14 +4,11 @@ import java.util.ArrayList;
 
 import ca.mcgill.ecse211.team11.Constants;
 import ca.mcgill.ecse211.team11.Initializer;
-<<<<<<< HEAD
 import ca.mcgill.ecse211.team11.Logger;
-=======
 import ca.mcgill.ecse211.team11.Navigation;
 import ca.mcgill.ecse211.team11.Odometer;
 import ca.mcgill.ecse211.team11.USSensorController;
 import ca.mcgill.ecse211.team11.Util;
->>>>>>> origin/master
 
 /**
  * Stores the internal representation of the field.
