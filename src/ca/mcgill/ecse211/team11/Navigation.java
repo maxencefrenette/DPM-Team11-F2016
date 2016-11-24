@@ -1,5 +1,9 @@
 package ca.mcgill.ecse211.team11;
 
+import java.util.Iterator;
+
+import ca.mcgill.ecse211.team11.pathfinding.Path;
+import ca.mcgill.ecse211.team11.pathfinding.PathNode;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 
 /**
@@ -79,7 +83,16 @@ public class Navigation {
     leftMotor.setAcceleration(leftMotorAccel);
     rightMotor.setAcceleration(rightMotorAccel);
   }
-
+  
+  public void travelAlongPath(Path path) {
+    Iterator<PathNode> it = path.iterator();
+    while (it.hasNext()) {
+      PathNode nextNode = it.next();
+      travelTo(nextNode.x, nextNode.y);
+      turnToWithMinAngle(nextNode.theta, true);
+    }
+  }
+  
   /**
    * Travel to specified coordinates based on odometer while adjusting heading if needed.
    * 
