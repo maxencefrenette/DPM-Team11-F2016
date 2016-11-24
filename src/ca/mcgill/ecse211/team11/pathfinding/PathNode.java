@@ -1,10 +1,25 @@
 package ca.mcgill.ecse211.team11.pathfinding;
 
+/**
+ * Represents a position on the board.
+ * <p>
+ * This classed is used to represent a waypoint in a path.
+ * 
+ * @author Maxence Frenette
+ * @version 4.0
+ */
 public class PathNode {
   private double x;
   private double y;
   private double theta;
-
+  
+  /**
+   * Creates a PathNode objects and initializes it.
+   * 
+   * @param x The x position on the board
+   * @param y The y position on the board
+   * @param theta The heading associated with this position
+   */
   public PathNode(double x, double y, double theta) {
     this.x = x;
     this.y = y;

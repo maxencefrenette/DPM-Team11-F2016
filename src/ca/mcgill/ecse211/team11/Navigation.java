@@ -84,6 +84,11 @@ public class Navigation {
     rightMotor.setAcceleration(rightMotorAccel);
   }
   
+  /**
+   * Travel along the specified path.
+   * 
+   * @param path The path to travel along.
+   */
   public void travelAlongPath(Path path) {
     Iterator<PathNode> it = path.iterator();
     while (it.hasNext()) {
