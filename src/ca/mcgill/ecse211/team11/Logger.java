@@ -8,7 +8,7 @@ import java.io.PrintStream;
  * Logs any data passed to it into a file to be later used for debugging purposes.
  * 
  * @author Justin Szeto
- * @version 3.0
+ * @version 4.0
  * @since 1.0
  */
 public class Logger {

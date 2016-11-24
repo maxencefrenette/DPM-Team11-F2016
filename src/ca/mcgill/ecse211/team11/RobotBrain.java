@@ -7,7 +7,7 @@ package ca.mcgill.ecse211.team11;
  * corresponds to a method that will perform some actions, then determine the robot's next state.
  * 
  * @author Maxence Frenette
- * @version 3.0
+ * @version 4.0
  * @since 1.0
  */
 public class RobotBrain extends Thread {

@@ -15,7 +15,7 @@ import lejos.hardware.Sound;
  * Tests the calibration of the WHEEL_BASE constant.
  * 
  * @author Saleh Bakhit
- * @version 3.0
+ * @version 4.0
  * @since 1.0
  * @see ca.mcgill.ecse211.team11.Constants#WHEEL_BASE
  */

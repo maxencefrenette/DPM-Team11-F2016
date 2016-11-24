@@ -11,7 +11,7 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
  * odometer.
  * 
  * @author Justin Szeto
- * @version 3.0
+ * @version 4.0
  * @since 1.0
  *
  */
