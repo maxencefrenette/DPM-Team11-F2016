@@ -127,21 +127,21 @@ public class Util {
     else
       return clonedArray[clonedArray.length / 2];
   }
-  
+
   /**
    * Converts a (x,y) coordinate into an equivalent x,y in the internal grid.
    * 
-   * @param x x-coordinate 
+   * @param x x-coordinate
    * @param y y-coordinate
    * @return array containing the x and y of the corresponding internal grid
    */
   public static int[] convertToInternalGrid(double x, double y) {
-    int internalGridX = (int) (x/(Constants.GRID_SIZE/2));
-    int internalGridY = (int) (y/(Constants.GRID_SIZE/2));
-    
-    return new int[] { internalGridX, internalGridY };
+    int internalGridX = (int) (x / (Constants.GRID_SIZE / 2));
+    int internalGridY = (int) (y / (Constants.GRID_SIZE / 2));
+
+    return new int[] {internalGridX, internalGridY};
   }
-  
+
   /**
    * Get the list of grids from an initial grid to a final grid using Bresenham's line algorithm.
    * 
@@ -151,19 +151,20 @@ public class Util {
    * @param finalY final grid's Y
    * @return An ArrayList containing all the internal grids from the initial grid to the final grid.
    */
-  public static ArrayList<Integer[]> getGridsInLineOfSight(int initialX, int initialY, int finalX, int finalY) {
+  public static ArrayList<Integer[]> getGridsInLineOfSight(int initialX, int initialY, int finalX,
+      int finalY) {
     ArrayList<Integer[]> gridsInLineOfSight = new ArrayList<Integer[]>();
-    
+
     // Using Bresenham's line algorithm to approximate grids in line of sight
     int dx = finalX - initialX;
     int dy = finalY - initialY;
-    
+
     if (Math.abs(dy) > Math.abs(dx)) {
-      int diff = 2*Math.abs(dx) - Math.abs(dy);
+      int diff = 2 * Math.abs(dx) - Math.abs(dy);
       int x = initialX;
-      
-      for (int y = initialY; y != finalY+Integer.signum(dy); y+=Integer.signum(dy)) {
-        gridsInLineOfSight.add(new Integer[] {x,y});
+
+      for (int y = initialY; y != finalY + Integer.signum(dy); y += Integer.signum(dy)) {
+        gridsInLineOfSight.add(new Integer[] {x, y});
         if (diff > 0) {
           x += Integer.signum(dx);
           diff -= Math.abs(dy);
@@ -171,20 +172,20 @@ public class Util {
         diff += Math.abs(dx);
       }
     } else {
-      
-      int diff = 2*Math.abs(dy) - Math.abs(dx);
+
+      int diff = 2 * Math.abs(dy) - Math.abs(dx);
       int y = initialY;
-      
-      for (int x = initialX; x != finalX+Integer.signum(dx); x+=Integer.signum(dx)) {
-        gridsInLineOfSight.add(new Integer[] {x,y});
+
+      for (int x = initialX; x != finalX + Integer.signum(dx); x += Integer.signum(dx)) {
+        gridsInLineOfSight.add(new Integer[] {x, y});
         if (diff > 0) {
           y += Integer.signum(dy);
           diff -= Math.abs(dx);
         }
         diff += Math.abs(dy);
-      }  
+      }
     }
-    
+
     return gridsInLineOfSight;
   }
 }

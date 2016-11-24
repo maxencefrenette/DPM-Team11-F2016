@@ -51,8 +51,8 @@ public class OdometryTest {
 
           leftMotor.rotate(convertAngle(Constants.LEFT_WHEEL_RADIUS, Constants.WHEEL_BASE, 90.0),
               true);
-          rightMotor.rotate(
-              -convertAngle(Constants.RIGHT_WHEEL_RADIUS, Constants.WHEEL_BASE, 90.0), false);
+          rightMotor.rotate(-convertAngle(Constants.RIGHT_WHEEL_RADIUS, Constants.WHEEL_BASE, 90.0),
+              false);
         }
       }
     }).start();

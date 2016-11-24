@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Path {
   ArrayList<PathNode> nodes;
-  
+
   /**
    * Creates a new empty Path object.
    */
   public Path() {
     // Nothing needs to be done here.
   }
-  
+
   /**
    * Appends a node at the end of a path.
    * 
@@ -20,7 +20,7 @@ public class Path {
   void addNode(PathNode node) {
     nodes.add(node);
   }
-  
+
   /**
    * Looks-up a node by index.
    * 
@@ -30,7 +30,7 @@ public class Path {
   PathNode getNode(int index) {
     return nodes.get(index);
   }
-  
+
   /**
    * @return The path's length
    */

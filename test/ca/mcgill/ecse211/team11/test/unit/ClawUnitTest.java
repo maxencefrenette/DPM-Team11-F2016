@@ -11,16 +11,16 @@ public class ClawUnitTest {
 
     init.clawMotorController.openClaw();
     Button.waitForAnyPress();
-    
+
     init.clawMotorController.lowerClaw();
     Button.waitForAnyPress();
-    
+
     init.clawMotorController.closeClaw();
     Button.waitForAnyPress();
-    
+
     init.clawMotorController.raiseClaw();
     Button.waitForAnyPress();
-    
+
     System.exit(0);
   }
 

@@ -16,10 +16,10 @@ public class MotorTest {
 
   public static final int SPEED = 200;
 
-  private static final EV3LargeRegulatedMotor leftMotor = new EV3LargeRegulatedMotor(LocalEV3.get()
-      .getPort("A"));
-  private static final EV3LargeRegulatedMotor rightMotor = new EV3LargeRegulatedMotor(LocalEV3
-      .get().getPort("D"));
+  private static final EV3LargeRegulatedMotor leftMotor =
+      new EV3LargeRegulatedMotor(LocalEV3.get().getPort("A"));
+  private static final EV3LargeRegulatedMotor rightMotor =
+      new EV3LargeRegulatedMotor(LocalEV3.get().getPort("D"));
 
   public static void main(String[] args) {
     leftMotor.setSpeed(SPEED);

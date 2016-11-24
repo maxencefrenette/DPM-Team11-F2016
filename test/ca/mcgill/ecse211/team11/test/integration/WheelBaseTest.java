@@ -21,7 +21,7 @@ import lejos.hardware.Sound;
  */
 public class WheelBaseTest {
   public static final int NUM_TURNS = 3;
-  
+
   public static void main(String[] args) {
     Initializer init = new Initializer();
 
@@ -36,7 +36,7 @@ public class WheelBaseTest {
     nav.turnClockwise(false);
     waitForLines(lsc, 1);
     double theta1 = odo.getUnwrappedTheta();
-    waitForLines(lsc, 4*NUM_TURNS);
+    waitForLines(lsc, 4 * NUM_TURNS);
     double theta2 = odo.getUnwrappedTheta();
     nav.setSpeeds(0, 0);
     double wheelBase = Constants.WHEEL_BASE * ((theta2 - theta1) / (2 * Math.PI * NUM_TURNS));
@@ -59,7 +59,7 @@ public class WheelBaseTest {
         n--;
         Sound.beep();
       }
-      
+
       Util.sleep(50);
     }
   }

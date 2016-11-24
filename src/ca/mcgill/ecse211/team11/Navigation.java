@@ -106,8 +106,8 @@ public class Navigation {
         speedAdjustment = 0;
       }
 
-      setSpeeds(Constants.FORWARD_SPEED - speedAdjustment, Constants.FORWARD_SPEED
-          + speedAdjustment);
+      setSpeeds(Constants.FORWARD_SPEED - speedAdjustment,
+          Constants.FORWARD_SPEED + speedAdjustment);
       Util.sleep(50);
 
       errorX = Math.abs(x - odometer.getX());
@@ -214,7 +214,8 @@ public class Navigation {
       double targetHeading =
           Util.calculateHeading(targetX, targetY, odometer.getX(), odometer.getY());
 
-      if (Math.abs(Util.normalizeAngle180(odometer.getTheta() - targetHeading)) > Constants.ANGLE_ERROR) {
+      if (Math.abs(
+          Util.normalizeAngle180(odometer.getTheta() - targetHeading)) > Constants.ANGLE_ERROR) {
         turnToWithMinAngle(targetHeading, false);
       }
 

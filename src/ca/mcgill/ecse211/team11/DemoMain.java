@@ -28,7 +28,7 @@ public class DemoMain {
     // Get wifi data
     while (!WifiClient.connectToServer()) {
       System.out.println("Connecting...:");
-    };
+    } ;
     HashMap<String, Integer> wifiData = null;
     do {
       wifiData = WifiClient.retrieveDataFromServer();

@@ -32,7 +32,7 @@ public class Localization {
    */
   public void usLocalize() {
     double minimumDistance = 999;
-    
+
     // Rotate CW until wall detected
     navigation.turnClockwise(true);
     while (usSensorController.getDistance() > Constants.RISING_EDGE_RANGE) {
@@ -64,7 +64,7 @@ public class Localization {
 
     // Sleep thread to allow robot to rotate past edge
     Util.sleep(Constants.US_LOCALIZE_WAIT_TIME);
-    
+
     // Continue rotating CCW until wall no longer detected
     while (usSensorController.getDistance() <= Constants.RISING_EDGE_RANGE) {
       if (usSensorController.getLastDistance() < minimumDistance) {
@@ -81,23 +81,23 @@ public class Localization {
     odometer.setTheta(Util.calculateUSLocalizeHeading(angleA, angleB, cornerNumber));
 
     // Calculate x and y
-    double x = minimumDistance* 100 + Constants.DIST_CENTER_TO_US_SENSOR;
-    double y = minimumDistance* 100 + Constants.DIST_CENTER_TO_US_SENSOR;
+    double x = minimumDistance * 100 + Constants.DIST_CENTER_TO_US_SENSOR;
+    double y = minimumDistance * 100 + Constants.DIST_CENTER_TO_US_SENSOR;
     switch (cornerNumber) {
       case 1:
         break;
-        
+
       case 2:
-        x = Constants.GRID_SIZE*Constants.BOARD_SIZE - x;
+        x = Constants.GRID_SIZE * Constants.BOARD_SIZE - x;
         break;
-       
+
       case 3:
-        x = Constants.GRID_SIZE*Constants.BOARD_SIZE - x;
-        y = Constants.GRID_SIZE*Constants.BOARD_SIZE - y;
+        x = Constants.GRID_SIZE * Constants.BOARD_SIZE - x;
+        y = Constants.GRID_SIZE * Constants.BOARD_SIZE - y;
         break;
-        
+
       case 4:
-        y = Constants.GRID_SIZE*Constants.BOARD_SIZE - y;
+        y = Constants.GRID_SIZE * Constants.BOARD_SIZE - y;
         break;
     }
     odometer.setX(x);
@@ -121,7 +121,7 @@ public class Localization {
     while (count < 4) {
       // black line detected
       if (lightSensorController.isLineCrossed()) {
-        
+
         // records positive Y axis angle
         if (odometer.getTheta() < Math.toRadians(135) && odometer.getTheta() > Math.toRadians(45)) {
           y1 = odometer.getTheta();
@@ -130,7 +130,8 @@ public class Localization {
         }
 
         // records negative Y axis angle
-        if (odometer.getTheta() < Math.toRadians(315) && odometer.getTheta() > Math.toRadians(225)) {
+        if (odometer.getTheta() < Math.toRadians(315)
+            && odometer.getTheta() > Math.toRadians(225)) {
           y2 = odometer.getTheta();
 
           Logger.logData("Y2: " + y2);
@@ -146,7 +147,8 @@ public class Localization {
         }
 
         // records negative X axis angle
-        if (odometer.getTheta() < Math.toRadians(225) && odometer.getTheta() > Math.toRadians(135)) {
+        if (odometer.getTheta() < Math.toRadians(225)
+            && odometer.getTheta() > Math.toRadians(135)) {
           x2 = odometer.getTheta();
           Logger.logData("X2: " + x2);
           count++;
@@ -161,12 +163,10 @@ public class Localization {
     navigation.setSpeeds(0, 0);
 
     // Calculate how far off robot is from (0,0,0)
-    double dx =
-        -(Constants.DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR)
-            * Math.cos(Util.normalizeAngle180(y1 - y2) / 2);
-    double dy =
-        -(Constants.DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR)
-            * Math.cos(Util.normalizeAngle180(x1 - x2) / 2);
+    double dx = -(Constants.DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR)
+        * Math.cos(Util.normalizeAngle180(y1 - y2) / 2);
+    double dy = -(Constants.DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR)
+        * Math.cos(Util.normalizeAngle180(x1 - x2) / 2);
     double dTheta = Util.normalizeAngle180(y1 + y2) / 2;
 
     odometer.setX(odometer.getX() - Util.specialMod(odometer.getX(), Constants.GRID_SIZE) + dx);

@@ -11,9 +11,8 @@ public class NonBufferedMedianFilterTest {
 
   @Test
   public void test() {
-    MockSampleProvider sample1 =
-        new MockSampleProvider(new float[][] {new float[] {1, 4}, new float[] {2, 4},
-            new float[] {3, 5}});
+    MockSampleProvider sample1 = new MockSampleProvider(
+        new float[][] {new float[] {1, 4}, new float[] {2, 4}, new float[] {3, 5}});
     SampleProvider mf = new NonBufferedMedianFilter(sample1, 3);
     float[] data = new float[mf.sampleSize()];
     mf.fetchSample(data, 0);
