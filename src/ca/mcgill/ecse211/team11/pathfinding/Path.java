@@ -1,15 +1,18 @@
 package ca.mcgill.ecse211.team11.pathfinding;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Path {
+public class Path implements Iterable<PathNode> {
   ArrayList<PathNode> nodes;
+  double length;
 
   /**
    * Creates a new empty Path object.
    */
-  public Path() {
-    // Nothing needs to be done here.
+  public Path(PathNode startNode) {
+    nodes = new ArrayList<PathNode>();
+    nodes.add(startNode);
   }
 
   /**
@@ -17,24 +20,26 @@ public class Path {
    * 
    * @param node The node to append to the path.
    */
-  void addNode(PathNode node) {
+  public void addNode(PathNode node) {
+    PathNode lastNode = nodes.get(nodes.size() - 1);
+    double dx = node.x - lastNode.x;
+    double dy = node.y - lastNode.y;
+    length += Math.sqrt(dx*dx + dy*dy);
+    
     nodes.add(node);
   }
 
   /**
-   * Looks-up a node by index.
+   * Calculates the path's length in cm.
    * 
-   * @param index The index of the node to query
-   * @return The index-th node.
-   */
-  PathNode getNode(int index) {
-    return nodes.get(index);
-  }
-
-  /**
    * @return The path's length
    */
-  int length() {
-    return nodes.size();
+  public double length() {
+    return length;
+  }
+  
+  @Override
+  public Iterator<PathNode> iterator() {
+    return nodes.iterator();
   }
 }
