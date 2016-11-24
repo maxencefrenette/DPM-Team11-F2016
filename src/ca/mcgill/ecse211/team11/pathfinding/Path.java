@@ -22,8 +22,8 @@ public class Path implements Iterable<PathNode> {
    */
   public void addNode(PathNode node) {
     PathNode lastNode = nodes.get(nodes.size() - 1);
-    double dx = node.x - lastNode.x;
-    double dy = node.y - lastNode.y;
+    double dx = node.getX() - lastNode.getX();
+    double dy = node.getY() - lastNode.getY();
     length += Math.sqrt(dx*dx + dy*dy);
     
     nodes.add(node);

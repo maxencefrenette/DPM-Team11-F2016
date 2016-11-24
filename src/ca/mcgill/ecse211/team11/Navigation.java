@@ -88,8 +88,8 @@ public class Navigation {
     Iterator<PathNode> it = path.iterator();
     while (it.hasNext()) {
       PathNode nextNode = it.next();
-      travelTo(nextNode.x, nextNode.y);
-      turnToWithMinAngle(nextNode.theta, true);
+      travelTo(nextNode.getX(), nextNode.getY());
+      turnToWithMinAngle(nextNode.getTheta(), true);
     }
   }
   
