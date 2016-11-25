@@ -1,5 +1,7 @@
 package ca.mcgill.ecse211.team11;
 
+import ca.mcgill.ecse211.team11.pathfinding.InternalGrid;
+
 /**
  * Contains the main algorithm of the robot.
  * <p>
@@ -19,9 +21,11 @@ public class RobotBrain extends Thread {
   private Odometer odometer;
   private Navigation navigation;
   private Localization localizer;
+  private InternalGrid grid;
 
   public RobotBrain(Initializer init) {
     // TODO
+	  grid = new InternalGrid (init);
   }
 
   /**
@@ -68,8 +72,25 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State explore() {
-    // TODO
-    return State.CATCH_BLOCK;
+	  while(grid.locationOfObjects.isEmpty())
+	  {
+          grid.scan();
+          if(grid.locationOfObjects.isEmpty())
+              navigation.travelTo(0, 0);//update to where robot should move
+	  }
+    
+	  int blockLocX = grid.locationOfObjects.remove(0);
+	  int blockLocY = grid.locationOfObjects.remove(0);
+          
+	  //using pathfinding, navigate to block
+	  
+      if(!colorSensorController.identifyBlock())
+      {
+    	  //update grid, need to create method
+          navigation.goBackward(50);
+          return State.RE_LOCALIZE;
+      }
+	  return State.CATCH_BLOCK;
   }
 
   /**
@@ -88,9 +109,6 @@ public class RobotBrain extends Thread {
     navigation.goBackward(25);
     clawMotorController.closeClaw();
     clawMotorController.raiseClaw();
-    // pathfind to greenzone
-    clawMotorController.lowerClaw();
-    clawMotorController.openClaw();
     return State.STACK_BLOCK;
   }
 
@@ -103,7 +121,9 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State stackBlock() {
-    // TODO
+	  	// pathfind to greenzone
+	    clawMotorController.lowerClaw();
+	    clawMotorController.openClaw();
     return State.EXPLORE;
   }
 
@@ -117,8 +137,13 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State reLocalize() {
-    // TODO
-    return State.EXPLORE;
+	  int localizationX = (int) (30*(Math.round(odometer.getX()/30)));
+	  int localizationY = (int) (30*(Math.round(odometer.getY()/30)));
+	  //using pathfinding, travel to coordinates above
+	  localizer.lightLocalize();
+	  odometer.setX(localizationX);
+	  odometer.setY(localizationY);
+	  return State.EXPLORE;
   }
 
   /**
