@@ -24,7 +24,6 @@ public class Localization {
     this.navigation = init.navigation;
     this.lightSensorController = init.lightSensorController;
     this.usSensorController = init.usSensorController;
-
   }
 
   /**
