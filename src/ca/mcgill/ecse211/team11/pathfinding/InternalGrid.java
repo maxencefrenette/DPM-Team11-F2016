@@ -24,7 +24,7 @@ public class InternalGrid {
   private Navigation navigation;
   private Odometer odometer;
   private USSensorController usSensorController;
-  public ArrayList<Integer> locationOfObjects = new ArrayList<Integer>();
+  public ArrayList<Integer[]> locationOfObjects = new ArrayList<Integer[]>();
 
   public InternalGrid(Initializer init) {
     grid = new InternalGridSquare[2 * Constants.BOARD_SIZE][2 * Constants.BOARD_SIZE];
@@ -78,9 +78,10 @@ public class InternalGrid {
 
         // Update grid info
         if (isModifiableGrid(gridsInLineOfSight.get(gridsInLineOfSight.size() - 1))) {
-          grid[objectGridLocation[0]][objectGridLocation[1]] = InternalGridSquare.UNKNOWN_BLOCK;
-          locationOfObjects.add(objectGridLocation[0]);
-          locationOfObjects.add(objectGridLocation[1]);
+          if (grid[objectGridLocation[0]][objectGridLocation[1]] == InternalGridSquare.UNKNOWN) {
+            grid[objectGridLocation[0]][objectGridLocation[1]] = InternalGridSquare.UNKNOWN_BLOCK;
+            locationOfObjects.add(new Integer[] {objectGridLocation[0], objectGridLocation[1]});
+          }
         }
         for (int i = 0; i < gridsInLineOfSight.size() - 1; i++) {
           Integer[] gridTileCoordinates = gridsInLineOfSight.get(i);

@@ -79,8 +79,7 @@ public class RobotBrain extends Thread {
               navigation.travelTo(0, 0);//update to where robot should move
 	  }
     
-	  int blockLocX = grid.locationOfObjects.remove(0);
-	  int blockLocY = grid.locationOfObjects.remove(0);
+	  Integer[] objectLocation = grid.locationOfObjects.remove(0);
           
 	  //using pathfinding, navigate to block
 	  
