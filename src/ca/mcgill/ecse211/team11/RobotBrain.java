@@ -72,11 +72,16 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State explore() {
+	  double currentX = odometer.getX();
+	  double currentY = odometer.getY();
 	  while(grid.locationOfObjects.isEmpty())
 	  {
           grid.scan();
           if(grid.locationOfObjects.isEmpty())
-              navigation.travelTo(0, 0);//update to where robot should move
+          {
+        	  
+              //using path finding, update to where robot should move
+          }
 	  }
     
 	  Integer[] objectLocation = grid.locationOfObjects.remove(0);
@@ -85,8 +90,9 @@ public class RobotBrain extends Thread {
 	  
       if(!colorSensorController.identifyBlock())
       {
-    	  //update grid, need to create method
-          navigation.goBackward(50);
+    	  //grid.setWoodBlock(objectLocation[0],objectLocation[1]);
+          navigation.goBackward(30);
+          navigation.travelTo(currentX, currentY);
           return State.RE_LOCALIZE;
       }
 	  return State.CATCH_BLOCK;
@@ -120,6 +126,7 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State stackBlock() {
+	  	grid.scan();
 	  	// pathfind to greenzone
 	    clawMotorController.lowerClaw();
 	    clawMotorController.openClaw();
@@ -136,12 +143,10 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State reLocalize() {
-	  int localizationX = (int) (30*(Math.round(odometer.getX()/30)));
-	  int localizationY = (int) (30*(Math.round(odometer.getY()/30)));
-	  //using pathfinding, travel to coordinates above
+	  double localizationX = (30*(Math.round(odometer.getX()/30)));
+	  double localizationY = (30*(Math.round(odometer.getY()/30)));
+	  navigation.travelTo(localizationX, localizationY);
 	  localizer.lightLocalize();
-	  odometer.setX(localizationX);
-	  odometer.setY(localizationY);
 	  return State.EXPLORE;
   }
 
