@@ -28,9 +28,23 @@ public class InternalGrid {
 
   public InternalGrid(Initializer init) {
     grid = new InternalGridSquare[2 * Constants.BOARD_SIZE][2 * Constants.BOARD_SIZE];
+    for (int i = 0; i < grid.length; i++) {
+      for (int j = 0; j < grid.length; j++) {
+        grid[i][j] = InternalGridSquare.UNKNOWN;
+      }
+    }
     navigation = init.navigation;
     odometer = init.odometer;
     usSensorController = init.usSensorController;
+  }
+  
+  public InternalGrid() {
+    grid = new InternalGridSquare[2 * Constants.BOARD_SIZE][2 * Constants.BOARD_SIZE];
+    for (int i = 0; i < grid.length; i++) {
+      for (int j = 0; j < grid.length; j++) {
+        grid[i][j] = InternalGridSquare.UNKNOWN;
+      }
+    }
   }
 
   /**
@@ -134,7 +148,7 @@ public class InternalGrid {
     int lowerLeftGridY = (LGZy + 1) * 2;
 
     for (int i = lowerLeftGridX; i < lowerLeftGridX + dx; i++) {
-      for (int j = lowerLeftGridY; i < lowerLeftGridY + dy; j++) {
+      for (int j = lowerLeftGridY; j < lowerLeftGridY + dy; j++) {
         grid[i][j] = InternalGridSquare.GREEN_ZONE;
       }
     }
@@ -156,10 +170,24 @@ public class InternalGrid {
     int lowerLeftGridY = (LRZy + 1) * 2;
 
     for (int i = lowerLeftGridX; i < lowerLeftGridX + dx; i++) {
-      for (int j = lowerLeftGridY; i < lowerLeftGridY + dy; j++) {
+      for (int j = lowerLeftGridY; j < lowerLeftGridY + dy; j++) {
         grid[i][j] = InternalGridSquare.RED_ZONE;
       }
     }
+  }
+  
+  public void updateNoEntryZone() {
+    for (int i = 0; i < grid.length; i++) {
+      grid[0][i] = InternalGridSquare.NO_ENTRY;
+      grid[i][0] = InternalGridSquare.NO_ENTRY;
+      grid[grid.length-1][i] = InternalGridSquare.NO_ENTRY;
+      grid[i][grid.length-1] = InternalGridSquare.NO_ENTRY;
+    }
+    
+    grid[grid.length-2][grid.length-2] = InternalGridSquare.NO_ENTRY;
+    grid[1][grid.length-2] = InternalGridSquare.NO_ENTRY;
+    grid[grid.length-2][1] = InternalGridSquare.NO_ENTRY;
+    grid[1][1] = InternalGridSquare.NO_ENTRY;
   }
 
   /**
@@ -178,14 +206,23 @@ public class InternalGrid {
     }
   }
 
-  public void printBoard() {
+  /**
+   * Prints the board to the desired output
+   * 
+   * @param output if output is 0, then board will be printed to the log file. otherwise, board will be printed to System.out
+   */
+  public void printBoard(int output) {
     String board = "";
-    for (int i = 0; i < grid.length; i++) {
-      for (int j = 0; j < grid.length; j++) {
-        board = board + "|" + i + "|" + " |" + j + "| {" + grid[i][j] + "} ";
+    for (int j = grid.length-1; j >= 0; j--) {
+      for (int i = 0; i < grid.length; i++) {
+        board = board + "| " + grid[i][j] + " |";
       }
-      board = board + "\n ";
+      board = board + "\n";
     }
-    Logger.logData(board);
+    if (output == 0) {
+      Logger.logData("Board\n:"+board);
+    } else {
+      System.out.println(board);  
+    }
   }
 }
