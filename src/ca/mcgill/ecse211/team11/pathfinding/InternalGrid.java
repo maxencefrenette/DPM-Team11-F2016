@@ -26,6 +26,11 @@ public class InternalGrid {
   private USSensorController usSensorController;
   public ArrayList<Integer[]> locationOfObjects = new ArrayList<Integer[]>();
 
+  /**
+   * Constructs an InternalGrid object.
+   * 
+   * @param init The Initializer object
+   */
   public InternalGrid(Initializer init) {
     grid = new InternalGridSquare[2 * Constants.BOARD_SIZE][2 * Constants.BOARD_SIZE];
     for (int i = 0; i < grid.length; i++) {
@@ -37,7 +42,12 @@ public class InternalGrid {
     odometer = init.odometer;
     usSensorController = init.usSensorController;
   }
-  
+
+  /**
+   * Alternative constructor used to initialize an InternalGrid without any references to the Robot.
+   * <p>
+   * Scan() will not work if this constructor is used. This constructor is used for testing purposes.
+   */
   public InternalGrid() {
     grid = new InternalGridSquare[2 * Constants.BOARD_SIZE][2 * Constants.BOARD_SIZE];
     for (int i = 0; i < grid.length; i++) {
