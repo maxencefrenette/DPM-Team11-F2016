@@ -15,7 +15,7 @@ import lejos.utility.Delay;
  * Tests the odometer by moving in a square.
  * 
  * @author Saleh Bakhit
- * @version 3.0
+ * @version 4.0
  * @since 1.0
  */
 public class OdometryTest {

@@ -15,7 +15,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
  * It also initializes all the robot's subsystems.
  * 
  * @author Maxence Frenette
- * @version 3.0
+ * @version 4.0
  * @since 1.0
  */
 public class Initializer {

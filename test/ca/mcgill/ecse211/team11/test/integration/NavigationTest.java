@@ -11,7 +11,7 @@ import lejos.hardware.Button;
  * Tests the navigation class.
  * 
  * @author Saleh Bakhit
- * @version 3.0
+ * @version 4.0
  * @since 1.0
  */
 public class NavigationTest {

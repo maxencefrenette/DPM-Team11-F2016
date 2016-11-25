@@ -10,7 +10,7 @@ import ca.mcgill.ecse211.team11.Util;
  * Tests the Util class.
  * 
  * @author Maxence Frenette
- * @version 3.0
+ * @version 4.0
  * @since 1.0
  * @see ca.mcgill.ecse211.team11.Util
  */

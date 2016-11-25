@@ -11,7 +11,7 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
  * odometer.
  * 
  * @author Justin Szeto
- * @version 3.0
+ * @version 4.0
  * @since 1.0
  *
  */
@@ -84,6 +84,11 @@ public class Navigation {
     rightMotor.setAcceleration(rightMotorAccel);
   }
   
+  /**
+   * Travel along the specified path.
+   * 
+   * @param path The path to travel along.
+   */
   public void travelAlongPath(Path path) {
     Iterator<PathNode> it = path.iterator();
     while (it.hasNext()) {

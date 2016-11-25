@@ -16,7 +16,7 @@ import ca.mcgill.ecse211.team11.Util;
  * The field is divided in discrete sectors that each have a state.
  * 
  * @author Maxence Frenette
- * @version 3.0
+ * @version 4.0
  * @since 2.0
  */
 public class InternalGrid {
@@ -33,10 +33,16 @@ public class InternalGrid {
   }
 
   /**
-   * Travels to the specified location while avoiding obstacles
+   * Calculates a short path from startNode to endNode
+   * 
+   * @param start The starting location
+   * @param end The ending location
+   * @return The calculated path
    */
-  public void pathfindTo(double x, double y) {
-    // TODO
+  public Path pathfindTo(PathNode start, PathNode end) {
+    Path p = new Path(start);
+    p.addNode(end);
+    return p;
   }
 
   /**
