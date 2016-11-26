@@ -17,6 +17,7 @@ public class SearchNode extends PathNode {
    * The searchNode that lead the search algorithm to discover this node.
    */
   SearchNode previousNode;
+  private double g;
 
   /**
    * Creates a SearchNode objects and initializes it.
@@ -28,6 +29,11 @@ public class SearchNode extends PathNode {
   public SearchNode(double x, double y, double theta, SearchNode previousNode) {
     super(x, y, theta);
     this.previousNode = previousNode;
+    if (previousNode != null) {
+      this.g = previousNode.g() + previousNode.distTo(this);
+    } else {
+      this.g = 0;
+    }
   }
 
   /**
@@ -40,11 +46,11 @@ public class SearchNode extends PathNode {
   }
 
   public double f(PathNode goal) {
-    return g() + h(goal);
+    return g() + Constants.PATHFINDING_EPSILON*h(goal);
   }
 
   public double g() {
-    return previousNode.distTo(this);
+    return g;
   }
 
   public double h(PathNode goal) {

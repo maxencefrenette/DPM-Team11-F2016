@@ -29,7 +29,7 @@ public class PathNode {
 
   public double distTo(PathNode other) {
     double dx = x - other.getX();
-    double dy = x - other.getY();
+    double dy = y - other.getY();
     return Math.sqrt(dx*dx + dy*dy);
   }
   
@@ -73,5 +73,10 @@ public class PathNode {
    */
   public synchronized void setTheta(double theta) {
     this.theta = theta;
+  }
+  
+  @Override
+  public String toString() {
+    return String.format("{%.2f, %.2f, %.2f}", x, y, Math.toDegrees(theta));
   }
 }

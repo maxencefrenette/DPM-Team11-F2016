@@ -95,5 +95,5 @@ public class Constants {
    * 
    * @see https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation
    */
-  public static double PATHFINDING_EPSILON = 2;
+  public static double PATHFINDING_EPSILON = 3;
 }

@@ -49,4 +49,13 @@ public class Path implements Iterable<PathNode> {
   public Iterator<PathNode> iterator() {
     return nodes.iterator();
   }
+  
+  @Override
+  public String toString() {
+    String result = "";
+    for(PathNode node : this) {
+      result += node + "\n";
+    }
+    return result;
+  }
 }

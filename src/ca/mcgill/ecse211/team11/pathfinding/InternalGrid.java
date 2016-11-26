@@ -69,13 +69,16 @@ public class InternalGrid {
   }
 
   /**
-   * Acceses the state of a grid cell referenced by its grid indices.
+   * Accesses the state of a grid cell referenced by its grid indices.
    * 
    * @param i The horizontal index of the cell
    * @param j The vertical index of the cell
    * @return The state of the cell
    */
   public InternalGridSquare getCellByIndex(int i, int j) {
+    if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length) {
+      return InternalGridSquare.NO_ENTRY;
+    }
     return grid[i][j];
   }
 
@@ -87,7 +90,7 @@ public class InternalGrid {
    * @return The state of the cell
    */
   public InternalGridSquare getCellByCoord(double x, double y) {
-    return grid[coordToGrid(x)][coordToGrid(y)];
+    return getCellByIndex(coordToGrid(x), coordToGrid(y));
   }
 
   /**
