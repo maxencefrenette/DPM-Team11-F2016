@@ -8,5 +8,52 @@ package ca.mcgill.ecse211.team11.pathfinding;
  * @since 2.0
  */
 public enum InternalGridSquare {
-  UNKNOWN, EMPTY, UNKNOWN_BLOCK, STYROFOAM_BLOCK, WOODEN_BLOCK, RED_ZONE, GREEN_ZONE, NO_ENTRY
+  UNKNOWN {
+    @Override
+    public String toString() {
+      return "?";
+    }
+  },
+  EMPTY {
+    @Override
+    public String toString() {
+      return " ";
+    }
+  },
+  UNKNOWN_BLOCK {
+    @Override
+    public String toString() {
+      return "U";
+    }
+  },
+  STYROFOAM_BLOCK {
+    @Override
+    public String toString() {
+      return "B";
+    }
+  },
+  WOODEN_BLOCK {
+    @Override
+    public String toString() {
+      return "W";
+    }
+  },
+  RED_ZONE {
+    @Override
+    public String toString() {
+      return "R";
+    }
+  },
+  GREEN_ZONE {
+    @Override
+    public String toString() {
+      return "G";
+    }
+  },
+  NO_ENTRY {
+    @Override
+    public String toString() {
+      return "X";
+    }
+  }
 }

@@ -21,9 +21,11 @@ public class InternalGrid {
 
   /**
    * Constructs an InternalGrid object.
+   * 
+   * @param boardSize The size of the board (the amount of physical board tiles, not internal grid tiles)
    */
-  public InternalGrid() {
-    grid = new InternalGridSquare[2 * Constants.BOARD_SIZE][2 * Constants.BOARD_SIZE];
+  public InternalGrid(int boardSize) {
+    grid = new InternalGridSquare[2 * boardSize][2 * boardSize];
     for (int i = 0; i < grid.length; i++) {
       for (int j = 0; j < grid.length; j++) {
         grid[i][j] = InternalGridSquare.UNKNOWN;
@@ -244,17 +246,35 @@ public class InternalGrid {
    * @param output if output is 0, then board will be printed to the log file. otherwise, board will be printed to System.out
    */
   public void printBoard(int output) {
-    String board = "";
-    for (int j = grid.length-1; j >= 0; j--) {
-      for (int i = 0; i < grid.length; i++) {
-        board = board + "| " + grid[i][j] + " |";
-      }
-      board = board + "\n";
-    }
+    String board = toString();
     if (output == 0) {
       Logger.logData("Board\n:"+board);
     } else {
       System.out.println(board);  
     }
+  }
+  
+  /**
+   * Converts the board to a string
+   * 
+   * @return The resulting string
+   */
+  @Override
+  public String toString() {
+    String board = "";
+    String horizontalLine = "";
+    for (int i = 0; i<grid[0].length;i++) {
+      horizontalLine += "+---";
+    }
+    horizontalLine += "+\n";
+    
+    for (int j = grid.length-1; j >= 0; j--) {
+      for (int i = 0; i < grid.length; i++) {
+        board += "| " + grid[i][j] + " ";
+      }
+      board += "|\n";
+      board += horizontalLine;
+    }
+    return board;
   }
 }
