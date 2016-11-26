@@ -129,20 +129,6 @@ public class Util {
   }
 
   /**
-   * Converts a (x,y) coordinate into an equivalent x,y in the internal grid.
-   * 
-   * @param x x-coordinate
-   * @param y y-coordinate
-   * @return array containing the x and y of the corresponding internal grid
-   */
-  public static int[] convertToInternalGrid(double x, double y) {
-    int internalGridX = (int) (x / (Constants.GRID_SIZE / 2));
-    int internalGridY = (int) (y / (Constants.GRID_SIZE / 2));
-
-    return new int[] {internalGridX, internalGridY};
-  }
-
-  /**
    * Get the list of grids from an initial grid to a final grid using Bresenham's line algorithm.
    * 
    * @param initialX initial grid's X

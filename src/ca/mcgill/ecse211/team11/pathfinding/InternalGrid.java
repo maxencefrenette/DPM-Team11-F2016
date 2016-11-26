@@ -56,7 +56,41 @@ public class InternalGrid {
       }
     }
   }
+  
+  /**
+   * Converts a real-world coordinate to a grid coordinate
+   * 
+   * @param coordinate The coordinate to convert
+   * @return The corresponding grid index
+   */
+  public int coordToGrid(double coordinate) {
+    return (int) (Math.floor(coordinate) / (Constants.GRID_SIZE / 2));
+  }
 
+  /**
+   * Converts a grid index to a real world coordinate
+   * 
+   * @param gridIndex
+   * @return The corresponding grid index
+   */
+  public double gridToCoord(int gridIndex) {
+    return (gridIndex + 0.5) * (Constants.GRID_SIZE / 2);
+  }
+  
+  /**
+   * Converts a (x,y) coordinate into an equivalent x,y in the internal grid.
+   * 
+   * @param x x-coordinate
+   * @param y y-coordinate
+   * @return array containing the x and y of the corresponding internal grid
+   */
+  public static int[] convertToInternalGrid(double x, double y) {
+    int internalGridX = (int) (x / (Constants.GRID_SIZE / 2));
+    int internalGridY = (int) (y / (Constants.GRID_SIZE / 2));
+  
+    return new int[] {internalGridX, internalGridY};
+  }
+  
   /**
    * Calculates a short path from startNode to endNode
    * 
@@ -95,8 +129,8 @@ public class InternalGrid {
             odometer.getY() + objectDistanceFromWheels * Math.sin(odometer.getTheta());
 
         // Get grid coordinates
-        int[] currentGrid = Util.convertToInternalGrid(odometer.getX(), odometer.getY());
-        int[] objectGridLocation = Util.convertToInternalGrid(objectXCoordinate, objectYCoordinate);
+        int[] currentGrid = InternalGrid.convertToInternalGrid(odometer.getX(), odometer.getY());
+        int[] objectGridLocation = InternalGrid.convertToInternalGrid(objectXCoordinate, objectYCoordinate);
         ArrayList<Integer[]> gridsInLineOfSight = Util.getGridsInLineOfSight(currentGrid[0],
             currentGrid[1], objectGridLocation[0], objectGridLocation[1]);
 
@@ -125,8 +159,8 @@ public class InternalGrid {
             odometer.getY() + endDistanceFromWheels * Math.sin(odometer.getTheta());
 
         // Get grid coordinates
-        int[] currentGrid = Util.convertToInternalGrid(odometer.getX(), odometer.getY());
-        int[] endGridLocation = Util.convertToInternalGrid(endXCoordinate, endYCoordinate);
+        int[] currentGrid = InternalGrid.convertToInternalGrid(odometer.getX(), odometer.getY());
+        int[] endGridLocation = InternalGrid.convertToInternalGrid(endXCoordinate, endYCoordinate);
         ArrayList<Integer[]> gridsInLineOfSight = Util.getGridsInLineOfSight(currentGrid[0],
             currentGrid[1], endGridLocation[0], endGridLocation[1]);
 

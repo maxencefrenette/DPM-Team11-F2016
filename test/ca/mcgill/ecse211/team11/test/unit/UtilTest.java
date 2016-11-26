@@ -141,13 +141,6 @@ public class UtilTest {
   }
 
   @Test
-  public void testConvertToInternalGrid() {
-    assertArrayEquals("X: 30.1, Y: 30.1", new int[] {1, 1}, Util.convertToInternalGrid(30.1, 30.1));
-    assertArrayEquals("X: 200, Y: 36", new int[] {13, 2}, Util.convertToInternalGrid(200, 36));
-    assertArrayEquals("X: -1, Y: -3", new int[] {0, 0}, Util.convertToInternalGrid(-1, -3));
-  }
-
-  @Test
   public void testGetGridsInLineOfSight() {
     // First Octant
     assertArrayEquals("Initial Grid: 0,0 Final Grid: 5,0",
