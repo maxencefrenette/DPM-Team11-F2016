@@ -153,24 +153,32 @@ public class Localization {
           count++;
         }
 
-        beep();
-      }
+        if (count >= 4) {
+          break;
+        }
 
-      Util.sleep(50);
+        Util.sleep(500);
+      } else {
+        Util.sleep(50);
+      }
     } // End of while (count < 4)
 
     navigation.setSpeeds(0, 0);
 
     // Calculate how far off robot is from (0,0,0)
     double dx = -(Constants.DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR)
-        * Math.cos(Util.normalizeAngle180(y1 - y2) / 2);
+        * Math.cos(Util.normalizeAngle180(y1 - y2) / 2)
+        * -Math.signum(Util.normalizeAngle180(y1 - y2));
     double dy = -(Constants.DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR)
-        * Math.cos(Util.normalizeAngle180(x1 - x2) / 2);
-    double dTheta = Util.normalizeAngle180(y1 + y2) / 2;
-
+        * Math.cos(Util.normalizeAngle180(x1 - x2) / 2)
+        * Math.signum(Util.normalizeAngle180(x1 - x2));
+    double dThetaY = -Util.normalizeAngle180(y1 + y2) / 2;
+    double dThetaX = -Util.normalizeAngle180(x1 + x2 - Math.PI) / 2;
+    Logger.logData("Theta: " + odometer.getTheta());
+    Logger.logData("Correction: " + (dThetaY + dThetaX) / 2);
     odometer.setX(odometer.getX() - Util.specialMod(odometer.getX(), Constants.GRID_SIZE) + dx);
     odometer.setY(odometer.getY() - Util.specialMod(odometer.getY(), Constants.GRID_SIZE) + dy);
-    odometer.setTheta(odometer.getTheta() + dTheta);
+    odometer.setTheta(odometer.getTheta() + (dThetaY + dThetaX) / 2);
   }
 
   /**
