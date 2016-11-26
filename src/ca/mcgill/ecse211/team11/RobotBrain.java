@@ -29,8 +29,7 @@ public class RobotBrain extends Thread {
   private long startTimeMilli;
 
   public RobotBrain(Initializer init) {
-    // TODO
-	  grid = new InternalGrid (init);
+    grid = new InternalGrid(init);
   }
 
   /**
@@ -95,31 +94,27 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State explore() {
-	  double currentX = odometer.getX();
-	  double currentY = odometer.getY();
-	  while(grid.locationOfObjects.isEmpty())
-	  {
-          grid.scan();
-          if(grid.locationOfObjects.isEmpty())
-          {
-        	  
-              //using path finding, update to where robot should move
-          }
-	  }
-    
-	  Integer[] objectLocation = grid.locationOfObjects.remove(0);
-	  //convert grid coordinates to real coordinates
-          
-	  //using pathfinding, navigate to block
-	  
-      if(!colorSensorController.identifyBlock())
-      {
-    	  //grid.setWoodBlock(objectLocation[0],objectLocation[1]);
-          navigation.goBackward(30);
-          navigation.travelTo(currentX, currentY);
-          return State.RE_LOCALIZE;
+	double currentX = odometer.getX();
+    double currentY = odometer.getY();
+    while (grid.locationOfObjects.isEmpty()) {
+      grid.scan();
+      if (grid.locationOfObjects.isEmpty()) {
+
+        // using path finding, update to where robot should move
       }
-	  return State.CATCH_BLOCK;
+    }
+
+    Integer[] objectLocation = grid.locationOfObjects.remove(0);
+
+    // using pathfinding, navigate to block
+
+    if (!colorSensorController.identifyBlock()) {
+      // grid.setWoodBlock(objectLocation[0],objectLocation[1]);
+      navigation.goBackward(30);
+      navigation.travelTo(currentX, currentY);
+      return State.RE_LOCALIZE;
+    }
+    return State.CATCH_BLOCK;
   }
 
   /**
@@ -150,10 +145,10 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State stackBlock() {
-	  	grid.scan();
-	  	// pathfind to greenzone if builder, pathfind to red zone if collector
-	    clawMotorController.lowerClaw();
-	    clawMotorController.openClaw();
+    grid.scan();
+    // pathfind to greenzone
+    clawMotorController.lowerClaw();
+    clawMotorController.openClaw();
     return State.EXPLORE;
   }
 
@@ -167,11 +162,11 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State reLocalize() {
-	  double localizationX = (30*(Math.round(odometer.getX()/30)));
-	  double localizationY = (30*(Math.round(odometer.getY()/30)));
-	  navigation.travelTo(localizationX, localizationY);
-	  localizer.lightLocalize();
-	  return State.EXPLORE;
+    double localizationX = (30 * (Math.round(odometer.getX() / 30)));
+    double localizationY = (30 * (Math.round(odometer.getY() / 30)));
+    navigation.travelTo(localizationX, localizationY);
+    localizer.lightLocalize();
+    return State.EXPLORE;
   }
 
   /**
