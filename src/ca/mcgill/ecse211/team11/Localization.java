@@ -34,7 +34,7 @@ public class Localization {
 
     // Rotate CW until wall detected
     navigation.turnClockwise(true);
-    while (usSensorController.getDistance() > Constants.RISING_EDGE_RANGE) {
+    while (usSensorController.getPreciseDistance() > Constants.RISING_EDGE_RANGE) {
       Util.sleep(50);
     }
     beep();
@@ -43,9 +43,9 @@ public class Localization {
     Util.sleep(Constants.US_LOCALIZE_WAIT_TIME);
 
     // Continue rotating CW until wall no longer detected
-    while (usSensorController.getDistance() <= Constants.RISING_EDGE_RANGE) {
-      if (usSensorController.getLastDistance() < minimumDistance) {
-        minimumDistance = usSensorController.getLastDistance();
+    while (usSensorController.getPreciseDistance() <= Constants.RISING_EDGE_RANGE) {
+      if (usSensorController.getLastPreciseDistance() < minimumDistance) {
+        minimumDistance = usSensorController.getLastPreciseDistance();
       }
       Util.sleep(50);
     }
@@ -57,7 +57,7 @@ public class Localization {
 
     // Rotate CCW until wall detected
     navigation.turnClockwise(false);
-    while (usSensorController.getDistance() > Constants.RISING_EDGE_RANGE) {
+    while (usSensorController.getPreciseDistance() > Constants.RISING_EDGE_RANGE) {
       Util.sleep(50);
     }
 
@@ -65,9 +65,9 @@ public class Localization {
     Util.sleep(Constants.US_LOCALIZE_WAIT_TIME);
 
     // Continue rotating CCW until wall no longer detected
-    while (usSensorController.getDistance() <= Constants.RISING_EDGE_RANGE) {
-      if (usSensorController.getLastDistance() < minimumDistance) {
-        minimumDistance = usSensorController.getLastDistance();
+    while (usSensorController.getPreciseDistance() <= Constants.RISING_EDGE_RANGE) {
+      if (usSensorController.getLastPreciseDistance() < minimumDistance) {
+        minimumDistance = usSensorController.getLastPreciseDistance();
       }
       Util.sleep(50);
     }

@@ -53,7 +53,8 @@ public class Constants {
   // Sensor filter parameters
   public static final int COLOR_SENSOR_MEDIAN_FILTER_SIZE = 1;
   public static final int LIGHT_SENSOR_MEDIAN_FILTER_SIZE = 1;
-  public static final int US_SENSOR_MEDIAN_FILTER_SIZE = 15;
+  public static final int US_SENSOR_LOCALIZATION_MEDIAN_FILTER_SIZE = 15;
+  public static final int US_SENSOR_SCAN_MEDIAN_FILTER_SIZE = 5;
 
   // Physical dimensions of robot
   public static final double LEFT_WHEEL_RADIUS = 2.05;

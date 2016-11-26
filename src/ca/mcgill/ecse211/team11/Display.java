@@ -51,7 +51,7 @@ public class Display extends Thread {
       t.drawString(String.format("%.2f", Math.toDegrees(odometer.getTheta())), 3, 2);
 
       // display ultrasonic distance reading
-      t.drawString(String.format("%.3f", usSensorController.getLastDistance()), 10, 4);
+      t.drawString(String.format("%.3f", usSensorController.getLastPreciseDistance()), 10, 4);
 
       // Displays the last logged message
       try {

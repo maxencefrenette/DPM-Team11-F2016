@@ -12,13 +12,20 @@ import lejos.robotics.SampleProvider;
  *
  */
 public class USSensorController {
-  private SampleProvider sp;
-  private float[] data;
+  private SampleProvider spPrecise;
+  private SampleProvider spFast;
+  private float[] dataPrecise;
+  private float[] dataFast;
 
   public USSensorController(EV3UltrasonicSensor usSensor) {
-    sp = usSensor.getDistanceMode();
-    sp = new NonBufferedMedianFilter(sp, Constants.US_SENSOR_MEDIAN_FILTER_SIZE);
-    data = new float[sp.sampleSize()];
+    spPrecise = usSensor.getDistanceMode();
+    spPrecise =
+        new NonBufferedMedianFilter(spPrecise, Constants.US_SENSOR_LOCALIZATION_MEDIAN_FILTER_SIZE);
+    dataPrecise = new float[spPrecise.sampleSize()];
+
+    spFast = usSensor.getDistanceMode();
+    spFast = new NonBufferedMedianFilter(spPrecise, Constants.US_SENSOR_SCAN_MEDIAN_FILTER_SIZE);
+    dataFast = new float[spFast.sampleSize()];
   }
 
   /**
@@ -26,12 +33,21 @@ public class USSensorController {
    * 
    * @return The distance read from ultrasonic sensor
    */
-  public float getDistance() {
-    sp.fetchSample(data, 0);
-    return data[0];
+  public float getPreciseDistance() {
+    spPrecise.fetchSample(dataPrecise, 0);
+    return dataPrecise[0];
   }
 
-  public double getLastDistance() {
-    return data[0];
+  public double getLastPreciseDistance() {
+    return dataPrecise[0];
+  }
+  
+  public float getFastDistance() {
+    spFast.fetchSample(dataFast, 0);
+    return dataFast[0];
+  }
+  
+  public double getLastFastDistance() {
+    return dataFast[0];
   }
 }

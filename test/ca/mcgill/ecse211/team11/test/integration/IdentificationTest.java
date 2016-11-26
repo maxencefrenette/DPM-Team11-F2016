@@ -32,7 +32,7 @@ public class IdentificationTest {
     
     boolean isBlock;
     while (Button.readButtons() == 0) {
-      if(us.getDistance()*100 < 7) {
+      if(us.getPreciseDistance()*100 < 7) {
         isBlock = Id.identifyBlock();
         if(isBlock) {
           Sound.beep();
@@ -42,7 +42,7 @@ public class IdentificationTest {
           Logger.logData("Not Block");
         }
       }
-      while (us.getDistance()*100 < 7) {
+      while (us.getPreciseDistance()*100 < 7) {
         try { Thread.sleep(50); } catch(Exception e){};
       }
     }
