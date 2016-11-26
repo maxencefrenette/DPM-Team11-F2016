@@ -174,4 +174,14 @@ public class Util {
 
     return gridsInLineOfSight;
   }
+
+  public static int clamp(int num, int lowerRange, int upperRange) {
+    if (num < lowerRange) {
+      return lowerRange;
+    } else if (num > upperRange) {
+      return upperRange;
+    } else {
+      return num;
+    }
+  }
 }
