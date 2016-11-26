@@ -260,11 +260,18 @@ public class InternalGrid {
   @Override
   public String toString() {
     String board = "";
+    String horizontalLine = "";
+    for (int i = 0; i<grid[0].length;i++) {
+      horizontalLine += "+---";
+    }
+    horizontalLine += "+\n";
+    
     for (int j = grid.length-1; j >= 0; j--) {
       for (int i = 0; i < grid.length; i++) {
-        board += "| " + grid[i][j] + " |";
+        board += "| " + grid[i][j] + " ";
       }
-      board += "\n";
+      board += "|\n";
+      board += horizontalLine;
     }
     return board;
   }
