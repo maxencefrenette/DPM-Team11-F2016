@@ -11,7 +11,7 @@ public class InternalGridTest {
     grid.printBoard(1);
     
     System.out.println("Update no entry zone");
-    grid.updateNoEntryZone();
+    grid.updateNoEntryZone(1);
     grid.printBoard(1);
     
     System.out.println("Update red zone and green zone");

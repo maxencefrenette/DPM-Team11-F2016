@@ -176,7 +176,7 @@ public class InternalGrid {
     }
   }
   
-  public void updateNoEntryZone() {
+  public void updateNoEntryZone(int startCorner) {
     for (int i = 0; i < grid.length; i++) {
       grid[0][i] = InternalGridSquare.NO_ENTRY;
       grid[i][0] = InternalGridSquare.NO_ENTRY;
@@ -184,10 +184,31 @@ public class InternalGrid {
       grid[i][grid.length-1] = InternalGridSquare.NO_ENTRY;
     }
     
-    grid[grid.length-2][grid.length-2] = InternalGridSquare.NO_ENTRY;
-    grid[1][grid.length-2] = InternalGridSquare.NO_ENTRY;
-    grid[grid.length-2][1] = InternalGridSquare.NO_ENTRY;
-    grid[1][1] = InternalGridSquare.NO_ENTRY;
+    switch(startCorner) {
+      case 1:
+        grid[grid.length-2][grid.length-2] = InternalGridSquare.NO_ENTRY;
+        grid[1][grid.length-2] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length-2][1] = InternalGridSquare.NO_ENTRY;
+        break;
+      
+      case 2:
+        grid[grid.length-2][grid.length-2] = InternalGridSquare.NO_ENTRY;
+        grid[1][grid.length-2] = InternalGridSquare.NO_ENTRY;
+        grid[1][1] = InternalGridSquare.NO_ENTRY;
+        break;
+        
+      case 3:
+        grid[1][1] = InternalGridSquare.NO_ENTRY;
+        grid[1][grid.length-2] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length-2][1] = InternalGridSquare.NO_ENTRY;
+        break;
+        
+      case 4:
+        grid[grid.length-2][grid.length-2] = InternalGridSquare.NO_ENTRY;
+        grid[1][1] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length-2][1] = InternalGridSquare.NO_ENTRY;
+        break;
+    }
   }
 
   /**
