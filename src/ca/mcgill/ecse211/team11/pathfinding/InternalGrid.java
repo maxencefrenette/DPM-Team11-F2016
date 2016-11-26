@@ -22,7 +22,8 @@ public class InternalGrid {
   /**
    * Constructs an InternalGrid object.
    * 
-   * @param boardSize The size of the board (the amount of physical board tiles, not internal grid tiles)
+   * @param boardSize The size of the board (the amount of physical board tiles, not internal grid
+   *        tiles)
    */
   public InternalGrid(int boardSize) {
     grid = new InternalGridSquare[2 * boardSize][2 * boardSize];
@@ -32,7 +33,7 @@ public class InternalGrid {
       }
     }
   }
-  
+
   /**
    * Converts a real-world coordinate to a grid coordinate
    * 
@@ -52,7 +53,7 @@ public class InternalGrid {
   public double gridToCoord(int gridIndex) {
     return (gridIndex + 0.5) * (Constants.GRID_SIZE / 2);
   }
-  
+
   /**
    * Converts a (x,y) coordinate into an equivalent x,y in the internal grid.
    * 
@@ -63,10 +64,10 @@ public class InternalGrid {
   public int[] convertToInternalGrid(double x, double y) {
     int internalGridX = coordToGrid(x);
     int internalGridY = coordToGrid(y);
-  
+
     return new int[] {internalGridX, internalGridY};
   }
-  
+
   /**
    * Acceses the state of a grid cell referenced by its grid indices.
    * 
@@ -77,7 +78,7 @@ public class InternalGrid {
   public InternalGridSquare getCellByIndex(int i, int j) {
     return grid[i][j];
   }
-  
+
   /**
    * Accesses the state of a cell by its coordinates
    * 
@@ -88,7 +89,7 @@ public class InternalGrid {
   public InternalGridSquare getCellByCoord(double x, double y) {
     return grid[coordToGrid(x)][coordToGrid(y)];
   }
-  
+
   /**
    * Modifies the state of a grid cell referenced by its grid indices.
    * 
@@ -99,7 +100,7 @@ public class InternalGrid {
   public void setCellByIndex(int i, int j, InternalGridSquare newState) {
     grid[i][j] = newState;
   }
-  
+
   /**
    * Modifies the state of a rectangular zone in the grid.
    * 
@@ -115,14 +116,14 @@ public class InternalGrid {
       }
     }
   }
-  
+
   /**
    * Calculates a short path from startNode to endNode
    * 
    * @param start The starting location
    * @param end The ending location
    * @return The calculated path
-   * @throws Exception 
+   * @throws Exception
    */
   public Path pathfindTo(PathNode start, final PathNode end) throws Exception {
     // This comparator will be in charge of sorting the PriorityQueue
@@ -132,31 +133,33 @@ public class InternalGrid {
         return (int) (n1.f(end) - n2.f(end));
       }
     }
-    
+
     PriorityQueue<SearchNode> fringe = new PriorityQueue<SearchNode>(new SearchNodeComparator());
-    
-    while(!fringe.isEmpty()) {
+    fringe.add(new SearchNode(start));
+
+    while (!fringe.isEmpty()) {
       SearchNode nextNode = fringe.poll();
-      
+
       SearchNode[] neighbours = nextNode.getNeighbours();
       for (SearchNode n : neighbours) {
         if (n.distTo(end) < Constants.GRID_SIZE) {
           Path path = n.getPath();
           PathNode lastNode = path.lastNode();
-          double heading = Util.calculateHeading(lastNode.getX(), lastNode.getY(), end.getX(), end.getY());
+          double heading =
+              Util.calculateHeading(lastNode.getX(), lastNode.getY(), end.getX(), end.getY());
           path.addNode(new PathNode(lastNode.getX(), lastNode.getY(), heading));
-          
+
           // TODO remove aligned waypoints
-          
+
           return path;
         }
-        
+
         if (n.isValid(this) && !fringe.contains(n)) {
           fringe.add(n);
         }
       }
     }
-    
+
     throw new Exception("No path could be found");
   }
 
@@ -203,38 +206,38 @@ public class InternalGrid {
       }
     }
   }
-  
+
   public void updateNoEntryZone(int startCorner) {
     for (int i = 0; i < grid.length; i++) {
       grid[0][i] = InternalGridSquare.NO_ENTRY;
       grid[i][0] = InternalGridSquare.NO_ENTRY;
-      grid[grid.length-1][i] = InternalGridSquare.NO_ENTRY;
-      grid[i][grid.length-1] = InternalGridSquare.NO_ENTRY;
+      grid[grid.length - 1][i] = InternalGridSquare.NO_ENTRY;
+      grid[i][grid.length - 1] = InternalGridSquare.NO_ENTRY;
     }
-    
-    switch(startCorner) {
+
+    switch (startCorner) {
       case 1:
-        grid[grid.length-2][grid.length-2] = InternalGridSquare.NO_ENTRY;
-        grid[1][grid.length-2] = InternalGridSquare.NO_ENTRY;
-        grid[grid.length-2][1] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length - 2][grid.length - 2] = InternalGridSquare.NO_ENTRY;
+        grid[1][grid.length - 2] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length - 2][1] = InternalGridSquare.NO_ENTRY;
         break;
-      
+
       case 2:
-        grid[grid.length-2][grid.length-2] = InternalGridSquare.NO_ENTRY;
-        grid[1][grid.length-2] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length - 2][grid.length - 2] = InternalGridSquare.NO_ENTRY;
+        grid[1][grid.length - 2] = InternalGridSquare.NO_ENTRY;
         grid[1][1] = InternalGridSquare.NO_ENTRY;
         break;
-        
+
       case 3:
         grid[1][1] = InternalGridSquare.NO_ENTRY;
-        grid[1][grid.length-2] = InternalGridSquare.NO_ENTRY;
-        grid[grid.length-2][1] = InternalGridSquare.NO_ENTRY;
+        grid[1][grid.length - 2] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length - 2][1] = InternalGridSquare.NO_ENTRY;
         break;
-        
+
       case 4:
-        grid[grid.length-2][grid.length-2] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length - 2][grid.length - 2] = InternalGridSquare.NO_ENTRY;
         grid[1][1] = InternalGridSquare.NO_ENTRY;
-        grid[grid.length-2][1] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length - 2][1] = InternalGridSquare.NO_ENTRY;
         break;
     }
   }
@@ -259,17 +262,18 @@ public class InternalGrid {
   /**
    * Prints the board to the desired output
    * 
-   * @param output if output is 0, then board will be printed to the log file. otherwise, board will be printed to System.out
+   * @param output if output is 0, then board will be printed to the log file. otherwise, board will
+   *        be printed to System.out
    */
   public void printBoard(int output) {
     String board = toString();
     if (output == 0) {
-      Logger.logData("Board\n:"+board);
+      Logger.logData("Board\n:" + board);
     } else {
-      System.out.println(board);  
+      System.out.println(board);
     }
   }
-  
+
   /**
    * Converts the board to a string
    * 
@@ -279,18 +283,20 @@ public class InternalGrid {
   public String toString() {
     String board = "";
     String horizontalLine = "";
-    for (int i = 0; i<grid[0].length;i++) {
+    for (int i = 0; i < grid[0].length; i++) {
       horizontalLine += "+---";
     }
     horizontalLine += "+\n";
-    
-    for (int j = grid.length-1; j >= 0; j--) {
+
+    for (int j = grid.length - 1; j >= 0; j--) {
+      board += horizontalLine;
       for (int i = 0; i < grid.length; i++) {
         board += "| " + grid[i][j] + " ";
       }
       board += "|\n";
-      board += horizontalLine;
     }
+    board += horizontalLine;
+
     return board;
   }
 }
