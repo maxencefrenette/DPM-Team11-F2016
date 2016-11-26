@@ -39,6 +39,9 @@ public class RobotBrain extends Thread {
    * is a builder, it will stack the blocks.
    */
   public void run() {
+    // Start threads
+    display.start();
+    odometer.start();
     // Get wifi data
     while (!WifiClient.connectToServer());
     HashMap<String, Integer> wifiData = null;
