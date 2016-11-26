@@ -7,6 +7,7 @@ package ca.mcgill.ecse211.team11.pathfinding;
  * 
  * @author Maxence Frenette
  * @version 4.0
+ * @since 4.0
  */
 public class PathNode {
   private double x;
@@ -26,6 +27,12 @@ public class PathNode {
     this.theta = theta;
   }
 
+  public double distTo(PathNode other) {
+    double dx = x - other.getX();
+    double dy = x - other.getY();
+    return Math.sqrt(dx*dx + dy*dy);
+  }
+  
   /**
    * @return the x
    */

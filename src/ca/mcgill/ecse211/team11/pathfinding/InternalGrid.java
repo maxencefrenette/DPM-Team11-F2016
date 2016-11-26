@@ -1,6 +1,8 @@
 package ca.mcgill.ecse211.team11.pathfinding;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 import ca.mcgill.ecse211.team11.Constants;
 import ca.mcgill.ecse211.team11.Initializer;
@@ -84,11 +86,22 @@ public class InternalGrid {
    * @param y y-coordinate
    * @return array containing the x and y of the corresponding internal grid
    */
-  public static int[] convertToInternalGrid(double x, double y) {
-    int internalGridX = (int) (x / (Constants.GRID_SIZE / 2));
-    int internalGridY = (int) (y / (Constants.GRID_SIZE / 2));
+  public int[] convertToInternalGrid(double x, double y) {
+    int internalGridX = coordToGrid(x);
+    int internalGridY = coordToGrid(y);
   
     return new int[] {internalGridX, internalGridY};
+  }
+  
+  /**
+   * Accesses the state of a cell by its coordinates
+   * 
+   * @param x The x coordinate of the cell to access
+   * @param y The y coordinate of the cell to access
+   * @return The state of the cell
+   */
+  public InternalGridSquare getCellByCoord(double x, double y) {
+    return grid[coordToGrid(x)][coordToGrid(y)];
   }
   
   /**
@@ -97,11 +110,42 @@ public class InternalGrid {
    * @param start The starting location
    * @param end The ending location
    * @return The calculated path
+   * @throws Exception 
    */
-  public Path pathfindTo(PathNode start, PathNode end) {
-    Path p = new Path(start);
-    p.addNode(end);
-    return p;
+  public Path pathfindTo(PathNode start, final PathNode end) throws Exception {
+    // This comparator will be in charge of sorting the PriorityQueue
+    class SearchNodeComparator implements Comparator<SearchNode> {
+      @Override
+      public int compare(SearchNode n1, SearchNode n2) {
+        return (int) (n1.f(end) - n2.f(end));
+      }
+    }
+    
+    PriorityQueue<SearchNode> fringe = new PriorityQueue<SearchNode>(new SearchNodeComparator());
+    
+    while(!fringe.isEmpty()) {
+      SearchNode nextNode = fringe.poll();
+      
+      SearchNode[] neighbours = nextNode.getNeighbours();
+      for (SearchNode n : neighbours) {
+        if (n.distTo(end) < Constants.GRID_SIZE) {
+          Path path = n.getPath();
+          PathNode lastNode = path.lastNode();
+          double heading = Util.calculateHeading(lastNode.getX(), lastNode.getY(), end.getX(), end.getY());
+          path.addNode(new PathNode(lastNode.getX(), lastNode.getY(), heading));
+          
+          // TODO remove aligned waypoints
+          
+          return path;
+        }
+        
+        if (n.isValid(this) && !fringe.contains(n)) {
+          fringe.add(n);
+        }
+      }
+    }
+    
+    throw new Exception("No path could be found");
   }
 
   /**
@@ -129,8 +173,8 @@ public class InternalGrid {
             odometer.getY() + objectDistanceFromWheels * Math.sin(odometer.getTheta());
 
         // Get grid coordinates
-        int[] currentGrid = InternalGrid.convertToInternalGrid(odometer.getX(), odometer.getY());
-        int[] objectGridLocation = InternalGrid.convertToInternalGrid(objectXCoordinate, objectYCoordinate);
+        int[] currentGrid = convertToInternalGrid(odometer.getX(), odometer.getY());
+        int[] objectGridLocation = convertToInternalGrid(objectXCoordinate, objectYCoordinate);
         ArrayList<Integer[]> gridsInLineOfSight = Util.getGridsInLineOfSight(currentGrid[0],
             currentGrid[1], objectGridLocation[0], objectGridLocation[1]);
 
@@ -159,8 +203,8 @@ public class InternalGrid {
             odometer.getY() + endDistanceFromWheels * Math.sin(odometer.getTheta());
 
         // Get grid coordinates
-        int[] currentGrid = InternalGrid.convertToInternalGrid(odometer.getX(), odometer.getY());
-        int[] endGridLocation = InternalGrid.convertToInternalGrid(endXCoordinate, endYCoordinate);
+        int[] currentGrid = convertToInternalGrid(odometer.getX(), odometer.getY());
+        int[] endGridLocation = convertToInternalGrid(endXCoordinate, endYCoordinate);
         ArrayList<Integer[]> gridsInLineOfSight = Util.getGridsInLineOfSight(currentGrid[0],
             currentGrid[1], endGridLocation[0], endGridLocation[1]);
 
