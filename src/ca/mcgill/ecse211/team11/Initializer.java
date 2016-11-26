@@ -37,6 +37,7 @@ public class Initializer {
   public Odometer odometer;
   public Navigation navigation;
   public Localization localizer;
+  public Scanner sacnner;
 
   public Initializer() {
     Logger.setLogWriter(Constants.LOG_FILENAME);

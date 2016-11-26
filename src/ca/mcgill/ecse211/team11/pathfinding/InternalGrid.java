@@ -1,15 +1,10 @@
 package ca.mcgill.ecse211.team11.pathfinding;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
 import ca.mcgill.ecse211.team11.Constants;
-import ca.mcgill.ecse211.team11.Initializer;
 import ca.mcgill.ecse211.team11.Logger;
-import ca.mcgill.ecse211.team11.Navigation;
-import ca.mcgill.ecse211.team11.Odometer;
-import ca.mcgill.ecse211.team11.USSensorController;
 import ca.mcgill.ecse211.team11.Util;
 
 /**
@@ -23,32 +18,9 @@ import ca.mcgill.ecse211.team11.Util;
  */
 public class InternalGrid {
   private InternalGridSquare[][] grid;
-  private Navigation navigation;
-  private Odometer odometer;
-  private USSensorController usSensorController;
-  public ArrayList<Integer[]> locationOfObjects = new ArrayList<Integer[]>();
 
   /**
    * Constructs an InternalGrid object.
-   * 
-   * @param init The Initializer object
-   */
-  public InternalGrid(Initializer init) {
-    grid = new InternalGridSquare[2 * Constants.BOARD_SIZE][2 * Constants.BOARD_SIZE];
-    for (int i = 0; i < grid.length; i++) {
-      for (int j = 0; j < grid.length; j++) {
-        grid[i][j] = InternalGridSquare.UNKNOWN;
-      }
-    }
-    navigation = init.navigation;
-    odometer = init.odometer;
-    usSensorController = init.usSensorController;
-  }
-
-  /**
-   * Alternative constructor used to initialize an InternalGrid without any references to the Robot.
-   * <p>
-   * Scan() will not work if this constructor is used. This constructor is used for testing purposes.
    */
   public InternalGrid() {
     grid = new InternalGridSquare[2 * Constants.BOARD_SIZE][2 * Constants.BOARD_SIZE];
@@ -91,6 +63,28 @@ public class InternalGrid {
     int internalGridY = coordToGrid(y);
   
     return new int[] {internalGridX, internalGridY};
+  }
+  
+  /**
+   * Acceses the state of a grid cell referenced by its grid indices.
+   * 
+   * @param i The horizontal index of the cell
+   * @param j The vertical index of the cell
+   * @return The state of the cell
+   */
+  public InternalGridSquare getCellByIndex(int i, int j) {
+    return grid[i][j];
+  }
+  
+  /**
+   * Modifies the state of a grid cell referenced by its grid indices.
+   * 
+   * @param i The horizontal index of the cell
+   * @param j The vertical index of the cell
+   * @param newState The new state of the cell
+   */
+  public void setCellByIndex(int i, int j, InternalGridSquare newState) {
+    grid[i][j] = newState;
   }
   
   /**
@@ -146,78 +140,6 @@ public class InternalGrid {
     }
     
     throw new Exception("No path could be found");
-  }
-
-  /**
-   * Scans the surrounding with the ultrasonic sensor area by rotating on itself.
-   */
-  public void scan() {
-    double initialHeading = odometer.getTheta();
-    double finalHeading = Util.normalizeAngle360(initialHeading - Math.toRadians(355));
-
-    navigation.turnClockwise(true);
-
-    // While scanning
-    while (Math.abs(odometer.getTheta() - finalHeading) > Constants.ANGLE_ERROR) {
-
-      double distance = usSensorController.getDistance();
-
-      // If an object in range
-      if (distance < Constants.SCANNING_RANGE) {
-
-        // Find object coordinates
-        double objectDistanceFromWheels = Constants.DIST_CENTER_TO_US_SENSOR + distance * 100;
-        double objectXCoordinate =
-            odometer.getX() + objectDistanceFromWheels * Math.cos(odometer.getTheta());
-        double objectYCoordinate =
-            odometer.getY() + objectDistanceFromWheels * Math.sin(odometer.getTheta());
-
-        // Get grid coordinates
-        int[] currentGrid = convertToInternalGrid(odometer.getX(), odometer.getY());
-        int[] objectGridLocation = convertToInternalGrid(objectXCoordinate, objectYCoordinate);
-        ArrayList<Integer[]> gridsInLineOfSight = Util.getGridsInLineOfSight(currentGrid[0],
-            currentGrid[1], objectGridLocation[0], objectGridLocation[1]);
-
-        // Update grid info
-        if (isModifiableGrid(gridsInLineOfSight.get(gridsInLineOfSight.size() - 1))) {
-          if (grid[objectGridLocation[0]][objectGridLocation[1]] == InternalGridSquare.UNKNOWN) {
-            grid[objectGridLocation[0]][objectGridLocation[1]] = InternalGridSquare.UNKNOWN_BLOCK;
-            locationOfObjects.add(new Integer[] {objectGridLocation[0], objectGridLocation[1]});
-          }
-        }
-        for (int i = 0; i < gridsInLineOfSight.size() - 1; i++) {
-          Integer[] gridTileCoordinates = gridsInLineOfSight.get(i);
-          if (isModifiableGrid(gridTileCoordinates)) {
-            grid[gridTileCoordinates[0]][gridTileCoordinates[1]] = InternalGridSquare.EMPTY;
-          }
-        }
-
-      } else {
-
-        // Find end coordinates
-        double endDistanceFromWheels =
-            Constants.DIST_CENTER_TO_US_SENSOR + Constants.SCANNING_RANGE * 100;
-        double endXCoordinate =
-            odometer.getX() + endDistanceFromWheels * Math.cos(odometer.getTheta());
-        double endYCoordinate =
-            odometer.getY() + endDistanceFromWheels * Math.sin(odometer.getTheta());
-
-        // Get grid coordinates
-        int[] currentGrid = convertToInternalGrid(odometer.getX(), odometer.getY());
-        int[] endGridLocation = convertToInternalGrid(endXCoordinate, endYCoordinate);
-        ArrayList<Integer[]> gridsInLineOfSight = Util.getGridsInLineOfSight(currentGrid[0],
-            currentGrid[1], endGridLocation[0], endGridLocation[1]);
-
-        // Update grid info
-        for (int i = 0; i < gridsInLineOfSight.size(); i++) {
-          Integer[] gridTileCoordinates = gridsInLineOfSight.get(i);
-          if (isModifiableGrid(gridTileCoordinates)) {
-            grid[gridTileCoordinates[0]][gridTileCoordinates[1]] = InternalGridSquare.EMPTY;
-          }
-        }
-      }
-    }
-    navigation.setSpeeds(0, 0);
   }
 
   /**
@@ -300,11 +222,12 @@ public class InternalGrid {
   }
 
   /**
+   * Checks if a cell is editable
    * 
-   * @param gridCoordinates grid's X and Y
+   * @param gridCoordinates x and y coordinates of the cell to check
    * @return true if allowed to edit grid's status. false if not allowed to edit grid's status.
    */
-  private boolean isModifiableGrid(Integer[] gridCoordinates) {
+  public boolean isModifiableGrid(Integer[] gridCoordinates) {
     InternalGridSquare gridStatus = grid[gridCoordinates[0]][gridCoordinates[1]];
 
     if (gridStatus == InternalGridSquare.NO_ENTRY || gridStatus == InternalGridSquare.GREEN_ZONE

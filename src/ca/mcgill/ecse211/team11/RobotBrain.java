@@ -18,18 +18,19 @@ import ca.mcgill.ecse211.team11.pathfinding.PathNode;
 public class RobotBrain extends Thread {
 
   private ColorSensorController colorSensorController;
-  private USSensorController usSensorController;
   private ClawMotorController clawMotorController;
   private Display display;
   private Odometer odometer;
   private Navigation navigation;
   private Localization localizer;
   private InternalGrid grid;
+  private Scanner scanner;
   private int role;
   private long startTimeMilli;
 
   public RobotBrain(Initializer init) {
     grid = new InternalGrid(init);
+    scanner = new Scanner(init, grid);
   }
 
   /**
@@ -42,6 +43,8 @@ public class RobotBrain extends Thread {
     // Start threads
     display.start();
     odometer.start();
+    scanner.start();
+    
     // Get wifi data
     while (!WifiClient.connectToServer());
     HashMap<String, Integer> wifiData = null;
@@ -99,15 +102,15 @@ public class RobotBrain extends Thread {
   public State explore() {
 	double currentX = odometer.getX();
     double currentY = odometer.getY();
-    while (grid.locationOfObjects.isEmpty()) {
-      grid.scan();
-      if (grid.locationOfObjects.isEmpty()) {
+    while (scanner.locationOfObjects.isEmpty()) {
+      // TODO scan while light localizing
+      if (scanner.locationOfObjects.isEmpty()) {
 
         // using path finding, update to where robot should move
       }
     }
 
-    Integer[] objectLocation = grid.locationOfObjects.remove(0);
+    Integer[] objectLocation = scanner.locationOfObjects.remove(0);
 
     // using pathfinding, navigate to block
 
@@ -148,7 +151,7 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State stackBlock() {
-    grid.scan();
+    // TODO scan while light localizing
     // pathfind to greenzone
     clawMotorController.lowerClaw();
     clawMotorController.openClaw();
