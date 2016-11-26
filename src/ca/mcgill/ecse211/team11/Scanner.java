@@ -3,7 +3,7 @@ package ca.mcgill.ecse211.team11;
 import java.util.ArrayList;
 
 import ca.mcgill.ecse211.team11.pathfinding.InternalGrid;
-import ca.mcgill.ecse211.team11.pathfinding.InternalGridSquare;
+import ca.mcgill.ecse211.team11.pathfinding.InternalGridCell;
 
 public class Scanner extends Thread {
   private boolean scanning = false;
@@ -59,15 +59,15 @@ public class Scanner extends Thread {
 
       // Update grid info
       if (grid.isModifiableGrid(gridsInLineOfSight.get(gridsInLineOfSight.size() - 1))) {
-        if (grid.getCellByIndex(objectGridLocation[0], objectGridLocation[1]) == InternalGridSquare.UNKNOWN) {
-          grid.setCellByIndex(objectGridLocation[0], objectGridLocation[1], InternalGridSquare.UNKNOWN_BLOCK);
+        if (grid.getCellByIndex(objectGridLocation[0], objectGridLocation[1]) == InternalGridCell.UNKNOWN) {
+          grid.setCellByIndex(objectGridLocation[0], objectGridLocation[1], InternalGridCell.UNKNOWN_BLOCK);
           locationOfObjects.add(new Integer[] {objectGridLocation[0], objectGridLocation[1]});
         }
       }
       for (int i = 0; i < gridsInLineOfSight.size() - 1; i++) {
         Integer[] gridTileCoordinates = gridsInLineOfSight.get(i);
         if (grid.isModifiableGrid(gridTileCoordinates)) {
-          grid.setCellByIndex(gridTileCoordinates[0], gridTileCoordinates[1], InternalGridSquare.EMPTY);
+          grid.setCellByIndex(gridTileCoordinates[0], gridTileCoordinates[1], InternalGridCell.EMPTY);
         }
       }
 
@@ -95,7 +95,7 @@ public class Scanner extends Thread {
         for (int i = 0; i < gridsInLineOfSight.size()-1; i++) {
           Integer[] gridTileCoordinates = gridsInLineOfSight.get(i);
           if (grid.isModifiableGrid(gridTileCoordinates)) {
-            grid.setCellByIndex(gridTileCoordinates[0], gridTileCoordinates[1], InternalGridSquare.EMPTY);
+            grid.setCellByIndex(gridTileCoordinates[0], gridTileCoordinates[1], InternalGridCell.EMPTY);
           }
         }  
       }

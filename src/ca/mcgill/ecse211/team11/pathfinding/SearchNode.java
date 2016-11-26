@@ -77,13 +77,13 @@ public class SearchNode extends PathNode {
    */
   public boolean isValid(InternalGrid grid) {
     return grid.getCellByCoord(getX() + Constants.DIST_CENTER_TO_BACK, getY()
-        + Constants.DIST_CENTER_TO_BACK) == InternalGridSquare.EMPTY
+        + Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY
         && grid.getCellByCoord(getX() - Constants.DIST_CENTER_TO_BACK, getY()
-            + Constants.DIST_CENTER_TO_BACK) == InternalGridSquare.EMPTY
+            + Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY
         && grid.getCellByCoord(getX() - Constants.DIST_CENTER_TO_BACK, getY()
-            - Constants.DIST_CENTER_TO_BACK) == InternalGridSquare.EMPTY
+            - Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY
         && grid.getCellByCoord(getX() + Constants.DIST_CENTER_TO_BACK, getY()
-            - Constants.DIST_CENTER_TO_BACK) == InternalGridSquare.EMPTY;
+            - Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY;
   }
 
   /**

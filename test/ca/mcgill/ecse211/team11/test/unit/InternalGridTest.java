@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import ca.mcgill.ecse211.team11.Constants;
 import ca.mcgill.ecse211.team11.pathfinding.InternalGrid;
-import ca.mcgill.ecse211.team11.pathfinding.InternalGridSquare;
+import ca.mcgill.ecse211.team11.pathfinding.InternalGridCell;
 import ca.mcgill.ecse211.team11.pathfinding.Path;
 import ca.mcgill.ecse211.team11.pathfinding.PathNode;
 
@@ -39,9 +39,9 @@ public class InternalGridTest {
   @Test
   public void testPathfindTo() throws Exception {
     InternalGrid grid = new InternalGrid(3);
-    grid.setZoneByIndex(0, 0, 6, 6, InternalGridSquare.EMPTY);
-    grid.setCellByIndex(1, 2, InternalGridSquare.UNKNOWN_BLOCK);
-    grid.setCellByIndex(2, 5, InternalGridSquare.UNKNOWN_BLOCK);
+    grid.setZoneByIndex(0, 0, 6, 6, InternalGridCell.EMPTY);
+    grid.setCellByIndex(1, 2, InternalGridCell.UNKNOWN_BLOCK);
+    grid.setCellByIndex(2, 5, InternalGridCell.UNKNOWN_BLOCK);
     PathNode start = new PathNode(0.5*Constants.GRID_SIZE, 0.5*Constants.GRID_SIZE, 0);
     PathNode end = new PathNode(0.75*Constants.GRID_SIZE, 2.75*Constants.GRID_SIZE, 0);
     System.out.println(grid);

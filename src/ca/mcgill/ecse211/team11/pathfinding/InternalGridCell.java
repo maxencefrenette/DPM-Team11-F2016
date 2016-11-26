@@ -7,7 +7,7 @@ package ca.mcgill.ecse211.team11.pathfinding;
  * @since 2.0
  * @since 2.0
  */
-public enum InternalGridSquare {
+public enum InternalGridCell {
   UNKNOWN {
     @Override
     public String toString() {

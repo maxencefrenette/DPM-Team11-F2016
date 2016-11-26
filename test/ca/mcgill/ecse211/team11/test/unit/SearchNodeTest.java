@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import ca.mcgill.ecse211.team11.Constants;
 import ca.mcgill.ecse211.team11.pathfinding.InternalGrid;
-import ca.mcgill.ecse211.team11.pathfinding.InternalGridSquare;
+import ca.mcgill.ecse211.team11.pathfinding.InternalGridCell;
 import ca.mcgill.ecse211.team11.pathfinding.SearchNode;
 
 public class SearchNodeTest {
@@ -14,8 +14,8 @@ public class SearchNodeTest {
   @Test
   public void isValidTest() {
     InternalGrid grid = new InternalGrid(3);
-    grid.setZoneByIndex(0, 0, 6, 6, InternalGridSquare.EMPTY);
-    grid.setCellByIndex(0, 0, InternalGridSquare.UNKNOWN_BLOCK);
+    grid.setZoneByIndex(0, 0, 6, 6, InternalGridCell.EMPTY);
+    grid.setCellByIndex(0, 0, InternalGridCell.UNKNOWN_BLOCK);
     System.out.println(grid);
     
     SearchNode n1 = new SearchNode(0.5*Constants.GRID_SIZE, 0.5*Constants.GRID_SIZE, 0, null);

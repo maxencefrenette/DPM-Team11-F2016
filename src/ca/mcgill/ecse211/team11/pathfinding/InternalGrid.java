@@ -17,7 +17,7 @@ import ca.mcgill.ecse211.team11.Util;
  * @since 2.0
  */
 public class InternalGrid {
-  private InternalGridSquare[][] grid;
+  private InternalGridCell[][] grid;
 
   /**
    * Constructs an InternalGrid object.
@@ -26,10 +26,10 @@ public class InternalGrid {
    *        tiles)
    */
   public InternalGrid(int boardSize) {
-    grid = new InternalGridSquare[2 * boardSize][2 * boardSize];
+    grid = new InternalGridCell[2 * boardSize][2 * boardSize];
     for (int i = 0; i < grid.length; i++) {
       for (int j = 0; j < grid.length; j++) {
-        grid[i][j] = InternalGridSquare.UNKNOWN;
+        grid[i][j] = InternalGridCell.UNKNOWN;
       }
     }
   }
@@ -75,9 +75,9 @@ public class InternalGrid {
    * @param j The vertical index of the cell
    * @return The state of the cell
    */
-  public InternalGridSquare getCellByIndex(int i, int j) {
+  public InternalGridCell getCellByIndex(int i, int j) {
     if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length) {
-      return InternalGridSquare.NO_ENTRY;
+      return InternalGridCell.NO_ENTRY;
     }
     return grid[i][j];
   }
@@ -89,7 +89,7 @@ public class InternalGrid {
    * @param y The y coordinate of the cell to access
    * @return The state of the cell
    */
-  public InternalGridSquare getCellByCoord(double x, double y) {
+  public InternalGridCell getCellByCoord(double x, double y) {
     return getCellByIndex(coordToGrid(x), coordToGrid(y));
   }
 
@@ -100,7 +100,7 @@ public class InternalGrid {
    * @param j The vertical index of the cell
    * @param newState The new state of the cell
    */
-  public void setCellByIndex(int i, int j, InternalGridSquare newState) {
+  public void setCellByIndex(int i, int j, InternalGridCell newState) {
     grid[i][j] = newState;
   }
 
@@ -112,7 +112,7 @@ public class InternalGrid {
    * @param j1 The bottom of the rectangle (included)
    * @param j2 The top of the rectangle (excluded)
    */
-  public void setZoneByIndex(int i1, int j1, int i2, int j2, InternalGridSquare state) {
+  public void setZoneByIndex(int i1, int j1, int i2, int j2, InternalGridCell state) {
     for (int i = i1; i < i2; i++) {
       for (int j = j1; j < j2; j++) {
         setCellByIndex(i, j, state);
@@ -183,7 +183,7 @@ public class InternalGrid {
 
     for (int i = lowerLeftGridX; i < lowerLeftGridX + dx; i++) {
       for (int j = lowerLeftGridY; j < lowerLeftGridY + dy; j++) {
-        grid[i][j] = InternalGridSquare.GREEN_ZONE;
+        grid[i][j] = InternalGridCell.GREEN_ZONE;
       }
     }
   }
@@ -205,42 +205,42 @@ public class InternalGrid {
 
     for (int i = lowerLeftGridX; i < lowerLeftGridX + dx; i++) {
       for (int j = lowerLeftGridY; j < lowerLeftGridY + dy; j++) {
-        grid[i][j] = InternalGridSquare.RED_ZONE;
+        grid[i][j] = InternalGridCell.RED_ZONE;
       }
     }
   }
 
   public void updateNoEntryZone(int startCorner) {
     for (int i = 0; i < grid.length; i++) {
-      grid[0][i] = InternalGridSquare.NO_ENTRY;
-      grid[i][0] = InternalGridSquare.NO_ENTRY;
-      grid[grid.length - 1][i] = InternalGridSquare.NO_ENTRY;
-      grid[i][grid.length - 1] = InternalGridSquare.NO_ENTRY;
+      grid[0][i] = InternalGridCell.NO_ENTRY;
+      grid[i][0] = InternalGridCell.NO_ENTRY;
+      grid[grid.length - 1][i] = InternalGridCell.NO_ENTRY;
+      grid[i][grid.length - 1] = InternalGridCell.NO_ENTRY;
     }
 
     switch (startCorner) {
       case 1:
-        grid[grid.length - 2][grid.length - 2] = InternalGridSquare.NO_ENTRY;
-        grid[1][grid.length - 2] = InternalGridSquare.NO_ENTRY;
-        grid[grid.length - 2][1] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length - 2][grid.length - 2] = InternalGridCell.NO_ENTRY;
+        grid[1][grid.length - 2] = InternalGridCell.NO_ENTRY;
+        grid[grid.length - 2][1] = InternalGridCell.NO_ENTRY;
         break;
 
       case 2:
-        grid[grid.length - 2][grid.length - 2] = InternalGridSquare.NO_ENTRY;
-        grid[1][grid.length - 2] = InternalGridSquare.NO_ENTRY;
-        grid[1][1] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length - 2][grid.length - 2] = InternalGridCell.NO_ENTRY;
+        grid[1][grid.length - 2] = InternalGridCell.NO_ENTRY;
+        grid[1][1] = InternalGridCell.NO_ENTRY;
         break;
 
       case 3:
-        grid[1][1] = InternalGridSquare.NO_ENTRY;
-        grid[1][grid.length - 2] = InternalGridSquare.NO_ENTRY;
-        grid[grid.length - 2][1] = InternalGridSquare.NO_ENTRY;
+        grid[1][1] = InternalGridCell.NO_ENTRY;
+        grid[1][grid.length - 2] = InternalGridCell.NO_ENTRY;
+        grid[grid.length - 2][1] = InternalGridCell.NO_ENTRY;
         break;
 
       case 4:
-        grid[grid.length - 2][grid.length - 2] = InternalGridSquare.NO_ENTRY;
-        grid[1][1] = InternalGridSquare.NO_ENTRY;
-        grid[grid.length - 2][1] = InternalGridSquare.NO_ENTRY;
+        grid[grid.length - 2][grid.length - 2] = InternalGridCell.NO_ENTRY;
+        grid[1][1] = InternalGridCell.NO_ENTRY;
+        grid[grid.length - 2][1] = InternalGridCell.NO_ENTRY;
         break;
     }
   }
@@ -252,10 +252,10 @@ public class InternalGrid {
    * @return true if allowed to edit grid's status. false if not allowed to edit grid's status.
    */
   public boolean isModifiableGrid(Integer[] gridCoordinates) {
-    InternalGridSquare gridStatus = grid[gridCoordinates[0]][gridCoordinates[1]];
+    InternalGridCell gridStatus = grid[gridCoordinates[0]][gridCoordinates[1]];
 
-    if (gridStatus == InternalGridSquare.NO_ENTRY || gridStatus == InternalGridSquare.GREEN_ZONE
-        || gridStatus == InternalGridSquare.RED_ZONE) {
+    if (gridStatus == InternalGridCell.NO_ENTRY || gridStatus == InternalGridCell.GREEN_ZONE
+        || gridStatus == InternalGridCell.RED_ZONE) {
       return false;
     } else {
       return true;
