@@ -79,6 +79,17 @@ public class InternalGrid {
   }
   
   /**
+   * Accesses the state of a cell by its coordinates
+   * 
+   * @param x The x coordinate of the cell to access
+   * @param y The y coordinate of the cell to access
+   * @return The state of the cell
+   */
+  public InternalGridSquare getCellByCoord(double x, double y) {
+    return grid[coordToGrid(x)][coordToGrid(y)];
+  }
+  
+  /**
    * Modifies the state of a grid cell referenced by its grid indices.
    * 
    * @param i The horizontal index of the cell
@@ -90,14 +101,19 @@ public class InternalGrid {
   }
   
   /**
-   * Accesses the state of a cell by its coordinates
+   * Modifies the state of a rectangular zone in the grid.
    * 
-   * @param x The x coordinate of the cell to access
-   * @param y The y coordinate of the cell to access
-   * @return The state of the cell
+   * @param i1 The left of the rectangle (included)
+   * @param i2 The right of the rectangle (excluded)
+   * @param j1 The bottom of the rectangle (included)
+   * @param j2 The top of the rectangle (excluded)
    */
-  public InternalGridSquare getCellByCoord(double x, double y) {
-    return grid[coordToGrid(x)][coordToGrid(y)];
+  public void setZoneByIndex(int i1, int j1, int i2, int j2, InternalGridSquare state) {
+    for (int i = i1; i < i2; i++) {
+      for (int j = j1; j < j2; j++) {
+        setCellByIndex(i, j, state);
+      }
+    }
   }
   
   /**
