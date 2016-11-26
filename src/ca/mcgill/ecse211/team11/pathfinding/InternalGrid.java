@@ -21,9 +21,11 @@ public class InternalGrid {
 
   /**
    * Constructs an InternalGrid object.
+   * 
+   * @param boardSize The size of the board (the amount of physical board tiles, not internal grid tiles)
    */
-  public InternalGrid() {
-    grid = new InternalGridSquare[2 * Constants.BOARD_SIZE][2 * Constants.BOARD_SIZE];
+  public InternalGrid(int boardSize) {
+    grid = new InternalGridSquare[2 * boardSize][2 * boardSize];
     for (int i = 0; i < grid.length; i++) {
       for (int j = 0; j < grid.length; j++) {
         grid[i][j] = InternalGridSquare.UNKNOWN;
