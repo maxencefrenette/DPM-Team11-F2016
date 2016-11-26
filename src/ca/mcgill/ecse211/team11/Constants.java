@@ -62,6 +62,13 @@ public class Constants {
   public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 12.3;
   public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 5.9;
   public static final double DIST_CENTER_TO_US_SENSOR = 6.6;
+  /**
+   * Radius spanned by the robot when rotating on itself.
+   * <p>
+   * The actual value is smaller, but we set it to 15 to provide a safety margin. Setting this any
+   * higher would make the robot occupy more than one of the board's tiles.
+   */
+  public static final double DIST_CENTER_TO_BACK = 15;
 
   // Wifi constants
   public static final String SERVER_IP = "192.168.2.3";
@@ -79,4 +86,13 @@ public class Constants {
   public static final int SOUND_VOLUME = 60;
   public static final double LINE_CROSSED_LIGHT_THRESHOLD = -0.06;
   public static final double SCANNING_RANGE = 0.5;
+  /**
+   * Allows to tweak the speed/balance of the pathfinding algorithm.
+   * <p>
+   * A value of 1 means will make the algorithm always find the optimal path at the cost of
+   * computation time. A higher value will result in suboptimal path that are faster to compute.
+   * 
+   * @see https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation
+   */
+  public static double PATHFINDING_EPSILON = 2;
 }

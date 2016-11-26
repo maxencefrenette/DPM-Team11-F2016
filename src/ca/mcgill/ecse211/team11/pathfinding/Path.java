@@ -9,6 +9,8 @@ public class Path implements Iterable<PathNode> {
 
   /**
    * Creates a new empty Path object.
+   * 
+   * @param startNode The first node of the path
    */
   public Path(PathNode startNode) {
     nodes = new ArrayList<PathNode>();
@@ -22,9 +24,7 @@ public class Path implements Iterable<PathNode> {
    */
   public void addNode(PathNode node) {
     PathNode lastNode = nodes.get(nodes.size() - 1);
-    double dx = node.getX() - lastNode.getX();
-    double dy = node.getY() - lastNode.getY();
-    length += Math.sqrt(dx*dx + dy*dy);
+    length += lastNode.distTo(node);
     
     nodes.add(node);
   }
@@ -36,6 +36,13 @@ public class Path implements Iterable<PathNode> {
    */
   public double length() {
     return length;
+  }
+  
+  /**
+   * @return The last node of the path
+   */
+  public PathNode lastNode() {
+    return nodes.get(nodes.size() - 1);
   }
   
   @Override
