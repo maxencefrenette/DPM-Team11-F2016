@@ -12,20 +12,20 @@ public class ScanTest {
     Initializer init = new Initializer();
     init.odometer.start();
     init.display.start();
-    
+
     init.odometer.setX(Constants.GRID_SIZE);
     init.odometer.setY(Constants.GRID_SIZE);
-  
-    for (double scanRange = 0.5; scanRange <= 1.50; scanRange += 0.2) {
-      InternalGrid grid = new InternalGrid();
-      grid.updateNoEntryZone(1);
-      Scanner scanner = new Scanner(init, grid, scanRange);
-      scanner.start();
-      scanner.setScanning(true);
-      init.navigation.turn(Math.toRadians(355), true);
-      scanner.setScanning(false);
-      Logger.logData("Scan Range: " + scanRange);
-      grid.printBoard(0);
-    }
+
+    double scanRange = 0.75;
+    InternalGrid grid = new InternalGrid(Constants.BOARD_SIZE);
+    grid.updateNoEntryZone(1);
+    Scanner scanner = new Scanner(init, grid, scanRange);
+    scanner.start();
+    scanner.setScanning(true);
+    init.navigation.turn(Math.toRadians(357), true);
+    scanner.setScanning(false);
+    Logger.logData("Scan Range: " + scanRange + "\n");
+    grid.printBoard(0);
+
   }
 }

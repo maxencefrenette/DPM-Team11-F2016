@@ -36,7 +36,7 @@ public class Scanner extends Thread {
    * Scans the field in front of the robot without rotating.
    */
   private void scan() {
-    double distance = usSensorController.getDistance();
+    double distance = usSensorController.getFastDistance();
 
     // If an object in range
     if (distance < scanRange) {
@@ -67,7 +67,7 @@ public class Scanner extends Thread {
       for (int i = 0; i < gridsInLineOfSight.size() - 1; i++) {
         Integer[] gridTileCoordinates = gridsInLineOfSight.get(i);
         if (grid.isModifiableGrid(gridTileCoordinates)) {
-          grid.setCellByIndex(objectGridLocation[0], objectGridLocation[1], InternalGridSquare.EMPTY);
+          grid.setCellByIndex(gridTileCoordinates[0], gridTileCoordinates[1], InternalGridSquare.EMPTY);
         }
       }
 
