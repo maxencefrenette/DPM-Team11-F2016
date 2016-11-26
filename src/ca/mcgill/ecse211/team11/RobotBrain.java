@@ -1,6 +1,9 @@
 package ca.mcgill.ecse211.team11;
 
+import java.util.HashMap;
+
 import ca.mcgill.ecse211.team11.pathfinding.InternalGrid;
+import ca.mcgill.ecse211.team11.pathfinding.PathNode;
 
 /**
  * Contains the main algorithm of the robot.
@@ -22,6 +25,8 @@ public class RobotBrain extends Thread {
   private Navigation navigation;
   private Localization localizer;
   private InternalGrid grid;
+  private int role;
+  private long startTimeMilli;
 
   public RobotBrain(Initializer init) {
     // TODO
@@ -35,8 +40,26 @@ public class RobotBrain extends Thread {
    * is a builder, it will stack the blocks.
    */
   public void run() {
-    // TODO fetch data from the server
-    localizer.setCornerNumber(0); // TODO: Set the actual corner number.
+    // Get wifi data
+    while (!WifiClient.connectToServer());
+    HashMap<String, Integer> wifiData = null;
+    do {
+      wifiData = WifiClient.retrieveDataFromServer();
+    } while (wifiData == null);
+    
+    startTimeMilli = System.currentTimeMillis();
+    
+    int builderTeam = wifiData.get("BTN");
+    int startingCorner;
+    if (builderTeam == Constants.TEAM_NUMBER) {
+      startingCorner = wifiData.get("BSC");
+      role = 0;
+    } else {
+      startingCorner = wifiData.get("CSC");
+      role = 1;
+    }
+
+    localizer.setCornerNumber(startingCorner);
     localizer.usLocalize();
     // TODO travel to the closest line crossing
     localizer.lightLocalize();
@@ -85,6 +108,7 @@ public class RobotBrain extends Thread {
 	  }
     
 	  Integer[] objectLocation = grid.locationOfObjects.remove(0);
+	  //convert grid coordinates to real coordinates
           
 	  //using pathfinding, navigate to block
 	  
@@ -127,7 +151,7 @@ public class RobotBrain extends Thread {
    */
   public State stackBlock() {
 	  	grid.scan();
-	  	// pathfind to greenzone
+	  	// pathfind to greenzone if builder, pathfind to red zone if collector
 	    clawMotorController.lowerClaw();
 	    clawMotorController.openClaw();
     return State.EXPLORE;
@@ -154,6 +178,6 @@ public class RobotBrain extends Thread {
    * This enumeration defines the different states in which the robot can be.
    */
   private enum State {
-    EXPLORE, CATCH_BLOCK, STACK_BLOCK, RE_LOCALIZE
+    EXPLORE, CATCH_BLOCK, STACK_BLOCK, RE_LOCALIZE, RETURN_TO_CORNER
   }
 }
