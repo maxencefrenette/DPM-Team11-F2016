@@ -30,7 +30,7 @@ public class RobotBrain extends Thread {
 
   public RobotBrain(Initializer init) {
     grid = new InternalGrid();
-    scanner = new Scanner(init, grid);
+    scanner = new Scanner(init, grid, Constants.SCANNING_RANGE);
   }
 
   /**

@@ -12,11 +12,13 @@ public class Scanner extends Thread {
   private USSensorController usSensorController;
   private Odometer odometer;
   private InternalGrid grid;
+  private double scanRange;
 
-  public Scanner(Initializer init, InternalGrid grid) {
+  public Scanner(Initializer init, InternalGrid grid, double scanRange) {
     usSensorController = init.usSensorController;
     odometer = init.odometer;
     this.grid = grid;
+    this.scanRange = scanRange;
   }
 
   @Override
@@ -37,7 +39,7 @@ public class Scanner extends Thread {
     double distance = usSensorController.getDistance();
 
     // If an object in range
-    if (distance < Constants.SCANNING_RANGE) {
+    if (distance < scanRange) {
 
       // Find object coordinates
       double objectDistanceFromWheels = Constants.DIST_CENTER_TO_US_SENSOR + distance * 100;
@@ -49,6 +51,8 @@ public class Scanner extends Thread {
       // Get grid coordinates
       int[] currentGrid = grid.convertToInternalGrid(odometer.getX(), odometer.getY());
       int[] objectGridLocation = grid.convertToInternalGrid(objectXCoordinate, objectYCoordinate);
+      objectGridLocation[0] = Util.clamp(objectGridLocation[0], 0, Constants.BOARD_SIZE*2-1);
+      objectGridLocation[1] = Util.clamp(objectGridLocation[1], 0, Constants.BOARD_SIZE*2-1);
       ArrayList<Integer[]> gridsInLineOfSight =
           Util.getGridsInLineOfSight(currentGrid[0], currentGrid[1], objectGridLocation[0],
               objectGridLocation[1]);
@@ -71,7 +75,7 @@ public class Scanner extends Thread {
 
       // Find end coordinates
       double endDistanceFromWheels =
-          Constants.DIST_CENTER_TO_US_SENSOR + Constants.SCANNING_RANGE * 100;
+          Constants.DIST_CENTER_TO_US_SENSOR + scanRange * 100;
       double endXCoordinate =
           odometer.getX() + endDistanceFromWheels * Math.cos(odometer.getTheta());
       double endYCoordinate =
@@ -80,16 +84,20 @@ public class Scanner extends Thread {
       // Get grid coordinates
       int[] currentGrid = grid.convertToInternalGrid(odometer.getX(), odometer.getY());
       int[] endGridLocation = grid.convertToInternalGrid(endXCoordinate, endYCoordinate);
+      endGridLocation[0] = Util.clamp(endGridLocation[0], 0, Constants.BOARD_SIZE*2-1);
+      endGridLocation[1] = Util.clamp(endGridLocation[1], 0, Constants.BOARD_SIZE*2-1);
       ArrayList<Integer[]> gridsInLineOfSight =
           Util.getGridsInLineOfSight(currentGrid[0], currentGrid[1], endGridLocation[0],
               endGridLocation[1]);
 
       // Update grid info
-      for (int i = 0; i < gridsInLineOfSight.size(); i++) {
-        Integer[] gridTileCoordinates = gridsInLineOfSight.get(i);
-        if (grid.isModifiableGrid(gridTileCoordinates)) {
-          grid.setCellByIndex(gridTileCoordinates[0], gridTileCoordinates[1], InternalGridSquare.EMPTY);
-        }
+      if(gridsInLineOfSight.size() > 0) {
+        for (int i = 0; i < gridsInLineOfSight.size()-1; i++) {
+          Integer[] gridTileCoordinates = gridsInLineOfSight.get(i);
+          if (grid.isModifiableGrid(gridTileCoordinates)) {
+            grid.setCellByIndex(gridTileCoordinates[0], gridTileCoordinates[1], InternalGridSquare.EMPTY);
+          }
+        }  
       }
     }
   }
