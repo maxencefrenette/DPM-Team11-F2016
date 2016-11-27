@@ -3,7 +3,9 @@ package ca.mcgill.ecse211.team11;
 import java.util.HashMap;
 
 import ca.mcgill.ecse211.team11.pathfinding.InternalGrid;
+import ca.mcgill.ecse211.team11.pathfinding.InternalGridCell;
 import ca.mcgill.ecse211.team11.pathfinding.PathNode;
+import lejos.hardware.Sound;
 
 /**
  * Contains the main algorithm of the robot.
@@ -66,8 +68,30 @@ public class RobotBrain extends Thread {
 
     localizer.setCornerNumber(startingCorner);
     localizer.usLocalize();
-    // TODO travel to the closest line crossing
+    Sound.beep();
+
+    switch (startingCorner) {
+      case 1:
+        navigation.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE);
+        break;
+
+      case 2:
+        navigation.travelTo(Constants.GRID_SIZE * (Constants.BOARD_SIZE - 1), Constants.GRID_SIZE);
+        break;
+
+      case 3:
+        navigation.travelTo(Constants.GRID_SIZE * (Constants.BOARD_SIZE - 1),
+            Constants.GRID_SIZE * (Constants.BOARD_SIZE - 1));
+        break;
+
+      case 4:
+        navigation.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE * (Constants.BOARD_SIZE - 1));
+        break;
+    }
+
+    scanner.setScanning(true);
     localizer.lightLocalize();
+    scanner.setScanning(false);
     State state = State.EXPLORE;
 
     while (true) {
@@ -84,8 +108,10 @@ public class RobotBrain extends Thread {
         case RE_LOCALIZE:
           state = reLocalize();
           break;
+        case RETURN_TO_CORNER:
+          state = returnToCorner();
+          break;
         default:
-          Logger.logData("Error: Default case reached in RobotBrain.run()");
           return;
       }
     }
@@ -103,19 +129,17 @@ public class RobotBrain extends Thread {
     double currentX = odometer.getX();
     double currentY = odometer.getY();
     while (scanner.locationOfObjects.isEmpty()) {
-      // TODO scan while light localizing
       if (scanner.locationOfObjects.isEmpty()) {
-
-        // using path finding, update to where robot should move
+        // TODO using path finding, update to where robot should move
+        return State.EXPLORE;
       }
     }
 
     Integer[] objectLocation = scanner.locationOfObjects.remove(0);
-
-    // using pathfinding, navigate to block
+    // TODO using pathfinding, navigate to block
 
     if (!colorSensorController.identifyBlock()) {
-      // grid.setWoodBlock(objectLocation[0],objectLocation[1]);
+      grid.setCellByIndex(objectLocation[0], objectLocation[1], InternalGridCell.WOODEN_BLOCK);
       navigation.goBackward(30);
       navigation.travelTo(currentX, currentY);
       return State.RE_LOCALIZE;
@@ -152,7 +176,7 @@ public class RobotBrain extends Thread {
    */
   public State stackBlock() {
     // TODO scan while light localizing
-    // pathfind to greenzone
+    // TODO pathfind to greenzone
     clawMotorController.lowerClaw();
     clawMotorController.openClaw();
     return State.EXPLORE;
@@ -168,11 +192,18 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State reLocalize() {
-    double localizationX = (30 * (Math.round(odometer.getX() / 30)));
-    double localizationY = (30 * (Math.round(odometer.getY() / 30)));
+    double localizationX =
+        (Constants.GRID_SIZE * (Math.round(odometer.getX() / Constants.GRID_SIZE)));
+    double localizationY =
+        (Constants.GRID_SIZE * (Math.round(odometer.getY() / Constants.GRID_SIZE)));
     navigation.travelTo(localizationX, localizationY);
     localizer.lightLocalize();
     return State.EXPLORE;
+  }
+
+  public State returnToCorner() {
+    // TODO navigate to starting corner
+    return null;
   }
 
   /**
