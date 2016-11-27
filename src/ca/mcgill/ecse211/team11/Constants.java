@@ -82,7 +82,13 @@ public class Constants {
   public static final int TEAM_NUMBER = 11;
 
   // Environment constants
+  /**
+   * Size of one grid square in centimeters
+   */
   public static final double GRID_SIZE = 30.48;
+  /**
+   * Width and height of the board in number of squares
+   */
   public static final int BOARD_SIZE = 12;
 
   // Other constants
