@@ -30,6 +30,11 @@ public class RobotBrain extends Thread {
   private long startTimeMilli;
 
   public RobotBrain(Initializer init) {
+    display = init.display;
+    odometer = init.odometer;
+    navigation = init.navigation;
+    localizer = init.localizer;
+    
     grid = new InternalGrid(Constants.BOARD_SIZE);
     scanner = new Scanner(init, grid, Constants.SCANNING_RANGE);
   }
