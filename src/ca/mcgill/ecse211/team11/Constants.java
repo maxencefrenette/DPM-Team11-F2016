@@ -10,6 +10,12 @@ package ca.mcgill.ecse211.team11;
  */
 
 public class Constants {
+  // Behavior constants
+  /**
+   * If set to true, the robot will not attempt anything else than wifi connection and localization.
+   * This may be useful for the competition if the integration has not been completed.
+   */
+  public static boolean STAY_IN_CORNER = true;
 
   // Sensor port labels
   public static final String US_SENSOR_PORT = "S3";

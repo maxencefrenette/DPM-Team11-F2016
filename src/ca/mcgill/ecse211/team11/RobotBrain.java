@@ -91,7 +91,13 @@ public class RobotBrain extends Thread {
     scanner.setScanning(true);
     localizer.lightLocalize();
     scanner.setScanning(false);
-    State state = State.EXPLORE;
+    
+    State state;
+    if (Constants.STAY_IN_CORNER) {
+      state = State.RETURN_TO_CORNER;
+    } else {
+      state = State.EXPLORE;
+    }
 
     while (true) {
       switch (state) {
