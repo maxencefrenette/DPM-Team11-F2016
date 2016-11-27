@@ -17,6 +17,12 @@ import ca.mcgill.ecse211.team11.Util;
  * @since 2.0
  */
 public class InternalGrid {
+  /**
+   * Dummy path node used to tell the pathfindTo method to find the path to the closest
+   * intersection.
+   */
+  public static final PathNode CLOSEST_INTERSECTION = new PathNode(0, 0, 0);
+
   private InternalGridCell[][] grid;
 
   /**
@@ -124,20 +130,36 @@ public class InternalGrid {
    * Calculates a short path from startNode to endNode
    * 
    * @param start The starting location
-   * @param end The ending location
+   * @param end The ending location. Set to InternalGrid.CLOSEST_INTERSECTION to find the path to
+   *        the closest grid intersection.
    * @return The calculated path
    * @throws Exception
    */
-  public Path pathfindTo(PathNode start, final PathNode end) throws Exception {
+  public Path pathfindTo(PathNode start, PathNode end) throws Exception {
     // This comparator will be in charge of sorting the PriorityQueue
     class SearchNodeComparator implements Comparator<SearchNode> {
+      private PathNode goal;
+
+      public SearchNodeComparator(PathNode goal) {
+        this.goal = goal;
+      }
+
       @Override
       public int compare(SearchNode n1, SearchNode n2) {
-        return (int) (n1.f(end) - n2.f(end));
+        return (int) (n1.f(goal) - n2.f(goal));
       }
     }
 
-    PriorityQueue<SearchNode> fringe = new PriorityQueue<SearchNode>(new SearchNodeComparator());
+    // Handles the case of pathfinding to the closest grid intersection
+    boolean pathfindToClosestIntersection = false;
+    if (end == CLOSEST_INTERSECTION) {
+      pathfindToClosestIntersection = true;
+      // Set the end to start so that the heuristic will be the distance to the start. This will
+      // make the A* algorithm essentially a uniform cost search.
+      end = start;
+    }
+
+    PriorityQueue<SearchNode> fringe = new PriorityQueue<SearchNode>(new SearchNodeComparator(end));
     fringe.add(new SearchNode(start));
 
     while (!fringe.isEmpty()) {
@@ -145,7 +167,9 @@ public class InternalGrid {
 
       SearchNode[] neighbours = nextNode.getNeighbours();
       for (SearchNode n : neighbours) {
-        if (n.distTo(end) < Constants.GRID_SIZE) {
+        if (pathfindToClosestIntersection && isGridLine(n.getX()) && isGridLine(n.getY())) {
+          return n.getPath();
+        } else if (!pathfindToClosestIntersection && n.distTo(end) < Constants.GRID_SIZE) {
           Path path = n.getPath();
           PathNode lastNode = path.lastNode();
           double heading =
@@ -301,5 +325,17 @@ public class InternalGrid {
     board += horizontalLine;
 
     return board;
+  }
+
+  /**
+   * Tests if a coordinate falls on one of the board's grid lines that isn't a crack.
+   * 
+   * @param coord The coordinate to test
+   * @return True if the coordinate falls on a grid line, false otherwise.
+   */
+  private static boolean isGridLine(double coord) {
+    // Uses an epsilon of 0.001 to take into account floating point rounding errors.
+    return Math.abs(Util.specialMod(coord, Constants.GRID_SIZE)) < 0.001
+        && Math.abs(Util.specialMod(coord, 3 * Constants.GRID_SIZE)) > 0.001;
   }
 }

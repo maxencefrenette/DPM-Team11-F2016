@@ -1,6 +1,6 @@
 package ca.mcgill.ecse211.team11.test.unit;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -38,15 +38,25 @@ public class InternalGridTest {
 
   @Test
   public void testPathfindTo() throws Exception {
+    // Grid initialization
     InternalGrid grid = new InternalGrid(3);
     grid.setZoneByIndex(0, 0, 6, 6, InternalGridCell.EMPTY);
     grid.setCellByIndex(1, 2, InternalGridCell.UNKNOWN_BLOCK);
     grid.setCellByIndex(2, 5, InternalGridCell.UNKNOWN_BLOCK);
-    PathNode start = new PathNode(0.5 * Constants.GRID_SIZE, 0.5 * Constants.GRID_SIZE, 0);
-    PathNode end = new PathNode(0.75 * Constants.GRID_SIZE, 2.75 * Constants.GRID_SIZE, 0);
     System.out.println(grid);
-    Path p = grid.pathfindTo(start, end);
-    System.out.println(p);
-    assert (true);
+
+    // Regular pathfinding
+    PathNode start1 = new PathNode(0.5 * Constants.GRID_SIZE, 0.5 * Constants.GRID_SIZE, 0);
+    PathNode end1 = new PathNode(0.75 * Constants.GRID_SIZE, 2.75 * Constants.GRID_SIZE, 0);
+    Path p1 = grid.pathfindTo(start1, end1);
+    System.out.println(p1);
+    System.out.println();
+    
+    // Pathfinding to closest grid intersection
+    PathNode start2 = new PathNode(0.5 * Constants.GRID_SIZE, 2.5 * Constants.GRID_SIZE, 0);
+    Path p2 = grid.pathfindTo(start2, InternalGrid.CLOSEST_INTERSECTION);
+    System.out.println(p2);
+    
+    assertTrue("Pathfinding completed without errors", true);
   }
 }
