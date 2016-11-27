@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import ca.mcgill.ecse211.team11.pathfinding.InternalGrid;
 import ca.mcgill.ecse211.team11.pathfinding.InternalGridCell;
-import ca.mcgill.ecse211.team11.pathfinding.PathNode;
 import lejos.hardware.Sound;
 
 /**
