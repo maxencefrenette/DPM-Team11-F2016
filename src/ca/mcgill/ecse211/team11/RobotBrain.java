@@ -44,16 +44,16 @@ public class RobotBrain extends Thread {
     display.start();
     odometer.start();
     scanner.start();
-    
+
     // Get wifi data
     while (!WifiClient.connectToServer());
     HashMap<String, Integer> wifiData = null;
     do {
       wifiData = WifiClient.retrieveDataFromServer();
     } while (wifiData == null);
-    
+
     startTimeMilli = System.currentTimeMillis();
-    
+
     int builderTeam = wifiData.get("BTN");
     int startingCorner;
     if (builderTeam == Constants.TEAM_NUMBER) {
@@ -100,7 +100,7 @@ public class RobotBrain extends Thread {
    * @return The next state of the robot.
    */
   public State explore() {
-	double currentX = odometer.getX();
+    double currentX = odometer.getX();
     double currentY = odometer.getY();
     while (scanner.locationOfObjects.isEmpty()) {
       // TODO scan while light localizing

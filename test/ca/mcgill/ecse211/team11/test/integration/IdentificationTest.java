@@ -10,9 +10,7 @@ import lejos.hardware.Sound;
 
 /**
  * This class tests if the light sensor is able to identify whether an obstacle is a styrofoam block
- * or a wooden block.
- * If(styrofoam) print("Block")
- * else print("Not Block")
+ * or a wooden block. If(styrofoam) print("Block") else print("Not Block")
  * 
  * @author Saleh Bakhit
  * @version 4.0
@@ -22,19 +20,19 @@ import lejos.hardware.Sound;
 public class IdentificationTest {
   public static void main(String[] args) {
     Initializer init = new Initializer();
-    
+
     Display dis = init.display;
     ColorSensorController Id = init.colorSensorController;
     USSensorController us = init.usSensorController;
-    
+
     Sound.setVolume(50);
     dis.start();
-    
+
     boolean isBlock;
     while (Button.readButtons() == 0) {
-      if(us.getPreciseDistance()*100 < 7) {
+      if (us.getPreciseDistance() * 100 < 7) {
         isBlock = Id.identifyBlock();
-        if(isBlock) {
+        if (isBlock) {
           Sound.beep();
           Logger.logData("Block");
         } else {
@@ -42,11 +40,14 @@ public class IdentificationTest {
           Logger.logData("Not Block");
         }
       }
-      while (us.getPreciseDistance()*100 < 7) {
-        try { Thread.sleep(50); } catch(Exception e){};
+      while (us.getPreciseDistance() * 100 < 7) {
+        try {
+          Thread.sleep(50);
+        } catch (Exception e) {
+        } ;
       }
     }
-    
+
     System.exit(0);
   }
 }

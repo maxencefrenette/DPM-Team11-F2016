@@ -24,10 +24,10 @@ public class LocalizationTest {
     // Main test
     init.localizer.setCornerNumber(2);
     init.localizer.usLocalize();
-    init.navigation.travelTo(Constants.GRID_SIZE*11, Constants.GRID_SIZE);
+    init.navigation.travelTo(Constants.GRID_SIZE * 11, Constants.GRID_SIZE);
     init.navigation.turnToWithMinAngle(0, true);
     init.localizer.lightLocalize();
-    init.navigation.travelTo(Constants.GRID_SIZE*11, Constants.GRID_SIZE);
+    init.navigation.travelTo(Constants.GRID_SIZE * 11, Constants.GRID_SIZE);
     init.navigation.turnToWithMinAngle(0, true);
     Sound.beep();
 

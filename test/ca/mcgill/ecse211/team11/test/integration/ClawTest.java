@@ -17,28 +17,29 @@ import lejos.hardware.lcd.TextLCD;
 public class ClawTest {
   public static void main(String[] args) {
     Initializer init = new Initializer();
-    
-    ClawMotorController claw = new ClawMotorController(init.clawClosingMotor, init.clawRaisingMotor);
-    
+
+    ClawMotorController claw =
+        new ClawMotorController(init.clawClosingMotor, init.clawRaisingMotor);
+
     TextLCD screen = LocalEV3.get().getTextLCD();
     screen.clear();
     screen.drawString("Program Started", 0, 0);
-    
+
     int ButtonPressed = 0;
-    while(ButtonPressed != Button.ID_ESCAPE) {
+    while (ButtonPressed != Button.ID_ESCAPE) {
       ButtonPressed = Button.waitForAnyPress();
-      
-      if(ButtonPressed == Button.ID_DOWN) {
+
+      if (ButtonPressed == Button.ID_DOWN) {
         claw.lowerClaw();
-      } else if(ButtonPressed == Button.ID_UP) {
+      } else if (ButtonPressed == Button.ID_UP) {
         claw.raiseClaw();
-      } else if(ButtonPressed == Button.ID_RIGHT) {
+      } else if (ButtonPressed == Button.ID_RIGHT) {
         claw.openClaw();
-      } else if(ButtonPressed == Button.ID_LEFT) {
+      } else if (ButtonPressed == Button.ID_LEFT) {
         claw.closeClaw();
       }
     }
-    
+
     System.exit(0);
   }
 }

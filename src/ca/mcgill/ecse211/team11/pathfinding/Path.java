@@ -25,7 +25,7 @@ public class Path implements Iterable<PathNode> {
   public void addNode(PathNode node) {
     PathNode lastNode = nodes.get(nodes.size() - 1);
     length += lastNode.distTo(node);
-    
+
     nodes.add(node);
   }
 
@@ -37,23 +37,23 @@ public class Path implements Iterable<PathNode> {
   public double length() {
     return length;
   }
-  
+
   /**
    * @return The last node of the path
    */
   public PathNode lastNode() {
     return nodes.get(nodes.size() - 1);
   }
-  
+
   @Override
   public Iterator<PathNode> iterator() {
     return nodes.iterator();
   }
-  
+
   @Override
   public String toString() {
     String result = "";
-    for(PathNode node : this) {
+    for (PathNode node : this) {
       result += node + "\n";
     }
     return result;

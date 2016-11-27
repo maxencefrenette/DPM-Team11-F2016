@@ -13,7 +13,7 @@ public class PathNode {
   private double x;
   private double y;
   private double theta;
-  
+
   /**
    * Creates a PathNode objects and initializes it.
    * 
@@ -30,9 +30,9 @@ public class PathNode {
   public double distTo(PathNode other) {
     double dx = x - other.getX();
     double dy = y - other.getY();
-    return Math.sqrt(dx*dx + dy*dy);
+    return Math.sqrt(dx * dx + dy * dy);
   }
-  
+
   /**
    * @return the x
    */
@@ -74,7 +74,7 @@ public class PathNode {
   public synchronized void setTheta(double theta) {
     this.theta = theta;
   }
-  
+
   @Override
   public String toString() {
     return String.format("{%.2f, %.2f, %.2f}", x, y, Math.toDegrees(theta));

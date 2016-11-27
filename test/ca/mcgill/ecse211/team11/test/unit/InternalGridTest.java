@@ -42,8 +42,8 @@ public class InternalGridTest {
     grid.setZoneByIndex(0, 0, 6, 6, InternalGridCell.EMPTY);
     grid.setCellByIndex(1, 2, InternalGridCell.UNKNOWN_BLOCK);
     grid.setCellByIndex(2, 5, InternalGridCell.UNKNOWN_BLOCK);
-    PathNode start = new PathNode(0.5*Constants.GRID_SIZE, 0.5*Constants.GRID_SIZE, 0);
-    PathNode end = new PathNode(0.75*Constants.GRID_SIZE, 2.75*Constants.GRID_SIZE, 0);
+    PathNode start = new PathNode(0.5 * Constants.GRID_SIZE, 0.5 * Constants.GRID_SIZE, 0);
+    PathNode end = new PathNode(0.75 * Constants.GRID_SIZE, 2.75 * Constants.GRID_SIZE, 0);
     System.out.println(grid);
     Path p = grid.pathfindTo(start, end);
     System.out.println(p);

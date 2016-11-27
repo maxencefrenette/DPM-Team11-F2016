@@ -41,12 +41,12 @@ public class USSensorController {
   public double getLastPreciseDistance() {
     return dataPrecise[0];
   }
-  
+
   public float getFastDistance() {
     spFast.fetchSample(dataFast, 0);
     return dataFast[0];
   }
-  
+
   public double getLastFastDistance() {
     return dataFast[0];
   }

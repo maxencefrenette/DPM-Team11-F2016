@@ -46,7 +46,7 @@ public class SearchNode extends PathNode {
   }
 
   public double f(PathNode goal) {
-    return g() + Constants.PATHFINDING_EPSILON*h(goal);
+    return g() + Constants.PATHFINDING_EPSILON * h(goal);
   }
 
   public double g() {
@@ -76,14 +76,14 @@ public class SearchNode extends PathNode {
    * @return True if the position is valid, false otherwise
    */
   public boolean isValid(InternalGrid grid) {
-    return grid.getCellByCoord(getX() + Constants.DIST_CENTER_TO_BACK, getY()
-        + Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY
-        && grid.getCellByCoord(getX() - Constants.DIST_CENTER_TO_BACK, getY()
-            + Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY
-        && grid.getCellByCoord(getX() - Constants.DIST_CENTER_TO_BACK, getY()
-            - Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY
-        && grid.getCellByCoord(getX() + Constants.DIST_CENTER_TO_BACK, getY()
-            - Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY;
+    return grid.getCellByCoord(getX() + Constants.DIST_CENTER_TO_BACK,
+        getY() + Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY
+        && grid.getCellByCoord(getX() - Constants.DIST_CENTER_TO_BACK,
+            getY() + Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY
+        && grid.getCellByCoord(getX() - Constants.DIST_CENTER_TO_BACK,
+            getY() - Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY
+        && grid.getCellByCoord(getX() + Constants.DIST_CENTER_TO_BACK,
+            getY() - Constants.DIST_CENTER_TO_BACK) == InternalGridCell.EMPTY;
   }
 
   /**

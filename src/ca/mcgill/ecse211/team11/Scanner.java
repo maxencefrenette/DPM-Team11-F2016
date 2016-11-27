@@ -8,7 +8,7 @@ import ca.mcgill.ecse211.team11.pathfinding.InternalGridCell;
 public class Scanner extends Thread {
   private boolean scanning = false;
   public ArrayList<Integer[]> locationOfObjects = new ArrayList<Integer[]>();
-  
+
   private USSensorController usSensorController;
   private Odometer odometer;
   private InternalGrid grid;
@@ -27,7 +27,7 @@ public class Scanner extends Thread {
       while (scanning) {
         scan();
       }
-      
+
       Util.sleep(100);
     }
   }
@@ -51,31 +51,32 @@ public class Scanner extends Thread {
       // Get grid coordinates
       int[] currentGrid = grid.convertToInternalGrid(odometer.getX(), odometer.getY());
       int[] objectGridLocation = grid.convertToInternalGrid(objectXCoordinate, objectYCoordinate);
-      objectGridLocation[0] = Util.clamp(objectGridLocation[0], 0, Constants.BOARD_SIZE*2-1);
-      objectGridLocation[1] = Util.clamp(objectGridLocation[1], 0, Constants.BOARD_SIZE*2-1);
-      ArrayList<Integer[]> gridsInLineOfSight =
-          Util.getGridsInLineOfSight(currentGrid[0], currentGrid[1], objectGridLocation[0],
-              objectGridLocation[1]);
+      objectGridLocation[0] = Util.clamp(objectGridLocation[0], 0, Constants.BOARD_SIZE * 2 - 1);
+      objectGridLocation[1] = Util.clamp(objectGridLocation[1], 0, Constants.BOARD_SIZE * 2 - 1);
+      ArrayList<Integer[]> gridsInLineOfSight = Util.getGridsInLineOfSight(currentGrid[0],
+          currentGrid[1], objectGridLocation[0], objectGridLocation[1]);
 
       // Update grid info
       if (grid.isModifiableGrid(gridsInLineOfSight.get(gridsInLineOfSight.size() - 1))) {
-        if (grid.getCellByIndex(objectGridLocation[0], objectGridLocation[1]) == InternalGridCell.UNKNOWN) {
-          grid.setCellByIndex(objectGridLocation[0], objectGridLocation[1], InternalGridCell.UNKNOWN_BLOCK);
+        if (grid.getCellByIndex(objectGridLocation[0],
+            objectGridLocation[1]) == InternalGridCell.UNKNOWN) {
+          grid.setCellByIndex(objectGridLocation[0], objectGridLocation[1],
+              InternalGridCell.UNKNOWN_BLOCK);
           locationOfObjects.add(new Integer[] {objectGridLocation[0], objectGridLocation[1]});
         }
       }
       for (int i = 0; i < gridsInLineOfSight.size() - 1; i++) {
         Integer[] gridTileCoordinates = gridsInLineOfSight.get(i);
         if (grid.isModifiableGrid(gridTileCoordinates)) {
-          grid.setCellByIndex(gridTileCoordinates[0], gridTileCoordinates[1], InternalGridCell.EMPTY);
+          grid.setCellByIndex(gridTileCoordinates[0], gridTileCoordinates[1],
+              InternalGridCell.EMPTY);
         }
       }
 
     } else {
 
       // Find end coordinates
-      double endDistanceFromWheels =
-          Constants.DIST_CENTER_TO_US_SENSOR + scanRange * 100;
+      double endDistanceFromWheels = Constants.DIST_CENTER_TO_US_SENSOR + scanRange * 100;
       double endXCoordinate =
           odometer.getX() + endDistanceFromWheels * Math.cos(odometer.getTheta());
       double endYCoordinate =
@@ -84,20 +85,20 @@ public class Scanner extends Thread {
       // Get grid coordinates
       int[] currentGrid = grid.convertToInternalGrid(odometer.getX(), odometer.getY());
       int[] endGridLocation = grid.convertToInternalGrid(endXCoordinate, endYCoordinate);
-      endGridLocation[0] = Util.clamp(endGridLocation[0], 0, Constants.BOARD_SIZE*2-1);
-      endGridLocation[1] = Util.clamp(endGridLocation[1], 0, Constants.BOARD_SIZE*2-1);
-      ArrayList<Integer[]> gridsInLineOfSight =
-          Util.getGridsInLineOfSight(currentGrid[0], currentGrid[1], endGridLocation[0],
-              endGridLocation[1]);
+      endGridLocation[0] = Util.clamp(endGridLocation[0], 0, Constants.BOARD_SIZE * 2 - 1);
+      endGridLocation[1] = Util.clamp(endGridLocation[1], 0, Constants.BOARD_SIZE * 2 - 1);
+      ArrayList<Integer[]> gridsInLineOfSight = Util.getGridsInLineOfSight(currentGrid[0],
+          currentGrid[1], endGridLocation[0], endGridLocation[1]);
 
       // Update grid info
-      if(gridsInLineOfSight.size() > 0) {
-        for (int i = 0; i < gridsInLineOfSight.size()-1; i++) {
+      if (gridsInLineOfSight.size() > 0) {
+        for (int i = 0; i < gridsInLineOfSight.size() - 1; i++) {
           Integer[] gridTileCoordinates = gridsInLineOfSight.get(i);
           if (grid.isModifiableGrid(gridTileCoordinates)) {
-            grid.setCellByIndex(gridTileCoordinates[0], gridTileCoordinates[1], InternalGridCell.EMPTY);
+            grid.setCellByIndex(gridTileCoordinates[0], gridTileCoordinates[1],
+                InternalGridCell.EMPTY);
           }
-        }  
+        }
       }
     }
   }

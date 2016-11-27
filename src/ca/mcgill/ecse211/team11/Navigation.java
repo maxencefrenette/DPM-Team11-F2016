@@ -83,7 +83,7 @@ public class Navigation {
     leftMotor.setAcceleration(leftMotorAccel);
     rightMotor.setAcceleration(rightMotorAccel);
   }
-  
+
   /**
    * Travel along the specified path.
    * 
@@ -97,7 +97,7 @@ public class Navigation {
       turnToWithMinAngle(nextNode.getTheta(), true);
     }
   }
-  
+
   /**
    * Travel to specified coordinates based on odometer while adjusting heading if needed.
    * 
