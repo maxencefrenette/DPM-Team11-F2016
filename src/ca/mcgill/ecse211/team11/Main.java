@@ -17,7 +17,6 @@ public class Main {
    * @param args
    */
   public static void main(String[] args) {
-    // TODO Auto-generated method stub
     Initializer init = new Initializer();
     RobotBrain brain = new RobotBrain(init);
     brain.start();
