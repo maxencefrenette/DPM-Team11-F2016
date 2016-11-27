@@ -67,7 +67,6 @@ public class RobotBrain extends Thread {
 
     localizer.setCornerNumber(startingCorner);
     localizer.usLocalize();
-    Sound.beep();
 
     switch (startingCorner) {
       case 1:
@@ -87,6 +86,9 @@ public class RobotBrain extends Thread {
         navigation.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE * (Constants.BOARD_SIZE - 1));
         break;
     }
+    
+    // Beep to indicate that localization is done
+    Sound.beep();
 
     scanner.setScanning(true);
     localizer.lightLocalize();
