@@ -27,6 +27,7 @@ public class RobotBrain extends Thread {
   private InternalGrid grid;
   private Scanner scanner;
   private int role;
+  private int startingCorner;
   private long startTimeMilli;
 
   public RobotBrain(Initializer init) {
@@ -61,7 +62,6 @@ public class RobotBrain extends Thread {
     startTimeMilli = System.currentTimeMillis();
 
     int builderTeam = wifiData.get("BTN");
-    int startingCorner;
     if (builderTeam == Constants.TEAM_NUMBER) {
       startingCorner = wifiData.get("BSC");
       role = 0;
@@ -123,8 +123,11 @@ public class RobotBrain extends Thread {
         case RETURN_TO_CORNER:
           state = returnToCorner();
           break;
-        default:
+        case STOP:
           return;
+        default:
+          Logger.logData("Error: Default case reached in RobotBrain.run()");
+          state = State.STOP;
       }
     }
   }
@@ -214,14 +217,34 @@ public class RobotBrain extends Thread {
   }
 
   public State returnToCorner() {
-    // TODO navigate to starting corner
-    return null;
+    switch (startingCorner) {
+      case 1:
+        navigation.travelTo(0.5 * Constants.GRID_SIZE, 0.5 * Constants.GRID_SIZE);
+        break;
+
+      case 2:
+        navigation.travelTo(Constants.GRID_SIZE * (Constants.BOARD_SIZE - 0.5),
+            0.5 * Constants.GRID_SIZE);
+        break;
+
+      case 3:
+        navigation.travelTo(Constants.GRID_SIZE * (Constants.BOARD_SIZE - 0.5),
+            Constants.GRID_SIZE * (Constants.BOARD_SIZE - 0.5));
+        break;
+
+      case 4:
+        navigation.travelTo(0.5 * Constants.GRID_SIZE,
+            Constants.GRID_SIZE * (Constants.BOARD_SIZE - 0.5));
+        break;
+    }
+    
+    return State.STOP;
   }
 
   /**
    * This enumeration defines the different states in which the robot can be.
    */
   private enum State {
-    EXPLORE, CATCH_BLOCK, STACK_BLOCK, RE_LOCALIZE, RETURN_TO_CORNER
+    EXPLORE, CATCH_BLOCK, STACK_BLOCK, RE_LOCALIZE, RETURN_TO_CORNER, STOP
   }
 }
