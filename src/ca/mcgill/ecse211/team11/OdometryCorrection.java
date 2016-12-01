@@ -46,7 +46,7 @@ public class OdometryCorrection extends Thread {
             + "cm. No odometry correction could be done.");
       }
 
-      Util.sleep(Constants.LIGHT_POLLER_WAIT_PERIOD);
+      Util.sleep(Constants.ODOMETRY_CORRECTION_WAIT_PERIOD);
     }
   }
 }

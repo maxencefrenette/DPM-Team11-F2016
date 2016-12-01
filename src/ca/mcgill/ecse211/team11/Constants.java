@@ -37,34 +37,62 @@ public class Constants {
   public static final double SPEED_ADJUSTMENT = 25;
 
   // Claw Controller Constants
+  /** Speed of the motor when raising the claw (degrees/second) */
   public static final int CLAW_RAISING_SPEED = 100;
+  /** Motor rotation needed to raise the claw (degrees) */
   public static final int CLAW_RAISING_DEGREE_ROTATION = -6 * 180;
+  /** Speed of the motor when lowering the claw the claw (degrees/second) */
   public static final int CLAW_LOWERING_SPEED = 100;
+  /** Motor rotation needed to lower the claw (degrees) */
   public static final int CLAW_LOWERING_DEGREE_ROTATION = 6 * 180;
+  /** Speed of the motor when closing the claw (degrees/second) */
   public static final int CLAW_CLOSING_SPEED = 30;
+  /** Motor rotation needed to close the claw (degrees) */
   public static final int CLAW_CLOSING_DEGREE_ROTATION = -50;
+  /** Speed of the motor when opening the claw (degrees/second) */
   public static final int CLAW_OPENING_SPEED = 30;
+  /** Motor rotation needed to open the claw (degrees) */
   public static final int CLAW_OPENING_DEGREE_ROTATION = 50;
 
   // US Localization constants
+  /** Wall detection threshold for ultrasonic localization */
   public static final double RISING_EDGE_RANGE = 0.40;
+  /**
+   * Sleep time of the ultrasonic localization after detecting a wall.
+   * <p>
+   * This avoids detecting the same rising edge twice.
+   */
   public static final int US_LOCALIZE_WAIT_TIME = 1000;
+  /** Constant offset for the angle computed by ultrasonic localiztaion */
   public static final double HEADING_OFFSET = 0;
 
   // Thread/Timer periods
+  /** Refresh interval of the display (ms) */
   public static final int DISPLAY_WAIT_PERIOD = 500;
+  /** Update interval of the odometer (ms) */
   public static final int ODOMETER_WAIT_PERIOD = 25;
-  public static final int LIGHT_POLLER_WAIT_PERIOD = 10;
+  /** Update interval of the odometry correction (ms) */
+  public static final int ODOMETRY_CORRECTION_WAIT_PERIOD = 10;
 
   // Sensor filter parameters
+  /** Size of the color sensor median filter */
   public static final int COLOR_SENSOR_MEDIAN_FILTER_SIZE = 1;
+  /** Size of the light sensor median filter */
   public static final int LIGHT_SENSOR_MEDIAN_FILTER_SIZE = 1;
+  /** Size of the ultrasonic sensor median filter during localization */
   public static final int US_SENSOR_LOCALIZATION_MEDIAN_FILTER_SIZE = 15;
+  /** Default size of the ultrasonic sensor median filter */
   public static final int US_SENSOR_SCAN_MEDIAN_FILTER_SIZE = 5;
 
   // Physical dimensions of robot
   public static final double LEFT_WHEEL_RADIUS = 2.05;
   public static final double RIGHT_WHEEL_RADIUS = 2.05;
+  /**
+   * Distance between the two wheels.
+   * <p>
+   * This value is smaller in theory, but we have shown by testing that this is the value that make
+   * the robot work optimally.
+   */
   public static final double WHEEL_BASE = 11.7;
   public static final double DIST_CENTER_TO_LINE_DETECTION_LIGHT_SENSOR = 12.3;
   public static final double DIST_CENTER_TO_OBJECT_IDENTIFIER_LIGHT_SENSOR = 5.9;
@@ -82,22 +110,32 @@ public class Constants {
   public static final int TEAM_NUMBER = 11;
 
   // Environment constants
-  /**
-   * Size of one grid square in centimeters
-   */
+  /** Size of one grid square (cm) */
   public static final double GRID_SIZE = 30.48;
-  /**
-   * Width and height of the board in number of squares
-   */
+  /** Width and height of the board in number of squares */
   public static final int BOARD_SIZE = 12;
 
   // Other constants
+  /**
+   * The file in which to output the logs
+   * <p>
+   * Note: The file will be completely overwritten every time the program is run.
+   */
   public static final String LOG_FILENAME = "Log.txt";
+  /** Maximum trials to initialize sensors and motors */
   public static final int HARDWARE_INITIALIZATION_MAXIMUM_TRIALS = 5;
+  /** Delay between sensor and motor initialization trials */
   public static final int HARDWARE_INITIALIZATION_RETRY_DELAY = 500;
+  /** Maximum deviation of the odometer allowed in OdometryCorrection. */
   public static final int ODOMETRY_CORRECTION_MAX_ERROR_MARGIN = 2;
   public static final int SOUND_VOLUME = 60;
+  /**
+   * Threshold used to detect if a line was crossed.
+   * <p>
+   * This is the minimal difference in light level from two consecutive reads of the light sensor.
+   */
   public static final double LINE_CROSSED_LIGHT_THRESHOLD = -0.06;
+  /** Clipping distance of the ultrasonic sensor when scanning the field */
   public static final double SCANNING_RANGE = 0.5;
   /**
    * Allows to tweak the speed/balance of the pathfinding algorithm.
