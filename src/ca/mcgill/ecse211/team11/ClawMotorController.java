@@ -4,7 +4,7 @@ import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.motor.NXTRegulatedMotor;
 
 /**
- * This class controls the motors for the claw and its lifting mechanism.
+ * Controls the motors for the claw and its lifting mechanism.
  * 
  * @author Justin Szeto
  * @version 4.0
@@ -22,24 +22,36 @@ public class ClawMotorController {
     this.clawRaisingMotor = clawRaisingMotor;
   }
 
+  /**
+   * Closes the claw.
+   */
   public void closeClaw() {
     clawClosingMotor.setSpeed(Constants.CLAW_CLOSING_SPEED);
     clawClosingMotor
         .rotateTo(clawClosingMotor.getTachoCount() + Constants.CLAW_CLOSING_DEGREE_ROTATION);
   }
 
+  /**
+   * Opens the claw.
+   */
   public void openClaw() {
     clawClosingMotor.setSpeed(Constants.CLAW_OPENING_SPEED);
     clawClosingMotor
         .rotateTo(clawClosingMotor.getTachoCount() + Constants.CLAW_OPENING_DEGREE_ROTATION);
   }
 
+  /**
+   * Raises the claw.
+   */
   public void raiseClaw() {
     clawRaisingMotor.setSpeed(Constants.CLAW_RAISING_SPEED);
     clawRaisingMotor
         .rotateTo(clawRaisingMotor.getTachoCount() + Constants.CLAW_RAISING_DEGREE_ROTATION);
   }
 
+  /**
+   * Lowers the claw.
+   */
   public void lowerClaw() {
     clawRaisingMotor.setSpeed(Constants.CLAW_LOWERING_SPEED);
     clawRaisingMotor
