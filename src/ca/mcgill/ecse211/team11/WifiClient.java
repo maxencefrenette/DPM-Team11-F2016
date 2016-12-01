@@ -9,7 +9,7 @@ import ca.mcgill.ecse211.wifi.WifiConnection;
  * Connects to competition server and retrieve data
  * 
  * @author Justin Szeto
- * @version 4.0
+ * @version 4.1
  * @since 1.0
  */
 public class WifiClient {

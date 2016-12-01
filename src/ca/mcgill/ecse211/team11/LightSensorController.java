@@ -8,7 +8,7 @@ import lejos.robotics.SampleProvider;
  * correction purposes.
  * 
  * @author Maxence Frenette
- * @version 4.0
+ * @version 4.1
  * @since 1.0
  */
 public class LightSensorController {

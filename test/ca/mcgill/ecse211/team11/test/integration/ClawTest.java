@@ -10,7 +10,7 @@ import lejos.hardware.lcd.TextLCD;
  * This class tests the motors for the claw and its lifting mechanism.
  * 
  * @author Saleh Bakhit
- * @version 4.0
+ * @version 4.1
  * @since 3.0
  *
  */

@@ -9,7 +9,7 @@ import ca.mcgill.ecse211.team11.Util;
  * This classed is used to represent a possible position of the robot during pathfinding.
  * 
  * @author Maxence Frenette
- * @version 4.0
+ * @version 4.1
  * @since 4.0
  */
 public class SearchNode extends PathNode {

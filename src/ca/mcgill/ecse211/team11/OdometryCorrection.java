@@ -4,7 +4,7 @@ package ca.mcgill.ecse211.team11;
  * Corrects the odometer's position by using the lines on the ground.
  * 
  * @author Maxence Frenette
- * @version 4.0
+ * @version 4.1
  * @since 1.0
  */
 public class OdometryCorrection extends Thread {

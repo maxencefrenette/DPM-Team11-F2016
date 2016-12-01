@@ -7,7 +7,7 @@ import lejos.robotics.SampleProvider;
  * Operates the ultrasonic sensor used to measure distances in front of the robot.
  * 
  * @author Justin Szeto
- * @version 4.0
+ * @version 4.1
  * @since 1.0
  *
  */

@@ -7,7 +7,7 @@ import lejos.hardware.motor.NXTRegulatedMotor;
  * Controls the motors for the claw and its lifting mechanism.
  * 
  * @author Justin Szeto
- * @version 4.0
+ * @version 4.1
  * @since 1.0
  *
  */

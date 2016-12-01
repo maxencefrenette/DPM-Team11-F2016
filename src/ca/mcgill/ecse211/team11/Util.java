@@ -7,7 +7,7 @@ import java.util.Arrays;
  * Provides a assortment of utility methods that are used throughout the project.
  * 
  * @author Maxence Frenette
- * @version 4.0
+ * @version 4.1
  * @since 1.0
  */
 public class Util {

@@ -7,7 +7,7 @@ import lejos.hardware.lcd.TextLCD;
  * Display class handles showing any vital info on the LCD of the EV3 brick during runtime.
  * 
  * @author Justin Szeto
- * @version 4.0
+ * @version 4.1
  * @since 1.0
  */
 public class Display extends Thread {

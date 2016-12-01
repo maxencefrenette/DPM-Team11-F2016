@@ -6,7 +6,7 @@ import lejos.hardware.Sound;
  * Performs localization using the ultrasonic sensor and the rising edge method.
  * 
  * @author Justin Szeto
- * @version 4.0
+ * @version 4.1
  * @since 1.0
  *
  */

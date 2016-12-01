@@ -6,7 +6,7 @@ package ca.mcgill.ecse211.team11.pathfinding;
  * This classed is used to represent a waypoint in a path.
  * 
  * @author Maxence Frenette
- * @version 4.0
+ * @version 4.1
  * @since 4.0
  */
 public class PathNode {

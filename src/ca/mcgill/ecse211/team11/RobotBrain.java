@@ -13,7 +13,7 @@ import lejos.hardware.Sound;
  * corresponds to a method that will perform some actions, then determine the robot's next state.
  * 
  * @author Maxence Frenette
- * @version 4.0
+ * @version 4.1
  * @since 1.0
  */
 public class RobotBrain extends Thread {
