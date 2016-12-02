@@ -58,12 +58,12 @@ public class InternalGridTest {
     Path p1 = grid.pathfindTo(start1, end1);
     System.out.println(p1);
     System.out.println();
-    
+
     // Pathfinding to closest grid intersection
     PathNode start2 = new PathNode(0.5 * Constants.GRID_SIZE, 2.5 * Constants.GRID_SIZE, 0);
     Path p2 = grid.pathfindTo(start2, InternalGrid.CLOSEST_INTERSECTION);
     System.out.println(p2);
-    
+
     assertTrue("Pathfinding completed without errors", true);
   }
 }

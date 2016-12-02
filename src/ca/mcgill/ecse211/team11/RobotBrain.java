@@ -35,7 +35,7 @@ public class RobotBrain extends Thread {
     odometer = init.odometer;
     navigation = init.navigation;
     localizer = init.localizer;
-    
+
     grid = new InternalGrid(Constants.BOARD_SIZE);
     scanner = new Scanner(init, grid, Constants.SCANNING_RANGE);
   }
@@ -91,14 +91,14 @@ public class RobotBrain extends Thread {
         navigation.travelTo(Constants.GRID_SIZE, Constants.GRID_SIZE * (Constants.BOARD_SIZE - 1));
         break;
     }
-    
+
     // Beep to indicate that localization is done
     Sound.beep();
 
     scanner.setScanning(true);
     localizer.lightLocalize();
     scanner.setScanning(false);
-    
+
     State state;
     if (Constants.STAY_IN_CORNER) {
       state = State.RETURN_TO_CORNER;
@@ -242,7 +242,7 @@ public class RobotBrain extends Thread {
             Constants.GRID_SIZE * (Constants.BOARD_SIZE - 0.5));
         break;
     }
-    
+
     return State.STOP;
   }
 

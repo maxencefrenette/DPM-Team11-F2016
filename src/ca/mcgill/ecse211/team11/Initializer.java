@@ -42,7 +42,8 @@ public class Initializer {
   /**
    * Initializes all the robot's services and resources.
    * <p>
-   * This constructor has lots of side effects and can take a few seconds to execute on the EV3 brick.
+   * This constructor has lots of side effects and can take a few seconds to execute on the EV3
+   * brick.
    */
   public Initializer() {
     Logger.setLogWriter(Constants.LOG_FILENAME);
@@ -69,8 +70,8 @@ public class Initializer {
   }
 
   /**
-   * Initializes a single large motor and manages initialization errors. If an exception is thrown, it
-   * will try again up to a maximum number of trials.
+   * Initializes a single large motor and manages initialization errors. If an exception is thrown,
+   * it will try again up to a maximum number of trials.
    * 
    * @param port The motor's port
    * @return The initialized motor object
@@ -90,8 +91,8 @@ public class Initializer {
   }
 
   /**
-   * Initializes a single large motor and manages initialization errors. If an exception is thrown, it
-   * will try again up to a maximum number of trials.
+   * Initializes a single large motor and manages initialization errors. If an exception is thrown,
+   * it will try again up to a maximum number of trials.
    * 
    * @param port The motor's port
    * @return The initialized motor object
