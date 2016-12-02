@@ -10,6 +10,13 @@ import ca.mcgill.ecse211.team11.pathfinding.InternalGridCell;
 import ca.mcgill.ecse211.team11.pathfinding.Path;
 import ca.mcgill.ecse211.team11.pathfinding.PathNode;
 
+/**
+ * Tests the InternalGrid class.
+ * 
+ * @author Maxence Frenette
+ * @version 4.1
+ * @since 4.0
+ */
 public class InternalGridTest {
 
   public static void main(String[] args) {

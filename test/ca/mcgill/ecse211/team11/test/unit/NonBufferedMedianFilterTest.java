@@ -7,6 +7,13 @@ import org.junit.Test;
 
 import ca.mcgill.ecse211.team11.NonBufferedMedianFilter;
 
+/**
+ * Tests the NonBufferedMedianFilter class
+ * 
+ * @author Maxence Frenette
+ * @version 4.1
+ * @since 2.0
+ */
 public class NonBufferedMedianFilterTest {
 
   @Test
@@ -20,6 +27,13 @@ public class NonBufferedMedianFilterTest {
     assertEquals("Second data sample", data[1], 4, 0.001);
   }
 
+  /**
+   * A mock sample provider that outputs predetermined values
+   * 
+   * @author Maxence Frenette
+   * @version 4.1
+   * @since 2.0
+   */
   class MockSampleProvider implements SampleProvider {
     int sampleSize;
     float[][] data;
@@ -31,17 +45,22 @@ public class NonBufferedMedianFilterTest {
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public int sampleSize() {
       return sampleSize;
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public void fetchSample(float[] sample, int offset) {
       for (int i = 0; i < sampleSize; i++) {
         sample[offset + i] = data[numQueries][i];
       }
       numQueries = (numQueries + 1) % data.length;
     }
-
-  }
+  } // End of MockSampleProvider
 }

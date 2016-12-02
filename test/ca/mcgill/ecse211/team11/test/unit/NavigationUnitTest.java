@@ -61,7 +61,5 @@ public class NavigationUnitTest {
 
     nav.goForward(30);
     while (Button.waitForAnyPress() == Button.ID_ALL);
-
   }
-
 }

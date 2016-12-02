@@ -5,6 +5,13 @@ import ca.mcgill.ecse211.team11.Initializer;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
 
+/**
+ * Tests the relocalization (light localization from an arbitrary position).
+ * 
+ * @author Justin Szeto
+ * @version 4.1
+ * @since 4.0
+ */
 public class RelocalizationTest {
 
   public static void main(String[] args) {
@@ -25,5 +32,4 @@ public class RelocalizationTest {
     Button.waitForAnyPress();
     System.exit(0);
   }
-
 }

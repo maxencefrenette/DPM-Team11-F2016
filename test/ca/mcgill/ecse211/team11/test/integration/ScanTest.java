@@ -6,6 +6,13 @@ import ca.mcgill.ecse211.team11.Logger;
 import ca.mcgill.ecse211.team11.Scanner;
 import ca.mcgill.ecse211.team11.pathfinding.InternalGrid;
 
+/**
+ * Tests the scanning.
+ * 
+ * @author Justin Szeto
+ * @since 4.0
+ * @version 4.1
+ */
 public class ScanTest {
 
   public static void main(String[] args) {
@@ -26,6 +33,5 @@ public class ScanTest {
     scanner.setScanning(false);
     Logger.logData("Scan Range: " + scanRange + "\n");
     grid.printBoard(0);
-
   }
 }

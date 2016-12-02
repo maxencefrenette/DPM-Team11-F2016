@@ -15,7 +15,6 @@ import lejos.hardware.Sound;
  * @author Saleh Bakhit
  * @version 4.1
  * @since 4.0
- *
  */
 public class IdentificationTest {
   public static void main(String[] args) {

@@ -5,8 +5,8 @@ import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.Button;
 
 /**
- * This class tests all motors separately. It determines if they go back to the zero angle after
- * k*full revolutions
+ * Tests all motors separately. It determines if they go back to the zero angle after k*full
+ * revolutions
  * 
  * @author Saleh Bakhit
  * @version 4.1

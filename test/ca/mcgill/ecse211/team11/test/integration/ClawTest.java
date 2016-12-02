@@ -7,12 +7,11 @@ import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.lcd.TextLCD;
 
 /**
- * This class tests the motors for the claw and its lifting mechanism.
+ * Tests the motors for the claw and its lifting mechanism.
  * 
  * @author Saleh Bakhit
  * @version 4.1
  * @since 3.0
- *
  */
 public class ClawTest {
   public static void main(String[] args) {

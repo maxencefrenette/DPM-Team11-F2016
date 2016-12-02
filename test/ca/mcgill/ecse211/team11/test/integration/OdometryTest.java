@@ -5,11 +5,8 @@ import ca.mcgill.ecse211.team11.Initializer;
 import ca.mcgill.ecse211.team11.Odometer;
 import ca.mcgill.ecse211.team11.OdometryCorrection;
 import ca.mcgill.ecse211.team11.Constants;
-import ca.mcgill.ecse211.team11.LightSensorController;
-import ca.mcgill.ecse211.team11.Navigation;
 import lejos.hardware.Button;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
-import lejos.utility.Delay;
 
 /**
  * Tests the odometer by moving in a square.
@@ -68,5 +65,4 @@ public class OdometryTest {
   private static int convertAngle(double radius, double width, double angle) {
     return convertDistance(radius, Math.PI * width * angle / 360.0);
   }
-
 }

@@ -28,5 +28,4 @@ public class PathTest {
     assert (it.hasNext());
     assertEquals(node2, it.next());
   }
-
 }
