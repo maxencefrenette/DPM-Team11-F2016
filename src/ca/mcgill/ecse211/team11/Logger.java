@@ -15,7 +15,8 @@ public class Logger {
 
   private static PrintStream writer = System.out;
   private static long startTime = 0;
-  public static String lastMessage = "";
+  /** The last message logged */
+  private static String lastMessage = "";
 
   /**
    * Log the time and the data passed as parameter.
@@ -60,5 +61,12 @@ public class Logger {
     if (startTime == 0) {
       startTime = System.currentTimeMillis();
     }
+  }
+
+  /**
+   * @return The last message logged.
+   */
+  public static String getLastMessage() {
+    return lastMessage;
   }
 }

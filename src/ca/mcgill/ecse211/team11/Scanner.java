@@ -14,6 +14,13 @@ public class Scanner extends Thread {
   private InternalGrid grid;
   private double scanRange;
 
+  /**
+   * Initializes the scanner object.
+   * 
+   * @param init The Initializer object in charge of initializing the robot
+   * @param grid The internal grid to output the scan result
+   * @param scanRange The clipping range for the scanning
+   */
   public Scanner(Initializer init, InternalGrid grid, double scanRange) {
     usSensorController = init.usSensorController;
     odometer = init.odometer;
@@ -22,6 +29,11 @@ public class Scanner extends Thread {
   }
 
   @Override
+  /**
+   * Main logic for the scanner thread.
+   * <p>
+   * Doesn't start the scanning process. Use {@link #setScanning(boolean)} instead.
+   */
   public void run() {
     while (true) {
       while (scanning) {

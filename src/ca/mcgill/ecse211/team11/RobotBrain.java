@@ -216,6 +216,11 @@ public class RobotBrain extends Thread {
     return State.EXPLORE;
   }
 
+  /**
+   * Returns to the initial corner and stops the robot.
+   * 
+   * @return The next state of the robot (State.STOP)
+   */
   public State returnToCorner() {
     switch (startingCorner) {
       case 1:

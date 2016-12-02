@@ -39,14 +39,19 @@ public class Initializer {
   public Localization localizer;
   public Scanner sacnner;
 
+  /**
+   * Initializes all the robot's services and resources.
+   * <p>
+   * This constructor has lots of side effects and can take a few seconds to execute on the EV3 brick.
+   */
   public Initializer() {
     Logger.setLogWriter(Constants.LOG_FILENAME);
     Logger.setLogStartTime();
     Sound.setVolume(Constants.SOUND_VOLUME);
 
-    leftMotor = initMotor(Constants.LEFT_WHEEL_MOTOR_PORT);
-    rightMotor = initMotor(Constants.RIGHT_WHEEL_MOTOR_PORT);
-    clawClosingMotor = initClawClosingMotor(Constants.CLAW_CLOSING_MOTOR_PORT);
+    leftMotor = initLargeMotor(Constants.LEFT_WHEEL_MOTOR_PORT);
+    rightMotor = initLargeMotor(Constants.RIGHT_WHEEL_MOTOR_PORT);
+    clawClosingMotor = initMediumMotor(Constants.CLAW_CLOSING_MOTOR_PORT);
     clawRaisingMotor = initClawMotor(Constants.CLAW_RAISING_MOTOR_PORT);
     lineDetectionLightSensor = initColorSensor(Constants.LIGHT_SENSOR_LINE_DETECTION_PORT);
     objectIdentifierLightSensor = initColorSensor(Constants.LIGHT_SENSOR_OBJECT_IDENTIFIER_PORT);
@@ -63,12 +68,19 @@ public class Initializer {
     localizer = new Localization(this);
   }
 
-  private EV3MediumRegulatedMotor initClawClosingMotor(String clawClosingMotorPort) {
+  /**
+   * Initializes a single large motor and manages initialization errors. If an exception is thrown, it
+   * will try again up to a maximum number of trials.
+   * 
+   * @param port The motor's port
+   * @return The initialized motor object
+   */
+  private EV3MediumRegulatedMotor initMediumMotor(String port) {
     EV3MediumRegulatedMotor motor = null;
 
     for (int i = 0; i < Constants.HARDWARE_INITIALIZATION_MAXIMUM_TRIALS && motor == null; i++) {
       try {
-        motor = new EV3MediumRegulatedMotor(LocalEV3.get().getPort(clawClosingMotorPort));
+        motor = new EV3MediumRegulatedMotor(LocalEV3.get().getPort(port));
       } catch (Exception e) {
         Util.sleep(Constants.HARDWARE_INITIALIZATION_RETRY_DELAY);
         Logger.logData(e.getMessage());
@@ -78,13 +90,13 @@ public class Initializer {
   }
 
   /**
-   * Initializes a single motor and manages initialization errors. If an exception is thrown, it
+   * Initializes a single large motor and manages initialization errors. If an exception is thrown, it
    * will try again up to a maximum number of trials.
    * 
    * @param port The motor's port
    * @return The initialized motor object
    */
-  private EV3LargeRegulatedMotor initMotor(String port) {
+  private EV3LargeRegulatedMotor initLargeMotor(String port) {
     EV3LargeRegulatedMotor motor = null;
 
     for (int i = 0; i < Constants.HARDWARE_INITIALIZATION_MAXIMUM_TRIALS && motor == null; i++) {

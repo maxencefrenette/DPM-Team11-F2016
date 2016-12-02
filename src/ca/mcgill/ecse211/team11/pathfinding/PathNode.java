@@ -27,6 +27,12 @@ public class PathNode {
     this.theta = theta;
   }
 
+  /**
+   * Calculates the distance from this node to another node.
+   * 
+   * @param other The other node
+   * @return The distance between the two nodes
+   */
   public double distTo(PathNode other) {
     double dx = x - other.getX();
     double dy = y - other.getY();
@@ -76,6 +82,11 @@ public class PathNode {
   }
 
   @Override
+  /**
+   * Converts this object as a string for debugging purposes.
+   * 
+   * @return The string representation of this object
+   */
   public String toString() {
     return String.format("{%.2f, %.2f, %.2f}", x, y, Math.toDegrees(theta));
   }

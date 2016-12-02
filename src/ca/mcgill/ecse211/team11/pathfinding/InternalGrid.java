@@ -23,6 +23,7 @@ public class InternalGrid {
    */
   public static final PathNode CLOSEST_INTERSECTION = new PathNode(0, 0, 0);
 
+  /** The internal array holding the grid */
   private InternalGridCell[][] grid;
 
   /**
@@ -234,6 +235,11 @@ public class InternalGrid {
     }
   }
 
+  /**
+   * Updates the no entry zone in the grid.
+   * 
+   * @param startCorner The corner number from which the robot started
+   */
   public void updateNoEntryZone(int startCorner) {
     for (int i = 0; i < grid.length; i++) {
       grid[0][i] = InternalGridCell.NO_ENTRY;
@@ -301,12 +307,12 @@ public class InternalGrid {
     }
   }
 
-  /**
-   * Converts the board to a string
-   * 
-   * @return The resulting string
-   */
   @Override
+  /**
+   * Converts the grid to a string for debugging purposes.
+   * 
+   * @return The string string representation of this grid
+   */
   public String toString() {
     String board = "";
     String horizontalLine = "";

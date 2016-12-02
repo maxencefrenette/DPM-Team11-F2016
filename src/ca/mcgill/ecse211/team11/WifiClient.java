@@ -17,6 +17,7 @@ public class WifiClient {
   private static WifiConnection conn;
 
   /**
+   * Tries connecting to the server
    * 
    * @return true if successful connection to server. false if connection failed
    */
@@ -78,5 +79,4 @@ public class WifiClient {
 
     return data;
   }
-
 }

@@ -14,7 +14,7 @@ public class Main {
    * <p>
    * Initializes all the robot's component and starts the main algorithm.
    * 
-   * @param args
+   * @param args The program arguments (will be ignored)
    */
   public static void main(String[] args) {
     Initializer init = new Initializer();

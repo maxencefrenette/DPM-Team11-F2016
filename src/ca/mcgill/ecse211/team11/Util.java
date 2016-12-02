@@ -175,6 +175,14 @@ public class Util {
     return gridsInLineOfSight;
   }
 
+  /**
+   * Clamps a value in an interval.
+   * 
+   * @param num The number to clamp
+   * @param lowerRange The lowest value the result can take
+   * @param upperRange The highest value the result can take
+   * @return The clamped number
+   */
   public static int clamp(int num, int lowerRange, int upperRange) {
     if (num < lowerRange) {
       return lowerRange;

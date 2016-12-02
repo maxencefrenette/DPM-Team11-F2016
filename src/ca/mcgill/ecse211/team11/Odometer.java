@@ -15,15 +15,18 @@ public class Odometer extends Thread {
   private double x;
   /** The robot's y position */
   private double y;
-  /**
-   * The robot's orientation in radians according to the mathematical angle convention.
-   */
+  /** The robot's orientation in radians according to the mathematical angle convention. */
   private double theta;
-  private EV3LargeRegulatedMotor leftMotor, rightMotor;
-  private int previousTachoL, previousTachoR;
-
-  // lock object for mutual exclusion
+  /** Reference to the robot's left wheel motor */
+  private EV3LargeRegulatedMotor leftMotor;
+  /** Reference to the robot's right wheel motor */
+  private EV3LargeRegulatedMotor rightMotor;
+  /** Lock object that synchronizes any access to the odometer's coordinates */
   private Object lock;
+
+  /**
+   * Set to true to activate the logging
+   */
   private boolean logging = false;
 
   /**
@@ -37,17 +40,17 @@ public class Odometer extends Thread {
     this.x = 0;
     this.y = 0;
     this.theta = 0;
-    this.previousTachoL = 0;
-    this.previousTachoR = 0;
     lock = new Object();
   }
 
+  @Override
   /**
    * Starts the odometer.
    */
-  @Override
   public void run() {
     long updateStart, updateEnd;
+    int previousTachoL = 0;
+    int previousTachoR = 0;
 
     while (true) {
       updateStart = System.currentTimeMillis();
@@ -82,11 +85,7 @@ public class Odometer extends Thread {
       // Ensures that the odometer only runs once every period
       updateEnd = System.currentTimeMillis();
       if (updateEnd - updateStart < Constants.ODOMETER_WAIT_PERIOD) {
-        try {
-          Thread.sleep(Constants.ODOMETER_WAIT_PERIOD - (updateEnd - updateStart));
-        } catch (InterruptedException e) {
-
-        }
+        Util.sleep(Constants.ODOMETER_WAIT_PERIOD - (updateEnd - updateStart));
       }
     }
   }
@@ -116,7 +115,7 @@ public class Odometer extends Thread {
   /**
    * @return The y
    */
-  public synchronized double getY() {
+  public double getY() {
     double result;
 
     synchronized (lock) {
@@ -129,7 +128,7 @@ public class Odometer extends Thread {
   /**
    * @param y The y to set
    */
-  public synchronized void setY(double y) {
+  public void setY(double y) {
     synchronized (lock) {
       this.y = y;
     }
@@ -138,7 +137,7 @@ public class Odometer extends Thread {
   /**
    * @return The unnormalized theta
    */
-  public synchronized double getUnwrappedTheta() {
+  public double getUnwrappedTheta() {
     double result;
 
     synchronized (lock) {
@@ -158,7 +157,7 @@ public class Odometer extends Thread {
   /**
    * @param theta The theta to set
    */
-  public synchronized void setTheta(double theta) {
+  public void setTheta(double theta) {
     synchronized (lock) {
       this.theta = theta;
     }

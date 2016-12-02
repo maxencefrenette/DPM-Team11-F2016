@@ -9,7 +9,6 @@ import lejos.robotics.SampleProvider;
  * @author Justin Szeto
  * @version 4.1
  * @since 1.0
- *
  */
 public class USSensorController {
   private SampleProvider spPrecise;
@@ -29,7 +28,8 @@ public class USSensorController {
   }
 
   /**
-   * Fetches the distance from the ultrasonic sensor to the closest object in front of the robot.
+   * Precisely fetches the distance from the ultrasonic sensor to the closest object in front of the
+   * robot.
    * 
    * @return The distance read from ultrasonic sensor
    */
@@ -38,15 +38,27 @@ public class USSensorController {
     return dataPrecise[0];
   }
 
+  /**
+   * @return The last precise distance read
+   */
   public double getLastPreciseDistance() {
     return dataPrecise[0];
   }
 
+  /**
+   * Quickly fetches the distance from the ultrasonic sensor to the closest object in front of the
+   * robot.
+   * 
+   * @return The distance read from ultrasonic sensor
+   */
   public float getFastDistance() {
     spFast.fetchSample(dataFast, 0);
     return dataFast[0];
   }
 
+  /**
+   * @return The last fast distance read
+   */
   public double getLastFastDistance() {
     return dataFast[0];
   }

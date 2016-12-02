@@ -45,18 +45,44 @@ public class SearchNode extends PathNode {
     super(node.getX(), node.getY(), node.getTheta());
   }
 
+  /**
+   * Calculates the f score of this search node.
+   * 
+   * @param goal The position to pathfind to
+   * @return The f score of this search node
+   */
   public double f(PathNode goal) {
     return g() + Constants.PATHFINDING_EPSILON * h(goal);
   }
 
+  /**
+   * Calculates the g score of this search node.
+   * <p>
+   * This is equivalent to the length of the path currently explored.
+   * 
+   * @return The g score of this search node
+   */
   public double g() {
     return g;
   }
 
+  /**
+   * Calculates the heuristic of this search node.
+   * <p>
+   * In this case, the heuristic is the euclidian distance to the goal.
+   * 
+   * @param goal The position to pathfind to
+   * @return The heuristic for this search node
+   */
   public double h(PathNode goal) {
     return distTo(goal);
   }
 
+  /**
+   * Generates the neighbour states of this search node.
+   * 
+   * @return The neighbours of this search nodes
+   */
   public SearchNode[] getNeighbours() {
     double clampedX = getX() - Util.specialMod(getX(), Constants.GRID_SIZE / 2);
     double clampedY = getY() - Util.specialMod(getY(), Constants.GRID_SIZE / 2);
@@ -113,6 +139,12 @@ public class SearchNode extends PathNode {
   }
 
   @Override
+  /**
+   * @inheritDoc
+   * 
+   * @param o {@inheritDoc}
+   * @return {@inheritDoc}
+   */
   public boolean equals(Object o) {
     if (this == o) {
       return true;
@@ -128,6 +160,11 @@ public class SearchNode extends PathNode {
   }
 
   @Override
+  /**
+   * {@inheritDoc}
+   * 
+   * @return {@inheritDoc}
+   */
   public int hashCode() {
     return Double.hashCode(getX()) + Double.hashCode(getY()) + Double.hashCode(getTheta());
   }

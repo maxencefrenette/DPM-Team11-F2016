@@ -4,7 +4,7 @@ package ca.mcgill.ecse211.team11.pathfinding;
  * Enumerates the different possible stated of a grid square.
  * 
  * @author Maxence Frenette
- * @since 2.0
+ * @version 4.1
  * @since 2.0
  */
 public enum InternalGridCell {

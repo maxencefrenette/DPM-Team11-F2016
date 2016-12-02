@@ -55,7 +55,7 @@ public class Display extends Thread {
 
       // Displays the last logged message
       try {
-        String lastMessage = Logger.lastMessage;
+        String lastMessage = Logger.getLastMessage();
         int _18 = Math.min(18, lastMessage.length());
         int _36 = Math.min(36, lastMessage.length());
         t.drawString(lastMessage.substring(0, _18), 0, 6);

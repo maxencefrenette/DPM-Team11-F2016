@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Path implements Iterable<PathNode> {
+  /** The array of nodes that compose the path */
   ArrayList<PathNode> nodes;
+  /** The path's length (cm) */
   double length;
 
   /**
@@ -46,11 +48,21 @@ public class Path implements Iterable<PathNode> {
   }
 
   @Override
+  /**
+   * Iterates over the path's nodes.
+   * 
+   * @return An iterator over the path's nodes
+   */
   public Iterator<PathNode> iterator() {
     return nodes.iterator();
   }
 
   @Override
+  /**
+   * Converts this object as a string for debugging purposes.
+   * 
+   * @return The string representation of this object
+   */
   public String toString() {
     String result = "";
     for (PathNode node : this) {
